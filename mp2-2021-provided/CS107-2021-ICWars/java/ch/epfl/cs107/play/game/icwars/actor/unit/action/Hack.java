@@ -74,6 +74,14 @@ public class Hack extends ICwarsAction {
         hack(randomTarget, player);
     }
 
+    @Override
+    public boolean canBeUsed() {
+        if (getActionUnit().getInteractableAllyUnits().size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * general hack mechanism increase damage

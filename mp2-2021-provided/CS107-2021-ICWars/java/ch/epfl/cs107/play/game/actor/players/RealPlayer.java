@@ -116,6 +116,7 @@ public class RealPlayer extends ICwarsPlayer {
     private void handleActionSelection(Keyboard keyboard) {
         //in moveUnit player cursor can move, and move unit on enter also cna go back to normal state on tab press
         //on tab press you go back to normal
+        playerGUI.setActions(getSelectedUnit().getActions());
         handleKeyState(NORMAL, keyboard.get(Keyboard.TAB));
         //move selected unit to position on enter press
         moveSelectedUnit(keyboard.get(Keyboard.ENTER));
@@ -199,7 +200,7 @@ public class RealPlayer extends ICwarsPlayer {
             //selected unit
             Unit selectedUnit = getSelectedUnit();
             //check if the selected point is in the range of the unit
-            if (selectedUnit.isInRange(pos)) {
+            if (selectedUnit.isInRange(pos) && getSelectedUnit().canMove()) {
                 if (!isDisplacementOccurs()) {
                     //change the position of selected unit to the pos of the cursor
                     getSelectedUnit().changePosition(pos);
@@ -212,7 +213,8 @@ public class RealPlayer extends ICwarsPlayer {
                     //tell the gui that the unit isn't selected anymore for the gui
                     playerGUI.unselectUnit();
                     //tell the gui what actions are avaible on the selected unit
-                    playerGUI.setActions(getSelectedUnit().getActions());
+                    Unit unit = getSelectedUnit();
+                    playerGUI.setActions(unit.getActions());
                     //change state to action selection
                     this.setState(ACTION_SELECTION);
 
@@ -246,6 +248,7 @@ public class RealPlayer extends ICwarsPlayer {
     @Override
     public void update(float deltaTime) {
         //update method
+
         Keyboard keyboard = getOwnerArea().getKeyboard();
         automate(keyboard);
         super.update(deltaTime);
@@ -310,6 +313,7 @@ public class RealPlayer extends ICwarsPlayer {
                     break;
 
                 case SELECT_CELL:
+                    playerGUI.setCurrentUnit(unit);
                     /*allows to only select ally unit*/
                     if (getFaction() == unit.getFaction()) {
                         //allows to select only unit that can move (not disabled

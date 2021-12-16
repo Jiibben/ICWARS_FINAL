@@ -29,6 +29,11 @@ public class Wait extends ICwarsAction {
         this.wait(player);
     }
 
+    @Override
+    public boolean canBeUsed() {
+        return true;
+    }
+
     /**
      * wait just puts the unit like it has already acted but does nothing else
      */

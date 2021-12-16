@@ -6,11 +6,12 @@ ICWarsPlayer:
 	- initialisation des unités: nous avons préféré gérer la création des unités 
 	par un nombrepour chaque unité plûtot qu'une elipsise
 	
-	-coordonnées de spawn des unités nous avons décidé de les alloués de manière automatique en donnant une première
+	-coordonnées de spawn des unités nous avons décidé de les alloués de manière
+	 automatique en donnant une première
 	coordonnée et après en augmantant ca coordonnée x 1 par une ce qui forme une liste d'unité.
 	
-	-méthode computeSpriteName simple méthode qui ajoute friendly ou enemy selon la factionau nom du 
-	sprite pour en faire une path du sprite.
+	-méthode computeSpriteName simple méthode qui ajoute friendly ou enemy selon la faction 
+	au nom du sprite pour en faire une path du sprite.
 
 AIPlayer :
 	- selection des attaques nous avons ajouté un check si le joueur possède l'action en question pour l'executé
@@ -64,14 +65,29 @@ levels :
 	
 	
 affichage : 
+
+	-seuls les attaques exécutables sont montrées donc attaques etc seulement affichée dans le actionpanel si dans la condition déterminée dans canBeUsed de l'action est vraie 
 	
 	-nous avons rajouté la range d'attaque dans l'affichage des informations de l'unité
 	
 		
 		
-		
-		
-		
+
+
+Key mapping :
+	
+      action :
+	
+	- attack : A
+	- hack : H
+	- patch : P
+	
+      other : 
+	- moving : arrow key
+	- next level : N
+	- reload game : R
+	 select unit : ENTER
+	- validate attack : ENTER	
 		
 		
 		

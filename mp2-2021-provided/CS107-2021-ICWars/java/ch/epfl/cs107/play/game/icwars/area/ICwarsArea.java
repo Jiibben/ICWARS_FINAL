@@ -135,7 +135,6 @@ public abstract class ICwarsArea extends Area {
      */
     public ArrayList<Integer> getEnemyUnitsInAttackRange(Unit unit) {
         int range = unit.getAttackRange();
-
         DiscreteCoordinates coordinates = unit.getCurrentMainCellCoordinates();
         int maxX = coordinates.x + range + 1;
         int maxY = coordinates.y + range + 1;

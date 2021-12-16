@@ -34,10 +34,7 @@ public class Attack extends ICwarsAction {
     @Override
     public void doAction(float dt, ICwarsPlayer player, Keyboard keyboard) {
         //key mapping for the action
-        Button next = keyboard.get(Keyboard.RIGHT);
-        Button back = keyboard.get(Keyboard.LEFT);
-        Button attack = keyboard.get(Keyboard.ENTER);
-        Button tab = keyboard.get(Keyboard.TAB);
+        Button next = keyboard.get(Keyboard.RIGHT), back = keyboard.get(Keyboard.LEFT), attack = keyboard.get(Keyboard.ENTER), tab = keyboard.get(Keyboard.TAB);
         this.indexes = getActionUnit().getAttackableUnits();
         //used to cycle through the ennemy units
         try {
@@ -50,14 +47,14 @@ public class Attack extends ICwarsAction {
                 unitSelectedIndex -= 1;
             } else if (attack.isPressed()) {
                 //if attack button is pressed attack the selected unit
-
                 attack(currentTarget, player);
             } else if (tab.isPressed()) {
                 //if tab is pressed just cancel the action
                 player.hasNotActed();
                 player.centerCamera();
             }
-        } catch (ArithmeticException e) {
+        } catch (Error ignored) {
+            //error maybe in case if there is no player
             player.hasNotActed();
             player.centerCamera();
         }
@@ -103,6 +100,16 @@ public class Attack extends ICwarsAction {
         player.hasActed();
         //center back camera on the player
         player.centerCamera();
+    }
+
+    @Override
+    public boolean canBeUsed() {
+        if (getActionUnit().getAttackableUnits().size() > 0) {
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

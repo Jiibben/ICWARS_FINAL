@@ -8,8 +8,11 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Keyboard;
 
 public abstract class ICwarsAction implements Graphics {
+    //unit associated to the action
     private final Unit unit;
+    //area associated to the action
     private final ICwarsArea area;
+    //name of the action
     private final String name;
 
     public ICwarsAction(Unit unit, ICwarsArea area, String name) {
@@ -17,6 +20,7 @@ public abstract class ICwarsAction implements Graphics {
         this.area = area;
         this.name = name;
     }
+
 
     /**
      * return the name of the action
@@ -32,6 +36,8 @@ public abstract class ICwarsAction implements Graphics {
         return this.unit;
 
     }
+
+    public abstract boolean canBeUsed();
 
     /**
      * return the area associated to the action

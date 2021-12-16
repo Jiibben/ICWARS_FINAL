@@ -21,10 +21,10 @@ import ch.epfl.cs107.play.window.Keyboard;
 import java.util.*;
 
 public abstract class Unit extends ICwarsActor implements Interactor {
-    //statsof the unit
+    //stats of the unit
     //name of the unit (added)
     private final String name;
-    //maximum hp of the unit (used as hp at creation)
+    //maximum hp that the unit can have (used as hp at creation)
     private final int maxHp;
     //current health point of the unit
     private int hp;
@@ -54,6 +54,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     //defense_stars of the cell that the unit is sitting on
     private int defense_stars;
 
+
     public Unit(Faction faction, Area area, DiscreteCoordinates position, String name, int movingRay, int maxHp, int damagePerAttack, String spriteName, int attackRay) {
         super(faction, area, position);
         this.name = name;
@@ -66,7 +67,6 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         //sprite initialisation
         this.sprite = new Sprite(spriteName, 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
     }
-
 
     /*
      * ------------------------------------------------
@@ -81,11 +81,14 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     public ArrayList<ICwarsAction> getActions() {
         ArrayList<ICwarsAction> returnActions = new ArrayList<>();
         for (int key : actions.keySet()) {
-            returnActions.add(actions.get(key));
+            ICwarsAction act = actions.get(key);
+            if (act.canBeUsed()) {
+                returnActions.add(act);
+            }
         }
         return returnActions;
     }
-
+    /**return the maximum hp that the unit can have*/
     public int getMaxHp() {
         return maxHp;
     }
@@ -198,7 +201,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     }
 
     /**
-     * increase the attack by a given
+     * increase the attack by a given amount
      */
     public void increaseAttack(int amount) {
         this.damagePerAttack += amount;
@@ -248,8 +251,11 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             //iterate through possible action and listen for the associated key then if
             //a key associated to an action is pressed execute the action
             if (keyboard.get(keyCode).isPressed()) {
-                player.setAct(actions.get(keyCode));
-                player.startAction();
+                ICwarsAction act = actions.get(keyCode);
+                if (act.canBeUsed()) {
+                    player.setAct(act);
+                    player.startAction();
+                }
 
             }
         }

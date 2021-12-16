@@ -22,6 +22,12 @@ public class Patch extends ICwarsAction {
         this.patch(player);
     }
 
+    @Override
+    public boolean canBeUsed() {
+        //can be used only if the
+        return getActionUnit().getMaxHp() < getActionUnit().getHp();
+    }
+
     //ai
     public void doAutoAction(float dt, AIPlayer player) {
         //heal the currently selected unit
@@ -33,10 +39,9 @@ public class Patch extends ICwarsAction {
      */
     private void patch(ICwarsPlayer player) {
         //check if the unit is already at max hp or if heal is
-        if (getActionUnit().getMaxHp() == getActionUnit().getHp()) {
+        if (!canBeUsed()) {
             //playre didn't do the action cuz already full life
             player.hasNotActed();
-
         } else {
             getActionUnit().repair(Patch.patchAmount);
             //player did the action
