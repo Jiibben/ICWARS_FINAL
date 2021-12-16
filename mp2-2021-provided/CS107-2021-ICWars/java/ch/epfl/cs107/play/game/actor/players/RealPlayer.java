@@ -120,7 +120,6 @@ public class RealPlayer extends ICwarsPlayer {
         //move selected unit to position on enter press
         moveSelectedUnit(keyboard.get(Keyboard.ENTER));
         //movement
-        moveHandling(keyboard);
     }
 
     /**
