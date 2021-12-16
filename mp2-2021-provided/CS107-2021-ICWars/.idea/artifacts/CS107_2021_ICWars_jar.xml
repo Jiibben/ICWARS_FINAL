@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CS107-2021-ICWars:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/CS107_2021_ICWars_jar</output-path>
+    <root id="archive" name="CS107-2021-ICWars.jar">
+      <element id="module-output" name="CS107-2021-ICWars" />
+    </root>
+  </artifact>
+</component>
