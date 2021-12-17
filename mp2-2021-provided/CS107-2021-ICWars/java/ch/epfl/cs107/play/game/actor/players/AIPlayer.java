@@ -6,6 +6,7 @@ import ch.epfl.cs107.play.game.icwars.actor.unit.action.Patch;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Wait;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.window.Canvas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
 public class AIPlayer extends ICwarsPlayer {
     private final float dt = 0.1f;
     private final int PATCH_THRESHOLD = 2;
+    private static boolean counting = true;
+    private static float counter = 0.f;
 
 
     public AIPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, DiscreteCoordinates unitSpawn) {
@@ -68,11 +71,16 @@ public class AIPlayer extends ICwarsPlayer {
                 break;
             case MOVE_UNIT:
                 //handling move unit state
-                handleMoveUnit();
+                if (waitFor(10f, 1f)) {
+                    handleMoveUnit();
+                }
                 break;
             case ACTION_SELECTION:
                 //handling action selection state
-                handleActionSelection();
+                if (waitFor(10f, 1f)) {
+
+                    handleActionSelection();
+                }
                 break;
         }
     }
@@ -114,8 +122,8 @@ public class AIPlayer extends ICwarsPlayer {
         if (closestEnnemyPosition != null) {
             //move selected unit to the nearest position computed earlier
             DiscreteCoordinates positiontoMove = computeValidCell(closestEnnemyPosition, unitToMove);
-            this.changePosition(positiontoMove);
             unitToMove.changePosition(positiontoMove);
+            this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
 
         }
         //set the unit so that she can't move anymore
@@ -128,10 +136,10 @@ public class AIPlayer extends ICwarsPlayer {
      * handle action selection select the suited attack for the selected unit and executes it
      */
     private void handleActionSelection() {
-        //todo add auto hack
         ICwarsArea area = (ICwarsArea) getOwnerArea();
         Unit unitThatAttack = getSelectedUnit();
         ArrayList<Integer> potentialTarget = area.getEnemyUnitsInAttackRange(unitThatAttack);
+        this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
         if (unitThatAttack.getHp() <= PATCH_THRESHOLD && unitThatAttack.hasAction(Patch.class)) {
             unitThatAttack.autoAction(this, Patch.KEY);
         } else if (potentialTarget.size() != 0 && unitThatAttack.hasAction(Attack.class)) {
@@ -198,6 +206,30 @@ public class AIPlayer extends ICwarsPlayer {
     @Override
     public boolean wantsViewInteraction() {
         return false;
+    }
+
+    private boolean waitFor(float value, float dt) {
+        if (counting) {
+            counter += dt;
+            if (counter > value) {
+                counting = false;
+                return true;
+            }
+        } else {
+            counter = 0.f;
+            counting = true;
+        }
+        return false;
+    }
+
+    public void draw(Canvas canvas) {
+        //if action happening draw it
+        if (this.getAct() != null) {
+            this.getAct().draw(canvas);
+        }
+        //draw sprite of the character
+        super.draw(canvas);
+
     }
 }
 

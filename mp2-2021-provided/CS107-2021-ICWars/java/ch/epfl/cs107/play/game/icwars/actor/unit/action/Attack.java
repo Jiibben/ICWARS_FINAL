@@ -67,7 +67,10 @@ public class Attack extends ICwarsAction {
         this.indexes = getActionUnit().getAttackableUnits();
         //search for unit that has the lowest life
         Unit currentTarget = lowestLife(indexes, this.getActionArea());
-        attack(currentTarget, player);
+        getActionArea().setViewCandidate(currentTarget);
+        if(waitFor(3,1)) {
+            attack(currentTarget, player);
+        }
 
 
     }
@@ -104,12 +107,7 @@ public class Attack extends ICwarsAction {
 
     @Override
     public boolean canBeUsed() {
-        if (getActionUnit().getAttackableUnits().size() > 0) {
-
-            return true;
-        } else {
-            return false;
-        }
+        return getActionUnit().getAttackableUnits().size() > 0;
     }
 
     @Override
@@ -120,5 +118,7 @@ public class Attack extends ICwarsAction {
             cursor.draw(canvas);
         }
     }
+
+
 
 }

@@ -1,8 +1,10 @@
 package ch.epfl.cs107.play.game.actor.players;
 
+import ch.epfl.cs107.play.game.actor.DeadUnit;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Interactor;
+import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
@@ -140,6 +142,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
      */
     public void hasActed() {
         //permet de changer l'état courant du joueur à normal si il a fini une action
+        this.setAct(null);
         this.setState(NORMAL);
     }
 
@@ -304,6 +307,8 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         //désenregistre les unités précédemment marquée comme morte
         for (Unit unit : deadUnits) {
             deleteUnit(unit);
+            replaceUnitWithCorpse(unit);
+
         }
 
     }
@@ -426,5 +431,11 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         return super.getCurrentMainCellCoordinates();
     }
 
+    //todo ici
+    private void replaceUnitWithCorpse(Unit unit) {
+        DiscreteCoordinates pos = unit.getCurrentMainCellCoordinates();
+        DeadUnit deadUnit = new DeadUnit(getOwnerArea(), Orientation.LEFT, pos, unit.getName(), unit.getFaction());
+        deadUnit.enterArea(getOwnerArea(), pos);
 
+    }
 }

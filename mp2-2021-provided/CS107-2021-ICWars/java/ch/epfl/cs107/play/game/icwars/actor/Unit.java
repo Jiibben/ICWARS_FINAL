@@ -88,7 +88,10 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         }
         return returnActions;
     }
-    /**return the maximum hp that the unit can have*/
+
+    /**
+     * return the maximum hp that the unit can have
+     */
     public int getMaxHp() {
         return maxHp;
     }
@@ -263,8 +266,8 @@ public abstract class Unit extends ICwarsActor implements Interactor {
 
     //for ai player
     public void autoAction(AIPlayer player, int key) {
-        //todo check dt
-        actions.get(key).doAutoAction(8f, player);
+        player.setAct(actions.get(key));
+        actions.get(key).doAutoAction(20f, player);
     }
 
 
