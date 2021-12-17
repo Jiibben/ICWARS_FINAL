@@ -26,6 +26,8 @@ public class ICwarsBehavior extends AreaBehavior {
         final int obstacles;
 
         public int getDefenseStar() {
+
+
             return defense;
         }
 

@@ -8,6 +8,7 @@ import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.game.icwars.area.Level0;
 import ch.epfl.cs107.play.game.icwars.area.Level1;
+import ch.epfl.cs107.play.game.icwars.area.Level2;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -24,7 +25,7 @@ public class ICwars extends AreaGame {
     private int areaIndex;
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
-    private final String[] areas = {"icwars/Level0", "icwars/Level1"};
+    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2"};
 
     //queue
 
@@ -50,6 +51,7 @@ public class ICwars extends AreaGame {
     private void createAreas() {
         addArea(new Level1());
         addArea(new Level0());
+        addArea(new Level2());
     }
 
     /*------------------->
