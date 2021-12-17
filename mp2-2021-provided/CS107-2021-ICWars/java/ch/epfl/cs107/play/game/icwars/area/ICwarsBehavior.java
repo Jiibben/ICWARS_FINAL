@@ -16,7 +16,8 @@ public class ICwarsBehavior extends AreaBehavior {
         RIVER(-16776961, 0, 1),
         MOUNTAIN(-256, 4, 3),
         CITY(-1, 2, 1),
-        SAND(-124534, 1, 1);
+        SAND(-124534, 1, 1),
+        PIPE(-234, 0, 2);
 
 
         final int type;

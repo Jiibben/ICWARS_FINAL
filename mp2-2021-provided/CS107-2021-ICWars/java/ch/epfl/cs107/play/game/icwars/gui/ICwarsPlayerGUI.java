@@ -21,16 +21,24 @@ public class ICwarsPlayerGUI implements Graphics {
     public static final float FONT_SIZE = 20;
     private final ICWarsInfoPanel infoPanel;
     private final ICWarsActionsPanel actionPanel;
+    private final GameGui gameGui;
 
     public ICwarsPlayerGUI(float cameraScaleFactor, ICwarsPlayer player) {
         this.player = player;
         //initiate different panel
+        gameGui = new GameGui(player);
         infoPanel = new ICWarsInfoPanel(cameraScaleFactor);
         actionPanel = new ICWarsActionsPanel(cameraScaleFactor);
+
+    }
+
+    public void won() {
+        gameGui.won();
     }
 
     @Override
     public void draw(Canvas canvas) {
+        gameGui.draw(canvas);
         if (selectedUnit != null) {
             if (playerState == ICwarsPlayer.PlayerState.MOVE_UNIT) {
                 rangeAndShortestPathForSelectedUnit(canvas);

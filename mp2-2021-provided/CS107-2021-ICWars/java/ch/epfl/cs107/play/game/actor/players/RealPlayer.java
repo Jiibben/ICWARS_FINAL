@@ -47,6 +47,11 @@ public class RealPlayer extends ICwarsPlayer {
     /**
      * set the player state
      */
+
+    public void hasWon() {
+        playerGUI.won();
+    }
+
     @Override
     protected void setState(PlayerState state) {
         super.setState(state);

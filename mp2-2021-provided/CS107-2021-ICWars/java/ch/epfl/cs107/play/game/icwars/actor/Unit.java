@@ -2,13 +2,11 @@ package ch.epfl.cs107.play.game.icwars.actor;
 
 //import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 
-import ch.epfl.cs107.play.game.actor.DeadUnit;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
-import ch.epfl.cs107.play.game.icwars.actor.unit.action.Attack;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.ICwarsAction;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;

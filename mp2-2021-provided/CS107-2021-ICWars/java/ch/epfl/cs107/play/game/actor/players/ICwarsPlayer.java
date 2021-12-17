@@ -1,10 +1,8 @@
 package ch.epfl.cs107.play.game.actor.players;
 
-import ch.epfl.cs107.play.game.actor.DeadUnit;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Interactor;
-import ch.epfl.cs107.play.game.areagame.actor.Orientation;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
@@ -66,6 +64,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         path += "Cursor";
         return path;
     }
+
 
 
     /**

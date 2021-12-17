@@ -1,7 +1,6 @@
 package ch.epfl.cs107.play.game.icwars.area;
 
 import ch.epfl.cs107.play.game.ICwars;
-import ch.epfl.cs107.play.game.actor.DeadUnit;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.actor.Unit;

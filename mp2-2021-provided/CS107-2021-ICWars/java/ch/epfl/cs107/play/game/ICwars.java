@@ -6,6 +6,7 @@ import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.*;
+import ch.epfl.cs107.play.game.icwars.gui.GameGui;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -22,7 +23,9 @@ public class ICwars extends AreaGame {
     private int areaIndex;
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
-    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4"};
+    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5"};
+    private ICwarsPlayer winner;
+
 
     //queue
 
@@ -51,6 +54,7 @@ public class ICwars extends AreaGame {
         addArea(new Level2());
         addArea(new Level3());
         addArea(new Level4());
+        addArea(new Level5());
     }
 
     /*------------------->
@@ -206,8 +210,8 @@ public class ICwars extends AreaGame {
     private void handleEndTurn() {
         if (this.waitingPlayersQueue.size() == 1) {
             if (waitingPlayersQueue.getFirst().isRealPlayer()) {
-                nextLevel();
-            }else{
+                ((RealPlayer) waitingPlayersQueue.getFirst()).hasWon();
+            } else {
                 reload();
             }
         } else {
@@ -349,6 +353,7 @@ public class ICwars extends AreaGame {
 
     @Override
     public void end() {
+
         super.end();
     }
 
