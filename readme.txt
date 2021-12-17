@@ -9,7 +9,7 @@ comme extension nous avons (leur fonctionnement est détaillé en dessou):
 	- rajouté des niveaux (3 pour l'intsant)
 	- rajouté 2 actions : patch et hack
 	- rajouté 1 unité  : le geek
-	- modification sur :l'affichage, voir affichage en bas
+	- modification sur : l'affichage, voir affichage en bas
 	- passe au niveau supérieur uniquement si le realplayer gagne contre l'ia si il perd reload le niveau au debut, et quand plus de niveua fin du jeu
 	- ajout d'un nombre d'unité variable selon le niveau en question
 	- lègère amélioration de l'ia peut soigner son tank
@@ -106,14 +106,17 @@ affichage :
 
 	-seuls les attaques exécutables sont montrées donc attaques etc seulement affichée dans le actionpanel si dans la condition déterminée dans canBeUsed de l'action est vraie 
 	
-	-nous avons rajouté la range d'attaque dans l'affichage des informations de l'unité
+	-nous avons rajouté la range d'attaque dans l'affichage des informations de l'unité car cela nous 
+	paraissait important
 	
-	-rajout du sprite sable lorsqu'on est dessu
+	-rajout du sprite sable dans le panel info
+	
+	- rajout de l'affichage du curseur lorsque l'ia attaque car permet plus de clareté
 	
 		
 création de map :
 
-	-créer des petits tools en python pour facilement créer des maps, présent au fichier racine du projet "mapcreation"
+	-créer des petits tools en python pour facilement créer des maps, présent au fichier racine du projet "mapcreation" (il y'a un requirements.txt pour installer la seule dépendance qui est numpy)
 	
 	- resise_asset : permet de redimensionner un élément donné 
 	- getcolor.py : permet de trouver une couleur rgb depuis un code hexadécimal(comme dans le projet)

@@ -313,30 +313,32 @@ public class RealPlayer extends ICwarsPlayer {
         }
 
         public void interactWith(Unit unit) {
-            switch (getState()) {
-                case NORMAL:
-                    playerGUI.setCurrentUnit(unit);
-                    break;
+            if (!unit.isDead()) {
+                switch (getState()) {
+                    case NORMAL:
+                        playerGUI.setCurrentUnit(unit);
+                        break;
 
-                case SELECT_CELL:
-                    playerGUI.setCurrentUnit(unit);
-                    /*allows to only select ally unit*/
-                    if (getFaction() == unit.getFaction()) {
-                        //allows to select only unit that can move (not disabled
-                        if (unit.canMove()) {
-                            //select unit we currently are on when selecting cell
-                            selectUnit(findUnitIndex(unit));
-                            setState(MOVE_UNIT);
+                    case SELECT_CELL:
+                        playerGUI.setCurrentUnit(unit);
+                        /*allows to only select ally unit*/
+                        if (getFaction() == unit.getFaction()) {
+                            //allows to select only unit that can move (not disabled
+                            if (unit.canMove()) {
+                                //select unit we currently are on when selecting cell
+                                selectUnit(findUnitIndex(unit));
+                                setState(MOVE_UNIT);
+                            }
                         }
-                    }
-                    break;
-                case ACTION_SELECTION:
-                    //make sure that the unit can act
-                    if (unit.canAct()) {
-                        //start listening for action
-                        unit.action(player);
-                    }
+                        break;
+                    case ACTION_SELECTION:
+                        //make sure that the unit can act
+                        if (unit.canAct()) {
+                            //start listening for action
+                            unit.action(player);
+                        }
 
+                }
             }
 
         }

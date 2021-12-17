@@ -16,7 +16,6 @@ public abstract class ICwarsActor extends MovableAreaEntity {
         ALLY
     }
 
-
     private final Faction faction;
 
     public ICwarsActor(Faction faction, Area area, DiscreteCoordinates position) {

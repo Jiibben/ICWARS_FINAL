@@ -2,31 +2,26 @@ package ch.epfl.cs107.play.game.actor;
 
 
 import ch.epfl.cs107.play.game.areagame.Area;
-import ch.epfl.cs107.play.game.areagame.actor.AreaEntity;
-import ch.epfl.cs107.play.game.areagame.actor.Orientation;
-import ch.epfl.cs107.play.game.areagame.actor.Sprite;
+import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
+import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
 import java.util.Collections;
 import java.util.List;
 
-public class DeadUnit extends AreaEntity {
+public class DeadUnit extends ICwarsActor {
     private final Sprite sprite;
+    private boolean posee = false;
 
-    /**
-     * Default AreaEntity constructor
-     *
-     * @param area        (Area): Owner area. Not null
-     * @param orientation (Orientation): Initial orientation of the entity in the Area. Not null
-     * @param position    (DiscreteCoordinate): Initial position of the entity in the Area. Not null
-     */
-    //todo Resolve bug in area canEnter method (NullPointerException)
-    public DeadUnit(Area area, Orientation orientation, DiscreteCoordinates position, String name, ICwarsActor.Faction faction) {
-        super(area, orientation, position);
+
+    public DeadUnit(DiscreteCoordinates position, String name, ICwarsActor.Faction faction, Area area) {
+        super(faction, area, position);
         sprite = new Sprite(computeSpriteName(name, faction), 1.0f, 1.0f, this);
+
     }
 
     /**
@@ -48,12 +43,8 @@ public class DeadUnit extends AreaEntity {
         return finalName;
     }
 
-    public void enterArea(Area area, DiscreteCoordinates position) {
-        area.registerActor(this);
-
-        setOwnerArea(area);
-        setCurrentPosition(position.toVector());
-
+    public boolean isPosee() {
+        return posee;
     }
 
     @Override
@@ -61,15 +52,16 @@ public class DeadUnit extends AreaEntity {
         sprite.draw(canvas);
     }
 
-    @Override
-    public List<DiscreteCoordinates> getCurrentCells() {
-        return Collections.singletonList(getCurrentMainCellCoordinates());
-
-    }
 
     @Override
     public boolean takeCellSpace() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public void enterArea(Area area, DiscreteCoordinates position) {
+        posee = true;
+        super.enterArea(area, position);
     }
 
     @Override
@@ -87,3 +79,4 @@ public class DeadUnit extends AreaEntity {
 
     }
 }
+

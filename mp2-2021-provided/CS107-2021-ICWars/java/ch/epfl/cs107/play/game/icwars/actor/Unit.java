@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.icwars.actor;
 
 //import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 
+import ch.epfl.cs107.play.game.actor.DeadUnit;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.Area;
@@ -38,6 +39,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     private final int initialAttackRay;
     //sprite of the unit(image)
     private final Sprite sprite;
+    private final Sprite deadSprite;
     //used to handle movement of the unit
     private ICWarsRange range;
     //determine if the player can move this unit
@@ -65,6 +67,8 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         this.hp = maxHp;
         this.damagePerAttack = damagePerAttack;
         //sprite initialisation
+        this.deadSprite = new Sprite(deadComputeSprite(name, faction), 1.0f, 1.0f, this, null);
+
         this.sprite = new Sprite(spriteName, 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
     }
 
@@ -73,6 +77,23 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      *       fonctionality
      * --------------------------------------------
      * */
+
+    public String deadComputeSprite(String name, ICwarsActor.Faction faction) {
+        String finalName = "icwars/broken";
+
+        if (name.equals("Tank")) {
+            if (faction == ICwarsActor.Faction.ALLY) {
+                finalName = finalName + "Friendly" + name;
+            } else if (faction == ICwarsActor.Faction.ENEMY) {
+                finalName = finalName + "Enemy" + name;
+            }
+        } else {
+            // exception security -> default sprite
+            finalName = "icwars/soldierGrave";
+        }
+        return finalName;
+    }
+
 
     /**
      * transforme la hashmap en une liste des actions disponible dans cette hashmap
@@ -281,6 +302,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     /**
      * adding to the range the valid cell in the given range
      */
+
     private void addEdges() {
         range = new ICWarsRange();
         int maxHeight = this.getOwnerArea().getHeight() - 1;
@@ -333,7 +355,11 @@ public abstract class Unit extends ICwarsActor implements Interactor {
 
     @Override
     public void draw(Canvas canvas) {
-        this.sprite.draw(canvas);
+        if (isDead()) {
+            this.deadSprite.draw(canvas);
+        } else {
+            this.sprite.draw(canvas);
+        }
     }
 
 

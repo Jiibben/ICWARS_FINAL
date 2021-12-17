@@ -25,7 +25,7 @@ public class Patch extends ICwarsAction {
     @Override
     public boolean canBeUsed() {
         //can be used only if the
-        return getActionUnit().getMaxHp() < getActionUnit().getHp();
+        return getActionUnit().getMaxHp() > getActionUnit().getHp();
     }
 
     //ai

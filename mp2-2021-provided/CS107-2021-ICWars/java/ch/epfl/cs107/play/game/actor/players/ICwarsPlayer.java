@@ -31,6 +31,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     private final Sprite sprite;
 
     private ICwarsAction act;
+    private final ArrayList<Unit> deadUnits = new ArrayList<Unit>();
 
 
     /**
@@ -234,7 +235,9 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         //désenregistre les unités que le joueur possède une par une
         for (Unit unit : this.units) {
             unregisterUnit(unit);
-
+        }
+        for (Unit unit : this.deadUnits) {
+            unregisterUnit(unit);
         }
 
     }
@@ -245,6 +248,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     private void unregisterUnit(Unit unit) {
         //méthode de désanregistrement d'une unité donnée
         unit.leaveArea();
+
         //enlève l'unité de la liste d'unité de l'aire dans laquelle il est
         ((ICwarsArea) getOwnerArea()).removeUnit(unit);
     }
@@ -282,13 +286,14 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
 
 
     /**
-     * unregsiter unit and deletes it from the player list of units
+     * deletes it from the player list of units and the area list of units but doesn't unregister it
      *
      * @param unit unit to delete and unregister
      */
     private void deleteUnit(Unit unit) {
         //désenregistre l'unité
-        unregisterUnit(unit);
+        ((ICwarsArea) getOwnerArea()).removeUnit(unit);
+        //enleve l'unité de la liste d'unité de l'air d'apartenance du joueur
         //enleve l'unité de la liste d'unité de l'air d'apartenance du joueur
         this.units.remove(unit);
     }
@@ -306,12 +311,15 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         }
         //désenregistre les unités précédemment marquée comme morte
         for (Unit unit : deadUnits) {
-            deleteUnit(unit);
-            replaceUnitWithCorpse(unit);
+            DiscreteCoordinates pos = unit.getCurrentMainCellCoordinates();
+            String name = unit.getName();
+            Faction faction = unit.getFaction();
 
+            deleteUnit(unit);
         }
 
     }
+
 
     //--------------------------->
 
@@ -394,15 +402,14 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     public void update(float deltaTime) {
         //check for dead units a each update
         checkForDeadUnits();
+
         super.update(deltaTime);
-
-
     }
+
 
     @Override
     public void draw(Canvas canvas) {
         sprite.draw(canvas);
-
     }
 
     @Override
@@ -431,11 +438,5 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         return super.getCurrentMainCellCoordinates();
     }
 
-    //todo ici
-    private void replaceUnitWithCorpse(Unit unit) {
-        DiscreteCoordinates pos = unit.getCurrentMainCellCoordinates();
-        DeadUnit deadUnit = new DeadUnit(getOwnerArea(), Orientation.LEFT, pos, unit.getName(), unit.getFaction());
-        deadUnit.enterArea(getOwnerArea(), pos);
 
-    }
 }

@@ -79,7 +79,7 @@ public class Attack extends ICwarsAction {
      * return the unit with the less hp in list if equal just return the first one found
      */
     private Unit lowestLife(ArrayList<Integer> units, ICwarsArea area) {
-        Unit unitToReturn = area.getSelectedUnit(0);
+        Unit unitToReturn = area.getSelectedUnit(units.get(0));
         int lowestLife = unitToReturn.getHp();
         for (int i : units) {
             if (area.getSelectedUnit(i).getHp() < lowestLife) {
