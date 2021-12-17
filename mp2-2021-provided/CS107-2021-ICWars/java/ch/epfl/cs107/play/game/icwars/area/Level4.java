@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.icwars.area;
 
+
 import ch.epfl.cs107.play.game.areagame.actor.Background;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 
@@ -9,21 +10,21 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
  */
 
 
-public class Level2 extends ICwarsArea {
+public class Level4 extends ICwarsArea {
 
     @Override
     public String getTitle() {
-        return "icwars/Level2";
+        return "icwars/Level4";
     }
 
     @Override
     public DiscreteCoordinates getPlayerSpawnPosition() {
-        return new DiscreteCoordinates(10, 10);
+        return new DiscreteCoordinates(0, 0);
     }
 
     @Override
     public DiscreteCoordinates getEnnemySpawnPosition() {
-        return new DiscreteCoordinates(40, 5);
+        return new DiscreteCoordinates(5, 3);
     }
 
     @Override
@@ -33,12 +34,12 @@ public class Level2 extends ICwarsArea {
 
     @Override
     public int getNumberOfGeek() {
-        return 2;
+        return 0;
     }
 
     @Override
     public int getNumberOfSoldier() {
-        return 4;
+        return 0;
     }
 
 
@@ -48,12 +49,13 @@ public class Level2 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
-        return new DiscreteCoordinates(10, 6);
+        return new DiscreteCoordinates(1, 2);
     }
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(35, 6);
+        return new DiscreteCoordinates(7, 3);
     }
 
 }
+

@@ -27,7 +27,7 @@ public class ICWarsInfoPanel implements Graphics {
     private final ShapeGraphics cellDetailsBackground, unitDetailsBackground;
     private final TextGraphics cellTypeText, cellDefenseText;
     private final TextGraphics unitNameText, unitHealthText, unitDamageText, unitRangeText;
-    private final ImageGraphics woodSprite, plainSprite, citySprite, mountSprite, riverSprite, roadSprite;
+    private final ImageGraphics woodSprite, plainSprite, citySprite, mountSprite, riverSprite, roadSprite, sandSprite;
 
     /**
      * Default Dialog Constructor
@@ -49,6 +49,7 @@ public class ICWarsInfoPanel implements Graphics {
         mountSprite = new ImageGraphics(ResourcePath.getSprite("icwars/mountain"), 1f, 1f, null, anchor, 1f, 3001f);
         roadSprite = new ImageGraphics(ResourcePath.getSprite("icwars/road"), 1f, 1f, null, anchor, 1f, 3001f);
         riverSprite = new ImageGraphics(ResourcePath.getSprite("icwars/river"), 1f, 1f, null, anchor, 1f, 3001f);
+        sandSprite = new ImageGraphics(ResourcePath.getSprite("icwars/sand"), 1f, 1f, null, anchor, 1f, 3001f);
 
         cellTypeText = new TextGraphics("", fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, -0.3f),
@@ -134,6 +135,10 @@ public class ICWarsInfoPanel implements Graphics {
             case ROAD:
                 roadSprite.setRelativeTransform(spriteTransform);
                 roadSprite.draw(canvas);
+                break;
+            case SAND:
+                sandSprite.setRelativeTransform(spriteTransform);
+                sandSprite.draw(canvas);
                 break;
             default:
                 plainSprite.setRelativeTransform(spriteTransform);

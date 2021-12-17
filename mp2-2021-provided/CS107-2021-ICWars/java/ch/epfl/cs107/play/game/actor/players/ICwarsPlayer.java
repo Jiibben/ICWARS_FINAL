@@ -44,6 +44,11 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     }
 
     /**
+     * redefine to know if it's a real player or not
+     */
+    public abstract boolean isRealPlayer();
+
+    /**
      * used to compute the spritename associated to this player  by faction
      *
      * @param faction faction {@link PlayerState}

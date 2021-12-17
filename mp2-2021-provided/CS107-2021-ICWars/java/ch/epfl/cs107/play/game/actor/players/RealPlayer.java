@@ -54,6 +54,12 @@ public class RealPlayer extends ICwarsPlayer {
         playerGUI.setPlayerState(state);
     }
 
+    @Override
+    public boolean isRealPlayer() {
+        //return true cause it's not a bot
+        return true;
+    }
+
     /**
      * change state to given state on given key press
      *

@@ -5,10 +5,7 @@ import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
-import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
-import ch.epfl.cs107.play.game.icwars.area.Level0;
-import ch.epfl.cs107.play.game.icwars.area.Level1;
-import ch.epfl.cs107.play.game.icwars.area.Level2;
+import ch.epfl.cs107.play.game.icwars.area.*;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -25,7 +22,7 @@ public class ICwars extends AreaGame {
     private int areaIndex;
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
-    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2"};
+    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4"};
 
     //queue
 
@@ -52,6 +49,8 @@ public class ICwars extends AreaGame {
         addArea(new Level1());
         addArea(new Level0());
         addArea(new Level2());
+        addArea(new Level3());
+        addArea(new Level4());
     }
 
     /*------------------->
@@ -206,7 +205,11 @@ public class ICwars extends AreaGame {
      */
     private void handleEndTurn() {
         if (this.waitingPlayersQueue.size() == 1) {
-            this.currentGameState = (gameState.END);
+            if (waitingPlayersQueue.getFirst().isRealPlayer()) {
+                nextLevel();
+            }else{
+                reload();
+            }
         } else {
             this.transferQueue();
             currentGameState = gameState.CHOOSE_PLAYER;
@@ -346,8 +349,7 @@ public class ICwars extends AreaGame {
 
     @Override
     public void end() {
-        // TODO: trouver comment on quitte le jeu et le faire
-        System.out.println("Game Over");
+        super.end();
     }
 
     @Override
