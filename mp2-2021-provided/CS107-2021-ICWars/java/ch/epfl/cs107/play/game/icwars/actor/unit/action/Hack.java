@@ -42,7 +42,7 @@ public class Hack extends ICwarsAction {
         this.indexes = getActionUnit().getInteractableAllyUnits();
         try {
             //cycle through ally unit
-            unitSelectedIndex = (unitSelectedIndex < 0) ? (Math.abs(unitSelectedIndex) % indexes.size()) + 1 : unitSelectedIndex % indexes.size();
+            unitSelectedIndex = (unitSelectedIndex < 0) ? (Math.abs(unitSelectedIndex) % indexes.size()) : unitSelectedIndex % indexes.size();
             Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(unitSelectedIndex));
             getActionArea().setViewCandidate(currentTarget);
             if (next.isPressed()) {
