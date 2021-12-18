@@ -13,7 +13,7 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 public class Geek extends Unit {
 
     //life
-    private final static int MAXHP = 6;
+    private final static int MAXHP = 7;
     //damage of the unit
     private final static int DAMAGEPERATTACK = 1;
 

@@ -9,11 +9,11 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 
 
 public class Soldier extends Unit {
-    private final static int MAXHP = 5;
+    private final static int MAXHP = 6;
     private final static int DAMAGEPERATTACK = 2;
 
     //rayon de deplacement
-    private final static int MOVINGRAY = 2;
+    private final static int MOVINGRAY = 5;
     private final static String spriteName = "Soldier";
     //rayon d'attack
     private final static int ATTACKRANGE = 3;

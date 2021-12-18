@@ -75,7 +75,6 @@ public class Play {
 
                     // Let the game do its stuff
                     game.update(deltaTime);
-
                     // Render and update input
                     window.update();
                     //recorder.update();
