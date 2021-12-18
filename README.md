@@ -212,11 +212,11 @@
 </tr>
 </table>
 <h1>Map creation</h1>
-<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>
-<p>script python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars présent (dossier présent dans le fichier racine du projet)</p>
+<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL ET A ÉTÉ ÉCRIS PAR NOUS MÊME, MAIS EST SUPPLEMENTAIRE)</p>
+<p>script écrit en python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars (dossier présent dans le fichier racine du projet)</p>
 <h2>utilisation:</h2>
 <ul>
-<li>create_map.py
+<li>create_map.py 
 <ul>
 <li>installer les dépendances requirements.txt disponible
 <li>modifier le fichier map.txt avec les abréviations de chaque tile (voir exemple de map.txt)
