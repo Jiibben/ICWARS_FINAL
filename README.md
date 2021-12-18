@@ -165,8 +165,52 @@
   <td>2
   </tr>			
 </table>
-
-
+<h1>Levels</h1>
+<table>
+<tr>
+<th>Name
+<th>tank number
+<th>soldier number
+<th>geek number
+</tr>
+<tr>
+<tr>
+<td>Level0
+<td>1
+<td>1
+<td>0
+</tr>
+<tr>
+<td>Level1
+<td>2
+<td>1
+<td>1
+</tr>
+<tr>
+<td>Level2
+<td>0
+<td>1
+<td>2
+</tr>
+<tr>
+<td>Level3
+<td>1
+<td>0
+<td>1
+</tr>
+<tr>
+<td>Level4
+<td>2
+<td>0
+<td>0
+</tr>
+<tr>
+<td>Level5
+<td>2
+<td>2
+<td>2
+</tr>
+</table>
 <h1>Map creation</h1>
 <p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>
 <p>script python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars présent (dossier présent dans le fichier racine du projet)</p>
@@ -188,3 +232,5 @@
 <ul>
 <l
 </ul>
+
+
