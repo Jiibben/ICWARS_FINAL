@@ -87,7 +87,7 @@
 <td>7
 </tr>
 </table>
-<h1>Controless :</h1>
+<h1>Controles :</h1>
 <table>
   <tr>
     <th>CONTROLES
@@ -108,3 +108,83 @@
 
 </table>
 
+<h1>TILES</h1>
+<table>
+  <tr>
+  <th>TILE TITLE
+  <th>RGB HEXCODE
+  <th>defense augm
+  <th>range malus
+  </tr>
+  <tr>
+  <td>road
+  <td>-116777216
+  <td>0
+  <td>0
+  </tr>
+  <tr>
+  <td>plain
+  <td>-14112955
+  <td>1
+  <td>0
+  </tr>
+  <tr>
+  <td>wood
+  <td>-65536
+  <td>3
+  <td>2
+  </tr>
+  <tr>
+  <td>river
+  <td>-16776961
+  <td>0
+  <td>1
+  </tr>	
+ <tr>
+  <td>mountain
+  <td>-256
+  <td>4
+  <td>3
+  </tr>	
+ <tr>
+  <td>city
+  <td>-1
+  <td>2
+  <td>1
+  </tr>
+ <tr>
+  <td>sand
+  <td>-124534
+  <td>1
+  <td>1
+  </tr>
+ <tr>
+  <td>pipe
+  <td>-234
+  <td>0
+  <td>2
+  </tr>			
+</table>
+
+
+<h1>Map creation</h1>
+<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>
+<p>script python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars présent (dossier présent dans le fichier racine du projet)</p>
+<h2>utilisation:</h2>
+<ul>
+<li>create_map.py
+<ul>
+<li>installer les dépendances requirements.txt disponible
+<li>modifier le fichier map.txt avec les abréviations de chaque tile (voir exemple de map.txt)
+<li>lancer le script et cela va créer deux images une map.png et une rgbMap.png qui sont respectivement la carte et la behavior associée a placé dans les ressources.
+</ul>
+<li>getcolor.py
+<ul>
+<li>permet de trouver la valeur rgb d'une couleur rgb en hexadécimal 
+</ul>
+<li>resize_assets.py
+<ul>
+<li>permet de redimensionner une image notemment les tiles
+<ul>
+<l
+</ul>
