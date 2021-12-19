@@ -57,7 +57,7 @@ public class EpflMap extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(0, 1);
+        return new DiscreteCoordinates(0, 0);
     }
 
 }

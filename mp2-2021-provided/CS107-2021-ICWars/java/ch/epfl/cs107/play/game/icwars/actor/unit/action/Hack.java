@@ -44,9 +44,9 @@ public class Hack extends ICwarsAction {
         //get all the ally units in range that can be "attacked" in our case increase their damage by 1
         this.indexes = getActionUnit().getInteractableAllyUnits();
         try {
+            unitSelectedIndex %= indexes.size();
             //cycle through ally unit
-            unitSelectedIndex = (unitSelectedIndex < 0) ? (Math.abs(unitSelectedIndex) % indexes.size()) : unitSelectedIndex % indexes.size();
-            Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(unitSelectedIndex));
+            Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(Math.abs(unitSelectedIndex)));
             getActionArea().setViewCandidate(currentTarget);
             if (next.isPressed()) {
                 unitSelectedIndex += 1;

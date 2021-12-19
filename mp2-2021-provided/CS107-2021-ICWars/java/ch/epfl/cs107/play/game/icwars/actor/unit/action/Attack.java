@@ -43,8 +43,8 @@ public class Attack extends ICwarsAction {
         this.indexes = getActionUnit().getAttackableUnits();
         //used to cycle through the ennemy units
         try {
-            unitSelectedIndex = Math.abs(unitSelectedIndex) % indexes.size();
-            Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(unitSelectedIndex));
+            unitSelectedIndex %= indexes.size();
+            Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(Math.abs(unitSelectedIndex)));
             getActionArea().setViewCandidate(currentTarget);
             if (next.isPressed()) {
                 unitSelectedIndex += 1;
@@ -110,7 +110,7 @@ public class Attack extends ICwarsAction {
         player.centerCamera();
         if (getActionUnit().getName() == "Tank") {
             tankAttack.playSound();
-        }else{
+        } else {
             soldierAttack.playSound();
         }
     }
