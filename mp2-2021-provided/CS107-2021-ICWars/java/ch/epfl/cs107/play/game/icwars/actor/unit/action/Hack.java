@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.icwars.actor.unit.action;
 
+import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
@@ -24,6 +25,7 @@ public class Hack extends ICwarsAction {
     private final ImageGraphics cursor = new ImageGraphics(ResourcePath.getSprite("icwars/UIpackSheet"), 1f, 1f, new RegionOfInterest(4 * 18, 26 * 18, 16, 16));
     //list of indexes of the concerned units (in the area)
     ArrayList<Integer> indexes = new ArrayList<>();
+    private final AudioPlayer hackSound = new AudioPlayer("hackSound");
 
     private int unitSelectedIndex = 0;
 
@@ -38,6 +40,7 @@ public class Hack extends ICwarsAction {
         Button back = keyboard.get(Keyboard.LEFT);
         Button attack = keyboard.get(Keyboard.ENTER);
         Button tab = keyboard.get(Keyboard.TAB);
+
         //get all the ally units in range that can be "attacked" in our case increase their damage by 1
         this.indexes = getActionUnit().getInteractableAllyUnits();
         try {
@@ -96,6 +99,7 @@ public class Hack extends ICwarsAction {
         //increase
         getActionUnit().increaseAttack(INCREASE_AMOUNT);
         player.hasActed();
+        hackSound.playSound();
         player.centerCamera();
     }
 

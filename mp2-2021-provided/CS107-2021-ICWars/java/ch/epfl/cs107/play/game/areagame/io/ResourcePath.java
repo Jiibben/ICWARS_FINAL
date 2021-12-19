@@ -7,7 +7,7 @@ public class ResourcePath {
 	private static final String BEHAVIORS = "images/behaviors/";
 	private static final String BACKGROUNDS = "images/backgrounds/";
 	private static final String FOREGROUNDS = "images/foregrounds/";
-	private static final String SOUNDS = "sounds/";
+	private static final String SOUNDS = "res/sounds/";
 	private static final String STRINGS = "strings/";
 	public static final String FONTS = "fonts/";
 

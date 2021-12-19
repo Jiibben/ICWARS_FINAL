@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.icwars.actor.unit.action;
 
+import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
@@ -23,6 +24,10 @@ public class Attack extends ICwarsAction {
     public static final int KEY = Keyboard.A;
     //sprite associated to the action
     private final ImageGraphics cursor = new ImageGraphics(ResourcePath.getSprite("icwars/UIpackSheet"), 1f, 1f, new RegionOfInterest(4 * 18, 26 * 18, 16, 16));
+
+    //audio handler for the attacks
+    private final AudioPlayer tankAttack = new AudioPlayer("tankAttack");
+    private final AudioPlayer soldierAttack = new AudioPlayer("soldierAttack");
 
     //indexes of the unit (in the area units list)
     ArrayList<Integer> indexes = new ArrayList<>();
@@ -103,6 +108,11 @@ public class Attack extends ICwarsAction {
         player.hasActed();
         //center back camera on the player
         player.centerCamera();
+        if (getActionUnit().getName() == "Tank") {
+            tankAttack.playSound();
+        }else{
+            soldierAttack.playSound();
+        }
     }
 
     @Override

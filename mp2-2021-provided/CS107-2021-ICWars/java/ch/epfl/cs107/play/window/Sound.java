@@ -6,4 +6,5 @@ package ch.epfl.cs107.play.window;
 public interface Sound {
 
     // May be completed here
+
 }

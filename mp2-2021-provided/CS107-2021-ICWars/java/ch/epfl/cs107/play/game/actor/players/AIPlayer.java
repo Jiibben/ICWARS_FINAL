@@ -41,6 +41,8 @@ public class AIPlayer extends ICwarsPlayer {
         return -1;
     }
 
+
+
     @Override
     public boolean isRealPlayer() {
         //return false cause it's a bot

@@ -46,12 +46,9 @@ public class RealPlayer extends ICwarsPlayer {
 
     /**
      * set the player state
+     *
+     * @param state state to set the player to
      */
-
-    public void hasWon() {
-        playerGUI.won();
-    }
-
     @Override
     protected void setState(PlayerState state) {
         super.setState(state);
@@ -59,6 +56,9 @@ public class RealPlayer extends ICwarsPlayer {
         playerGUI.setPlayerState(state);
     }
 
+    /**
+     * set to true if the player is a real player
+     */
     @Override
     public boolean isRealPlayer() {
         //return true cause it's not a bot
@@ -77,10 +77,19 @@ public class RealPlayer extends ICwarsPlayer {
         }
     }
 
+    /**
+     * used to tell the gui that that player won to show the winning message
+     */
+    public void hasWon() {
+        playerGUI.won();
+    }
+
     // handle each state:
 
     /**
      * normal handling
+     *
+     * @param keyboard keyboard
      */
     private void handleNormal(Keyboard keyboard) {
         setState(NORMAL);

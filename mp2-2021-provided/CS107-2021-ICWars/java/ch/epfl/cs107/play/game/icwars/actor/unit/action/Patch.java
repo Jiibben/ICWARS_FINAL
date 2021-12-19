@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.icwars.actor.unit.action;
 
+import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.icwars.actor.Unit;
@@ -11,6 +12,7 @@ public class Patch extends ICwarsAction {
     private static final String NAME = "(P)patch";
     public static final int KEY = Keyboard.P;
     private static final int patchAmount = 3;
+    private final AudioPlayer healSound = new AudioPlayer("healSound");
 
     public Patch(Unit unit, ICwarsArea area) {
         super(unit, area, Patch.NAME);
@@ -43,6 +45,7 @@ public class Patch extends ICwarsAction {
             //playre didn't do the action cuz already full life
             player.hasNotActed();
         } else {
+            healSound.playSound();
             getActionUnit().repair(Patch.patchAmount);
             //player did the action
             player.hasActed();

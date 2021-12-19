@@ -12,7 +12,7 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
 public class Tank extends Unit {
     private final static int MAXHP = 10;
     private final static int DAMAGEPERATTACK = 7;
-    private final static int MOVINGRAY = 4;
+    private final static int MOVINGRAY = 3;
     private final static int ATTACKRANGE = 5;
     private final static String SPRITENAME = "Tank";
 

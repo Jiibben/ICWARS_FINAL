@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game;
 
+import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
@@ -8,6 +9,7 @@ import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.*;
 import ch.epfl.cs107.play.game.icwars.gui.GameGui;
 import ch.epfl.cs107.play.io.FileSystem;
+import ch.epfl.cs107.play.window.Audio;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
@@ -24,7 +26,8 @@ public class ICwars extends AreaGame {
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
     private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5"};
-    private ICwarsPlayer winner;
+
+    private final AudioPlayer gameSound = new AudioPlayer("gameSound3", true);
 
 
     //queue
@@ -253,6 +256,7 @@ public class ICwars extends AreaGame {
     /** create areas and initialize them*/
     public boolean begin(Window window, FileSystem fileSystem) {
         if (super.begin(window, fileSystem)) {
+            gameSound.playSound();
             createAreas();
             areaIndex = 0;
             initArea(areas[areaIndex]);

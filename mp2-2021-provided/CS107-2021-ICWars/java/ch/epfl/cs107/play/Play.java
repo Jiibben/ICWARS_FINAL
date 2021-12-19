@@ -8,7 +8,9 @@ import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.io.ResourceFileSystem;
 //import ch.epfl.cs107.play.recorder.RecordReplayer;
 //import ch.epfl.cs107.play.recorder.Recorder;
+import ch.epfl.cs107.play.window.Audio;
 import ch.epfl.cs107.play.window.Window;
+import ch.epfl.cs107.play.window.swing.SwingSound;
 import ch.epfl.cs107.play.window.swing.SwingWindow;
 
 /**
@@ -40,6 +42,7 @@ public class Play {
 
         // Use Swing display
         final Window window = new SwingWindow(game.getTitle(), fileSystem, WINDOW_WIDTH, WINDOW_HEIGHT);
+
         window.registerFonts(ResourcePath.FONTS);
 
         //	Recorder recorder = new Recorder(window);
