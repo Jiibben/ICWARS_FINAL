@@ -23,7 +23,7 @@ public class ICwars extends AreaGame {
     private int areaIndex;
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
-    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5", "icwars/Level6"};
+    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5", "icwars/Level6", "icwars/epflMap"};
 
     private final AudioPlayer gameSound = new AudioPlayer("gameSound3", true);
 
@@ -57,6 +57,7 @@ public class ICwars extends AreaGame {
         addArea(new Level4());
         addArea(new Level5());
         addArea(new Level6());
+        addArea(new EpflMap());
     }
 
     /*------------------->
