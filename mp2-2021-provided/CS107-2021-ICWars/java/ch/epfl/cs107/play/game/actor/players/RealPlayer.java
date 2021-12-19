@@ -37,6 +37,9 @@ public class RealPlayer extends ICwarsPlayer {
         this.setState(IDLE);
     }
 
+    //todo document this
+    private boolean canMoveUnit;
+
     /*--------------------------------------------------
      *
      *           STATE HANDLING
@@ -220,7 +223,7 @@ public class RealPlayer extends ICwarsPlayer {
             //selected unit
             Unit selectedUnit = getSelectedUnit();
             //check if the selected point is in the range of the unit
-            if (selectedUnit.isInRange(pos) && getSelectedUnit().canMove()) {
+            if (selectedUnit.isInRange(pos) && getSelectedUnit().canMove() && this.canMoveUnit) {
                 if (!isDisplacementOccurs()) {
                     //change the position of selected unit to the pos of the cursor
                     getSelectedUnit().changePosition(pos);
@@ -332,7 +335,6 @@ public class RealPlayer extends ICwarsPlayer {
                     case NORMAL:
                         playerGUI.setCurrentUnit(unit);
                         break;
-
                     case SELECT_CELL:
                         playerGUI.setCurrentUnit(unit);
                         /*allows to only select ally unit*/
@@ -343,6 +345,12 @@ public class RealPlayer extends ICwarsPlayer {
                                 selectUnit(findUnitIndex(unit));
                                 setState(MOVE_UNIT);
                             }
+                        }
+                        break;
+                    case MOVE_UNIT:
+                        //todo ici
+                        if (getSelectedUnit() != unit) {
+                            player.canMoveUnit = false;
                         }
                         break;
                     case ACTION_SELECTION:
@@ -358,9 +366,12 @@ public class RealPlayer extends ICwarsPlayer {
         }
 
         public void interactWith(ICwarsBehavior.ICwarsCell cell) {
+            //todo
             playerGUI.setCurrentUnit(null);
+            player.canMoveUnit = true;
             //tell the gui the type of the current cell the cursor is on
             playerGUI.setCurrentCell(cell.getType());
+
         }
     }
 }
