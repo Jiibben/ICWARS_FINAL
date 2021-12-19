@@ -102,7 +102,7 @@ public class Attack extends ICwarsAction {
      * @param target target unit to attack
      */
     private void attack(Unit target, ICwarsPlayer player) {
-        target.takeDamage(getActionUnit());
+        target.takeDamage(getActionUnit().getDamage());
         getActionUnit().disableAct();
         //player made an action
         player.hasActed();

@@ -140,7 +140,6 @@ public class RealPlayer extends ICwarsPlayer {
         //in moveUnit player cursor can move, and move unit on enter also cna go back to normal state on tab press
         //on tab press you go back to normal
         playerGUI.setActions(getSelectedUnit().getActions());
-        handleKeyState(NORMAL, keyboard.get(Keyboard.TAB));
         //move selected unit to position on enter press
         moveSelectedUnit(keyboard.get(Keyboard.ENTER));
         //movement

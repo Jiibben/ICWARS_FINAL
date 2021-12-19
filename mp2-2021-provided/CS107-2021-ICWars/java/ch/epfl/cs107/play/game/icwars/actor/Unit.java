@@ -193,11 +193,15 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      * take damage from another unit
      * damage are just a sub to the health point and we take the defesne star as"health point"
      *
-     * @param unit unit that will inflict the damage to this one
+     * @param damage damage to take "this" unit
      */
-    public void takeDamage(Unit unit) {
-        if (!(defense_stars > unit.damagePerAttack)) {
-            this.hp = (this.hp - unit.damagePerAttack) + defense_stars;
+    public void takeDamage(int damage) {
+        if (!(defense_stars > damage)) {
+            this.hp = (this.hp - damage) + defense_stars;
+        }
+
+        if (this.hp < 0) {
+            this.hp = 0;
         }
     }
 
@@ -214,16 +218,28 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         }
     }
 
+    /**
+     * get all units that this unit can attack in his area
+     *
+     * @return a list of integer representing indexes of the attackable unit in the area
+     */
     public ArrayList<Integer> getAttackableUnits() {
         return ((ICwarsArea) getOwnerArea()).getEnemyUnitsInAttackRange(this);
     }
 
+    /**
+     * get all ally units that this unit can interact with in his area
+     *
+     * @return a list of integer representing indexes of the interactable ally unit in the area
+     */
     public ArrayList<Integer> getInteractableAllyUnits() {
         return ((ICwarsArea) getOwnerArea()).getAllyUnitsInAttackRange(this);
     }
 
     /**
      * increase the attack by a given amount
+     *
+     * @param amount amount to increase the attack with
      */
     public void increaseAttack(int amount) {
         this.damagePerAttack += amount;
