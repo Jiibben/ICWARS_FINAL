@@ -34,25 +34,27 @@ public class AudioPlayer {
      * play loaded sound in the audio handler
      */
     public void playSound() {
-        try {
-            if (clip.isRunning()) {
-                clip.stop();
+        if (clip != null) {
+            try {
+                if (clip.isRunning()) {
+                    clip.stop();
+                }
+
+
+                if (!clip.isOpen()) {
+                    clip.open(sound);
+                }
+                if (loop) {
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                }
+                clip.setFramePosition(0);
+
+                clip.start();
+
+
+            } catch (LineUnavailableException | IOException e) {
+                e.printStackTrace();
             }
-
-            if (loop) {
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            }
-            if (!clip.isOpen()) {
-                clip.open(sound);
-            }
-            clip.setFramePosition(0);
-
-            clip.start();
-
-
-        } catch (LineUnavailableException | IOException e) {
-            e.printStackTrace();
         }
-
     }
 }

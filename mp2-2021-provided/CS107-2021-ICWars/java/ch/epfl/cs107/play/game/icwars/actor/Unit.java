@@ -347,6 +347,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             this.sprite.setAlpha(1.f);
         }
 
+
         this.addEdges();
         super.update(deltaTime);
     }

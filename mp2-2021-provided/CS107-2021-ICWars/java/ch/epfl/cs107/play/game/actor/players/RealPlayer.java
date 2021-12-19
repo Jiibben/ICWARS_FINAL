@@ -330,6 +330,7 @@ public class RealPlayer extends ICwarsPlayer {
         }
 
         public void interactWith(Unit unit) {
+
             if (!unit.isDead()) {
                 switch (getState()) {
                     case NORMAL:
@@ -348,10 +349,10 @@ public class RealPlayer extends ICwarsPlayer {
                         }
                         break;
                     case MOVE_UNIT:
-                        //todo ici
                         if (getSelectedUnit() != unit) {
                             player.canMoveUnit = false;
                         }
+
                         break;
                     case ACTION_SELECTION:
                         //make sure that the unit can act
@@ -361,13 +362,19 @@ public class RealPlayer extends ICwarsPlayer {
                         }
 
                 }
+
+
+            }else{
+                player.canMoveUnit = false;
             }
+
 
         }
 
         public void interactWith(ICwarsBehavior.ICwarsCell cell) {
-            //todo
+            //tell the gui that the player is not on any unit
             playerGUI.setCurrentUnit(null);
+            //player can move unit because is on a cell used to limitate displacement on other units
             player.canMoveUnit = true;
             //tell the gui the type of the current cell the cursor is on
             playerGUI.setCurrentCell(cell.getType());
