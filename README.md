@@ -64,20 +64,23 @@
 <th>MOVING RANGE
 <th>ATTACK RANGE
 <th>HP
+<th>DAMAGE
 </tr>
 <tr>
 <td>Tank
 <td>Patch / Attack / Wait
-<td>4
+<td>3
 <td>5
 <td>10
+<td>7
 </tr>
 <tr>
 <td>Soldier
 <td>Attack / Wait
-<td>5
+<td>2
 <td>3
 <td>6
+<td>2
 </tr>
 <tr>
 <td>Geek
@@ -85,6 +88,15 @@
 <td>6
 <td>8
 <td>7
+<td>1
+</tr>
+<tr>
+<td>Boat
+<td>Attack / Wait
+<td>7
+<td>3
+<td>7
+<td>3
 </tr>
 </table>
 <h1>Controles :</h1>
@@ -149,7 +161,7 @@
  <tr>
   <td>city
   <td>-1
-  <td>2
+  <td>2	
   <td>1
   </tr>
  <tr>
@@ -172,6 +184,7 @@
 <th>tank number
 <th>soldier number
 <th>geek number
+<th>boat number
 </tr>
 <tr>
 <tr>
@@ -179,28 +192,33 @@
 <td>1
 <td>1
 <td>0
+<td>0
 </tr>
 <tr>
 <td>Level1
 <td>2
 <td>1
 <td>1
+<td>0
 </tr>
 <tr>
 <td>Level2
 <td>0
 <td>1
 <td>2
+<td>0
 </tr>
 <tr>
 <td>Level3
 <td>1
 <td>0
 <td>1
+<td>0
 </tr>
 <tr>
 <td>Level4
 <td>2
+<td>0
 <td>0
 <td>0
 </tr>
@@ -209,14 +227,29 @@
 <td>2
 <td>2
 <td>2
+<td>0
 </tr>
+<tr>
+<td>Level6
+<td>0
+<td>0
+<td>0
+<td>3
+</tr>
+<tr>
+<td>EPFLMAP (FOR FUN)
+<td>23
+<td>0
+<td>0
+<td>0
+<tr>
 </table>
 <h1>Map creation</h1>
-<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL ET A ÉTÉ ÉCRIS PAR NOUS MÊME, MAIS EST SUPPLEMENTAIRE)</p>
-<p>script écrit en python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars (dossier présent dans le fichier racine du projet)</p>
+<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>
+<p>script python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars présent (dossier présent dans le fichier racine du projet)</p>
 <h2>utilisation:</h2>
 <ul>
-<li>create_map.py 
+<li>create_map.py
 <ul>
 <li>installer les dépendances requirements.txt disponible
 <li>modifier le fichier map.txt avec les abréviations de chaque tile (voir exemple de map.txt)
