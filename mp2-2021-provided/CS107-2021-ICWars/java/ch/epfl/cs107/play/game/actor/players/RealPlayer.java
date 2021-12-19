@@ -30,8 +30,8 @@ public class RealPlayer extends ICwarsPlayer {
     //action handler
     private final ICwarsPlayerInteractionHandler interactionHandler = new ICwarsPlayerInteractionHandler(this);
 
-    public RealPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, DiscreteCoordinates unitSpawn) {
-        super(faction, owner, coordinates, numberOfTank, numberOfSoldier, numberOfGeek, unitSpawn);
+    public RealPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, int numberOfBoat, DiscreteCoordinates unitSpawn) {
+        super(faction, owner, coordinates, numberOfTank, numberOfSoldier, numberOfGeek, numberOfBoat, unitSpawn);
 
         //create player at idle state
         this.setState(IDLE);

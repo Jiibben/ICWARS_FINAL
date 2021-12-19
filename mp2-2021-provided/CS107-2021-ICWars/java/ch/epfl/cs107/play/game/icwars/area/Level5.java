@@ -19,29 +19,33 @@ public class Level5 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getPlayerSpawnPosition() {
-        return new DiscreteCoordinates(25, 3);
+        return new DiscreteCoordinates(0, 4);
     }
 
     @Override
     public DiscreteCoordinates getEnnemySpawnPosition() {
-        return new DiscreteCoordinates(40, 3);
+        return new DiscreteCoordinates(10, 4);
     }
 
     @Override
     public int getNumberOfTank() {
-        return 2;
+        return 0;
     }
 
     @Override
     public int getNumberOfGeek() {
-        return 2;
+        return 0;
     }
 
     @Override
     public int getNumberOfSoldier() {
-        return 2;
+        return 0;
     }
 
+    @Override
+    public int getNumberOfBoat() {
+        return 3;
+    }
 
     protected void createArea() {
         registerActor(new Background(this));
@@ -49,12 +53,12 @@ public class Level5 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
-        return new DiscreteCoordinates(25, 6);
+        return new DiscreteCoordinates(4, 5);
     }
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(40, 6);
+        return new DiscreteCoordinates(17, 5);
     }
 
 }

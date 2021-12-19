@@ -41,6 +41,10 @@ public class Level3 extends ICwarsArea {
     public int getNumberOfSoldier() {
         return 0;
     }
+    @Override
+    public int getNumberOfBoat() {
+        return 0;
+    }
 
 
     protected void createArea() {

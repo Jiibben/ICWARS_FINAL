@@ -7,9 +7,7 @@ import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.*;
-import ch.epfl.cs107.play.game.icwars.gui.GameGui;
 import ch.epfl.cs107.play.io.FileSystem;
-import ch.epfl.cs107.play.window.Audio;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
@@ -25,7 +23,7 @@ public class ICwars extends AreaGame {
     private int areaIndex;
     private ArrayList<ICwarsPlayer> players;
     private ICwarsPlayer activePlayer;
-    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5"};
+    private final String[] areas = {"icwars/Level0", "icwars/Level1", "icwars/Level2", "icwars/Level3", "icwars/Level4", "icwars/Level5", "icwars/Level6"};
 
     private final AudioPlayer gameSound = new AudioPlayer("gameSound3", true);
 
@@ -58,6 +56,7 @@ public class ICwars extends AreaGame {
         addArea(new Level3());
         addArea(new Level4());
         addArea(new Level5());
+        addArea(new Level6());
     }
 
     /*------------------->
@@ -103,12 +102,12 @@ public class ICwars extends AreaGame {
     private void createPlayers(ICwarsArea area) {
         players = new ArrayList<ICwarsPlayer>();
 
-        players.add(new RealPlayer(ICwarsActor.Faction.ALLY, area, area.getPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getAllyUnitSpawn()));
+        players.add(new RealPlayer(ICwarsActor.Faction.ALLY, area, area.getPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getAllyUnitSpawn()));
 //        players.add(new RealPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), 1, 1, area.getEnnemyUnitSpawn()));
 
 
         //AI PLAYER comment if you want to disable the ai player
-        players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getEnnemyUnitSpawn()));
+        players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
 
     }
 

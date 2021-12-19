@@ -25,7 +25,6 @@ public class AudioPlayer {
     }
 
 
-
     public AudioPlayer(String soundName, boolean loop) {
         this(soundName);
         this.loop = loop;
@@ -38,16 +37,16 @@ public class AudioPlayer {
         try {
             if (clip.isRunning()) {
                 clip.stop();
-                clip.close();
             }
-            if (clip.isOpen()) {
-                clip.close();
-            }
+
             if (loop) {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
-            clip.open(sound);
+            if (!clip.isOpen()) {
+                clip.open(sound);
+            }
             clip.setFramePosition(0);
+
             clip.start();
 
 

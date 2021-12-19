@@ -41,6 +41,10 @@ public class Level1 extends ICwarsArea {
         return 1;
     }
 
+    @Override
+    public int getNumberOfBoat() {
+        return 0;
+    }
 
     protected void createArea() {
         registerActor(new Background(this));

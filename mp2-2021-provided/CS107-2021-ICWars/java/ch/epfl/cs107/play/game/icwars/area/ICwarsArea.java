@@ -48,6 +48,8 @@ public abstract class ICwarsArea extends Area {
     public abstract int getNumberOfGeek();
 
     public abstract int getNumberOfSoldier();
+    public abstract int getNumberOfBoat();
+
 
     /**
      * remove the whole list of units in area

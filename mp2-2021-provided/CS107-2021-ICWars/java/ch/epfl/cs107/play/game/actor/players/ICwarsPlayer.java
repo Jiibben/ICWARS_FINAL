@@ -7,6 +7,7 @@ import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Boat;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Geek;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Soldier;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Tank;
@@ -87,7 +88,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
      * @param numberOfSoldier number of soldier to attribute the playrer at creation
      * @param unitSpawn       position in which units spawn
      */
-    public ICwarsPlayer(Faction faction, ICwarsArea area, DiscreteCoordinates position, int numberOfTank, int numberOfSoldier, int numberOfGeek, DiscreteCoordinates unitSpawn) {
+    public ICwarsPlayer(Faction faction, ICwarsArea area, DiscreteCoordinates position, int numberOfTank, int numberOfSoldier, int numberOfGeek, int numberOfBoat, DiscreteCoordinates unitSpawn) {
         super(faction, area, position);
         this.unitSpawn = unitSpawn;
         this.sprite = new Sprite(computeSpriteName(faction), 1.f, 1.f, this);
@@ -107,6 +108,12 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         for (int geekN = 0; geekN < numberOfGeek; geekN++) {
             DiscreteCoordinates newPosition = new DiscreteCoordinates(this.unitSpawn.x + units.size(), this.unitSpawn.y);
             Unit unit = new Geek(faction, getOwnerArea(), newPosition, "Geek");
+            units.add(unit);
+
+        }
+        for (int boatN = 0; boatN < numberOfBoat; boatN++) {
+            DiscreteCoordinates newPosition = new DiscreteCoordinates(this.unitSpawn.x + units.size(), this.unitSpawn.y);
+            Unit unit = new Boat(faction, getOwnerArea(), newPosition, "Boat");
             units.add(unit);
 
         }

@@ -20,8 +20,8 @@ public class AIPlayer extends ICwarsPlayer {
     private static float counter = 0.f;
 
 
-    public AIPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, DiscreteCoordinates unitSpawn) {
-        super(faction, owner, coordinates, numberOfTank, numberOfSoldier, numberOfGeek, unitSpawn);
+    public AIPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, int numberOfBoat, DiscreteCoordinates unitSpawn) {
+        super(faction, owner, coordinates, numberOfTank, numberOfSoldier, numberOfGeek, numberOfBoat, unitSpawn);
         //create at idle state
         this.setState(IDLE);
     }
@@ -40,7 +40,6 @@ public class AIPlayer extends ICwarsPlayer {
         }
         return -1;
     }
-
 
 
     @Override
