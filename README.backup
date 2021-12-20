@@ -264,7 +264,7 @@ key : touche de clavier associée à l'attaque
 <tr>
 <td>Bière PG
 <td>5
-<td>rajoute 1 de dégat sur l'unité sur laquelle l'objet est utilisé
+<td>rajoute 1 de dégat à l'unité sur laquelle l'objet est utilisé
 </tr>
 </table>
 <h1>Map creation</h1>
