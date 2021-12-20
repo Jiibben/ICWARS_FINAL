@@ -19,18 +19,21 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.ACTION_SELECTION;
-import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.NORMAL;
+import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
 
 public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     private final ArrayList<Unit> units = new ArrayList<Unit>();
+
     private final DiscreteCoordinates unitSpawn;
+
     private Integer selectedUnit;
     private PlayerState state = PlayerState.IDLE;
     private final Sprite sprite;
-
     private ICwarsAction act;
     private final ArrayList<Unit> deadUnits = new ArrayList<Unit>();
+    private final int MONEYPERKILL = 5;
+    //money that the player has
+    private int money = 0;
 
 
     /**
@@ -42,8 +45,31 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         SELECT_CELL,
         MOVE_UNIT,
         ACTION_SELECTION,
-        ACTION
+        ACTION,
+        SHOPPING_SELECT,
+        SHOPPING;
     }
+
+    /**
+     * add money
+     *
+     * @param amount amount to add
+     */
+    public void addMoney(int amount) {
+        money += amount;
+    }
+
+    public void removeMoney(int amount) {
+        money -= amount;
+    }
+
+    /**
+     * get money that the player has
+     */
+    public int getMoney() {
+        return this.money;
+    }
+
 
     /**
      * redefine to know if it's a real player or not
@@ -65,7 +91,6 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         path += "Cursor";
         return path;
     }
-
 
 
     /**
@@ -305,6 +330,14 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     }
 
     /**
+     * add money to the players monney
+     * so he can buy things in the shop
+     */
+    public void killEarnsMoney() {
+        this.money += MONEYPERKILL;
+    }
+
+    /**
      * remove dead units from the current list of unit
      */
     private void checkForDeadUnits() {
@@ -317,10 +350,6 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         }
         //désenregistre les unités précédemment marquée comme morte
         for (Unit unit : deadUnits) {
-            DiscreteCoordinates pos = unit.getCurrentMainCellCoordinates();
-            String name = unit.getName();
-            Faction faction = unit.getFaction();
-
             deleteUnit(unit);
         }
 
@@ -366,6 +395,8 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     @Override
     public void onLeaving(List<DiscreteCoordinates> coordinates) {
         if (this.state == PlayerState.SELECT_CELL) {
+            this.state = PlayerState.NORMAL;
+        } else if (this.state == SHOPPING_SELECT) {
             this.state = PlayerState.NORMAL;
         }
     }

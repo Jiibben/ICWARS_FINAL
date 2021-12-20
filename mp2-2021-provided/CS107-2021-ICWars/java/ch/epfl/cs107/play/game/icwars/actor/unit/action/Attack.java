@@ -105,6 +105,9 @@ public class Attack extends ICwarsAction {
         target.takeDamage(getActionUnit().getDamage());
         getActionUnit().disableAct();
         //player made an action
+        if (target.isDead()){
+            player.killEarnsMoney();
+        }
         player.hasActed();
         //center back camera on the player
         player.centerCamera();

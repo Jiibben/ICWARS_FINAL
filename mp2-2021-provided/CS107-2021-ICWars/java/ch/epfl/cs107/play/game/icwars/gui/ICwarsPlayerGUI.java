@@ -22,6 +22,9 @@ public class ICwarsPlayerGUI implements Graphics {
     private final ICWarsInfoPanel infoPanel;
     private final ICWarsActionsPanel actionPanel;
     private final GameGui gameGui;
+    private final shopGui shopGui;
+
+
 
     public ICwarsPlayerGUI(float cameraScaleFactor, ICwarsPlayer player) {
         this.player = player;
@@ -29,6 +32,7 @@ public class ICwarsPlayerGUI implements Graphics {
         gameGui = new GameGui(player);
         infoPanel = new ICWarsInfoPanel(cameraScaleFactor);
         actionPanel = new ICWarsActionsPanel(cameraScaleFactor);
+        shopGui = new shopGui(player, cameraScaleFactor);
 
     }
 
@@ -39,9 +43,12 @@ public class ICwarsPlayerGUI implements Graphics {
     @Override
     public void draw(Canvas canvas) {
         gameGui.draw(canvas);
+
         if (selectedUnit != null) {
             if (playerState == ICwarsPlayer.PlayerState.MOVE_UNIT) {
                 rangeAndShortestPathForSelectedUnit(canvas);
+            } else if (playerState == ICwarsPlayer.PlayerState.SHOPPING) {
+                shopGui.draw(canvas);
             }
         } else {
 
@@ -71,6 +78,10 @@ public class ICwarsPlayerGUI implements Graphics {
 
     public void setPlayerState(ICwarsPlayer.PlayerState playerState) {
         this.playerState = playerState;
+    }
+
+    public void setPlayerMoneyAmount(int amount){
+        shopGui.setPlayerMoneyAmount(amount);
     }
 
 

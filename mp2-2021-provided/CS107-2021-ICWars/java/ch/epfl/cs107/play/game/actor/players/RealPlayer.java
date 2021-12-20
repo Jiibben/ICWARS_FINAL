@@ -8,6 +8,8 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;
 import ch.epfl.cs107.play.game.icwars.gui.ICwarsPlayerGUI;
 import ch.epfl.cs107.play.game.icwars.handler.ICWarsInteractorVisitor;
+import ch.epfl.cs107.play.game.shop.Shop;
+import ch.epfl.cs107.play.game.shop.shopitems.ShopItem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
@@ -20,6 +22,8 @@ import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
 
 
 public class RealPlayer extends ICwarsPlayer {
+
+    private final Shop playerSHOP = new Shop(this);
 
     // move duration
     private final static int MOVE_DURATION = 8;
@@ -36,6 +40,7 @@ public class RealPlayer extends ICwarsPlayer {
         //create player at idle state
         this.setState(IDLE);
     }
+
 
     //todo document this
     private boolean canMoveUnit;
@@ -57,6 +62,12 @@ public class RealPlayer extends ICwarsPlayer {
         super.setState(state);
         // let the gui know that the state of the player changed
         playerGUI.setPlayerState(state);
+    }
+
+    public void playerBought(ShopItem item) {
+        setState(NORMAL);
+        item.effect(getSelectedUnit());
+        playerGUI.unselectUnit();
     }
 
     /**
@@ -89,6 +100,7 @@ public class RealPlayer extends ICwarsPlayer {
 
     // handle each state:
 
+
     /**
      * normal handling
      *
@@ -100,6 +112,9 @@ public class RealPlayer extends ICwarsPlayer {
         getSprite().setAlpha(1.f);
         //on enter key change to select cell
         handleKeyState(SELECT_CELL, keyboard.get(Keyboard.ENTER));
+        //set state to shopping_select mode
+        handleKeyState(SHOPPING_SELECT, keyboard.get(Keyboard.S));
+
         //go to idle on tab press
         handleKeyState(IDLE, keyboard.get(Keyboard.TAB));
         //unselect unit in playerGui
@@ -153,8 +168,16 @@ public class RealPlayer extends ICwarsPlayer {
             getAct().doAction(4, this, keyboard);
         } catch (NullPointerException ignored) {
             //should never appear
-            System.out.println("no action selected");
         }
+    }
+
+    public void handleShoppingSelect(Keyboard keyboard) {
+        moveHandling(keyboard);
+    }
+
+    public void handleShopping(Keyboard keyboard) {
+        playerSHOP.shopping(keyboard);
+        handleKeyState(NORMAL, keyboard.get(Keyboard.TAB));
     }
 
     // AUTOMAte that is handling the different state of the player
@@ -183,6 +206,12 @@ public class RealPlayer extends ICwarsPlayer {
             case ACTION:
                 //handle action selected
                 handleAction(keyboard);
+                break;
+            case SHOPPING_SELECT:
+                handleShoppingSelect(keyboard);
+                break;
+            case SHOPPING:
+                handleShopping(keyboard);
                 break;
         }
     }
@@ -273,6 +302,7 @@ public class RealPlayer extends ICwarsPlayer {
 
         Keyboard keyboard = getOwnerArea().getKeyboard();
         automate(keyboard);
+        playerGUI.setPlayerMoneyAmount(getMoney());
         super.update(deltaTime);
     }
 
@@ -329,7 +359,6 @@ public class RealPlayer extends ICwarsPlayer {
         }
 
         public void interactWith(Unit unit) {
-
             if (!unit.isDead()) {
                 switch (getState()) {
                     case NORMAL:
@@ -351,7 +380,6 @@ public class RealPlayer extends ICwarsPlayer {
                         if (getSelectedUnit() != unit) {
                             player.canMoveUnit = false;
                         }
-
                         break;
                     case ACTION_SELECTION:
                         //make sure that the unit can act
@@ -359,11 +387,18 @@ public class RealPlayer extends ICwarsPlayer {
                             //start listening for action
                             unit.action(player);
                         }
+                        break;
+                    case SHOPPING_SELECT:
+                        selectUnit(findUnitIndex(unit));
+                        setState(SHOPPING);
+                        break;
+                    case SHOPPING:
 
+                        break;
                 }
 
 
-            }else{
+            } else {
                 player.canMoveUnit = false;
             }
 
