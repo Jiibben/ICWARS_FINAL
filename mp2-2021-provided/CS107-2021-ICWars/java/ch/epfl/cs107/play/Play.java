@@ -6,11 +6,7 @@ import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.io.DefaultFileSystem;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.io.ResourceFileSystem;
-//import ch.epfl.cs107.play.recorder.RecordReplayer;
-//import ch.epfl.cs107.play.recorder.Recorder;
-import ch.epfl.cs107.play.window.Audio;
 import ch.epfl.cs107.play.window.Window;
-import ch.epfl.cs107.play.window.swing.SwingSound;
 import ch.epfl.cs107.play.window.swing.SwingWindow;
 
 /**

@@ -102,12 +102,13 @@ public class ICwars extends AreaGame {
      */
     private void createPlayers(ICwarsArea area) {
         players = new ArrayList<ICwarsPlayer>();
-
+        //ally player
         players.add(new RealPlayer(ICwarsActor.Faction.ALLY, area, area.getPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getAllyUnitSpawn()));
-//        players.add(new RealPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), 1, 1, area.getEnnemyUnitSpawn()));
+        //ennemy player
+//        players.add(new RealPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
 
 
-        //AI PLAYER comment if you want to disable the ai player
+        //AI PLAYER comment if you want to disable the ai player and uncomment the other realplayer
         players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
 
     }

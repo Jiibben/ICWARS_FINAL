@@ -1,5 +1,6 @@
 
 <h1>déroulements :</h1>
+déroulement d'une partie typique voir bas du document pour caractèristiques des unités, des cartes, des cases et le mapping des touches.
 <ol>
 	<li>Chaque unité peut être jouée 1 fois par tour comme ceci :
 	<ol> 
@@ -24,10 +25,16 @@
 	<li>lors de la phase d'attaque seuls les attaques qui sont utilisables s'affichent (exemple : si les unités ennemies ne sont pas dans la range d'attaque de l'unité attaque ne sera pas affichée dans la liste d'attaque)
 	<br><br>
 	<li>le sol à un impacte sur la défense(réduit les dégats pris) et sur la portée de tir de l'unité
+	<br><br>
+	<li>en état normal le joueur peut appuyer sur la touche <strong>S</strong> si il est sur une unité le shop s'ouvrira et permettera d'acheter un objet pour cette unité si le player a assez d'argent.
+	<br></br>
+	<li>chaque unité tuée ramène 5 d'argent au joueur (l'argent est perdue quand on change de map)
+	
 </ol>
 
 </table>
 <h1>ACtions</h1>
+key : touche de clavier associée à l'attaque
 <table>
   <tr>
   <th>ACTIONS (not all units have access to the same actions)
@@ -106,18 +113,21 @@
     <th>KEY
   </tr>
   <tr>
-    <td>select unit / confirm move / confirm attack </td>
+    <td>select unit / confirm move / confirm attack
     <td>ENTER</td>
   </tr>
   <tr>
-    <td>cancel moving / cancel select unit / end turn  </td>
-    <td>TAB</td>
+    <td>cancel moving / cancel select unit / end turn
+    <td>TAB
   </tr>
   <tr>
   <td> move cursor( left, right, down, up) / selecting in action (left,right)
   <td>ARROW KEYS
   </tr>
-
+  <tr>
+  <td>open shop 
+  <td>S
+  </tr>
 </table>
 
 <h1>TILES</h1>
@@ -243,6 +253,19 @@
 <td>0
 <td>0
 <tr>
+</table>
+<h1>SHOP</h1>
+<table>
+<tr>
+<th>OBJET
+<th>PRIX
+<th>EFFET
+</tr>
+<tr>
+<td>Bière PG
+<td>5
+<td>rajoute 1 de dégat à l'unité sur laquelle l'objet est utilisé
+</tr>
 </table>
 <h1>Map creation</h1>
 <p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>

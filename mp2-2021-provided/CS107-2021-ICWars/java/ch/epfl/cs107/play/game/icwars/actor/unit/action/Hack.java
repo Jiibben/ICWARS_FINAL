@@ -12,7 +12,6 @@ import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 

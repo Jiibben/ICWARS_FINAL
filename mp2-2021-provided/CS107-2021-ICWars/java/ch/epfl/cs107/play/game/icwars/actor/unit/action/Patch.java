@@ -30,7 +30,7 @@ public class Patch extends ICwarsAction {
         return getActionUnit().getMaxHp() > getActionUnit().getHp();
     }
 
-    //ai
+    @Override
     public void doAutoAction(float dt, AIPlayer player) {
         //heal the currently selected unit
         this.patch(player);

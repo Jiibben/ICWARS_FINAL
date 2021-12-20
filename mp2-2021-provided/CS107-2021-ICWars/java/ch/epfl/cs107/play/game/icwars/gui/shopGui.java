@@ -99,7 +99,7 @@ public class shopGui implements Graphics {
         beerText.setRelativeTransform(beerTextTransform);
         beerText.draw(canvas);
 
-        final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f)-1f));
+        final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) - 1f));
         moneyText.setRelativeTransform(moneyAmountTextTransform);
         moneyText.draw(canvas);
 

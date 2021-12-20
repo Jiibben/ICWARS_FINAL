@@ -15,7 +15,6 @@ import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-import java.security.Key;
 import java.util.List;
 
 import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
@@ -416,7 +415,7 @@ public class RealPlayer extends ICwarsPlayer {
                             selectUnit(findUnitIndex(unit));
                             //set state to shopping which opens the shop
                             setState(SHOPPING);
-                        }else{
+                        } else {
                             setState(NORMAL);
                         }
                         break;
