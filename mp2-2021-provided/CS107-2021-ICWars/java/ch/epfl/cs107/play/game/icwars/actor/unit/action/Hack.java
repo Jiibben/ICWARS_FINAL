@@ -41,11 +41,11 @@ public class Hack extends ICwarsAction {
         Button attack = keyboard.get(Keyboard.ENTER);
         Button tab = keyboard.get(Keyboard.TAB);
 
-        //get all the ally units in range that can be "attacked" in our case increase their damage by 1
+        // get all the ally units in range that can be "attacked" in our case increase their damage by 1
         this.indexes = getActionUnit().getInteractableAllyUnits();
         try {
             unitSelectedIndex %= indexes.size();
-            //cycle through ally unit
+            // cycle through ally unit
             Unit currentTarget = getActionArea().getSelectedUnit(indexes.get(Math.abs(unitSelectedIndex)));
             getActionArea().setViewCandidate(currentTarget);
             if (next.isPressed()) {
@@ -68,7 +68,6 @@ public class Hack extends ICwarsAction {
     }
 
 
-    // used for ai
     @Override
     public void doAutoAction(float dt, AIPlayer player) {
         ArrayList<Integer> indexesOfpotentialTarget = getActionUnit().getInteractableAllyUnits();

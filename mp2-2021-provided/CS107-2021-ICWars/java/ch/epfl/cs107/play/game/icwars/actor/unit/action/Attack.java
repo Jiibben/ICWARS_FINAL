@@ -32,10 +32,16 @@ public class Attack extends ICwarsAction {
     //indexes of the unit (in the area units list)
     ArrayList<Integer> indexes = new ArrayList<>();
 
+    /**
+     * constructor
+     */
     public Attack(Unit unit, ICwarsArea area) {
         super(unit, area, Attack.NAME);
     }
 
+    /**
+     * handle action for the unit
+     */
     @Override
     public void doAction(float dt, ICwarsPlayer player, Keyboard keyboard) {
         //key mapping for the action
@@ -66,9 +72,12 @@ public class Attack extends ICwarsAction {
     }
 
 
-    // used for ai
+    /**
+     * used to handle action for the ai
+     */
     @Override
     public void doAutoAction(float dt, AIPlayer player) {
+        //
         this.indexes = getActionUnit().getAttackableUnits();
         //search for unit that has the lowest life
         Unit currentTarget = lowestLife(indexes, this.getActionArea());
@@ -102,10 +111,11 @@ public class Attack extends ICwarsAction {
      * @param target target unit to attack
      */
     private void attack(Unit target, ICwarsPlayer player) {
+        //take the damage
         target.takeDamage(getActionUnit().getDamage());
         getActionUnit().disableAct();
         //player made an action
-        if (target.isDead()){
+        if (target.isDead()) {
             player.killEarnsMoney();
         }
         player.hasActed();

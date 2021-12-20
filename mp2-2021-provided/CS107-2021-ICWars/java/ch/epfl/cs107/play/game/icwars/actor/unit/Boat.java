@@ -27,6 +27,7 @@ public class Boat extends Unit {
 
     public Boat(Faction faction, Area area, DiscreteCoordinates position, String name) {
         super(faction, area, position, name, MOVINGRAY, MAXHP, DAMAGEPERATTACK, computeSpriteName(faction, spriteName), ATTACKRANGE);
+        //added actions
         actions.put(Wait.KEY, new Wait(this, (ICwarsArea) (getOwnerArea())));
         actions.put(Attack.KEY, new Attack(this, (ICwarsArea) getOwnerArea()));
 

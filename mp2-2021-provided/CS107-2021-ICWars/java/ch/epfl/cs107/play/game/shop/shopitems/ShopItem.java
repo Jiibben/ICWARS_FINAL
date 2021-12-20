@@ -8,17 +8,29 @@ public abstract class ShopItem {
     private final int key;
 
     public ShopItem(String name, int price, int key) {
+        //price of the item
         this.price = price;
+        //name of the item
         this.name = name;
+        //key associated to the keyboard
         this.key = key;
     }
 
+    /**
+     * get the name of the item
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * effect on the unit that the item has
+     */
     public abstract void effect(Unit unit);
 
+    /**
+     * getter for the price of the item
+     */
     public int getPrice() {
         return price;
     }

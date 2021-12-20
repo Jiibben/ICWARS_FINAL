@@ -22,10 +22,14 @@ public class GameGui implements Graphics {
     private TextGraphics info2;
 
     public GameGui(ICwarsPlayer player) {
-
+        //player
+        //used to display it on his position
         this.player = player;
     }
 
+    /**
+     * used to display the winning title
+     */
     public void won() {
         this.display = new TextGraphics("YOU WON !", 1.2f, Color.red, Color.black, 0.02f,
                 false, false, new Vector(0.3f, height - 0.4f),

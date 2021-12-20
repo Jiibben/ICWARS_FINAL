@@ -22,17 +22,24 @@ import java.util.List;
 import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
 
 public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
+    //units that the player has
     private final ArrayList<Unit> units = new ArrayList<Unit>();
-
+    //unit spawn (first point)
     private final DiscreteCoordinates unitSpawn;
-
+    //currently selected unit
     private Integer selectedUnit;
+
+    //Current state of the player
     private PlayerState state = PlayerState.IDLE;
+    //sprite of the player
     private final Sprite sprite;
+    //currently selected action of the player
     private ICwarsAction act;
+    //deadUnits of the player
     private final ArrayList<Unit> deadUnits = new ArrayList<Unit>();
+    //constant of money that the player earns per kill
     private final int MONEYPERKILL = 5;
-    //money that the player has
+    //money that the player has (porte monnaie)
     private int money = 0;
 
 

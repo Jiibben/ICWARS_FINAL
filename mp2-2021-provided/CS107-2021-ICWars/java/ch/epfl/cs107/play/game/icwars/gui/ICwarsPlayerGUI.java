@@ -25,13 +25,16 @@ public class ICwarsPlayerGUI implements Graphics {
     private final shopGui shopGui;
 
 
-
     public ICwarsPlayerGUI(float cameraScaleFactor, ICwarsPlayer player) {
         this.player = player;
-        //initiate different panel
+        //initiate different gui for the player
+        //gui of the winning title
         gameGui = new GameGui(player);
+        //info gui for the cells and units
         infoPanel = new ICWarsInfoPanel(cameraScaleFactor);
+        //panel to display the actions
         actionPanel = new ICWarsActionsPanel(cameraScaleFactor);
+        //display the shop
         shopGui = new shopGui(player, cameraScaleFactor);
 
     }
@@ -62,38 +65,71 @@ public class ICwarsPlayerGUI implements Graphics {
 
     }
 
+    /**
+     * set the actions for the action panelto display
+     *
+     * @param actions list of the action to display
+     */
     public void setActions(ArrayList<ICwarsAction> actions) {
         actionPanel.setActions(actions);
     }
 
+    /**
+     * set the unit for the info panel
+     *
+     * @param unit unit to select to display the info
+     */
     public void setCurrentUnit(Unit unit) {
         //set the currently selected  selected unit in the infopanel
         infoPanel.setUnit(unit);
 
     }
 
+    /**
+     * set the cell type that the player is on so that the info panel can display it
+     *
+     * @param cellType type of the cellule
+     */
     public void setCurrentCell(ICwarsBehavior.ICwarsCellType cellType) {
         infoPanel.setCurrentCell(cellType);
     }
 
+    /**
+     * state of the player (used to know what panel must be displayed)
+     */
     public void setPlayerState(ICwarsPlayer.PlayerState playerState) {
         this.playerState = playerState;
     }
 
-    public void setPlayerMoneyAmount(int amount){
+    /**
+     * set the money that the player has so the shopgui can display it
+     *
+     * @param amount number of money
+     */
+    public void setPlayerMoneyAmount(int amount) {
         shopGui.setPlayerMoneyAmount(amount);
     }
 
+    /**
+     * used to display the shortest path
+     *
+     * @param canvas canvs to draw on
+     */
 
     private void rangeAndShortestPathForSelectedUnit(Canvas canvas) {
         //show the shortest range and path
         selectedUnit.drawRangeAndPathTo(player.getCurrentMainCellCoordinates(), canvas);
     }
 
+    /**
+     * which unit is selected used to display things related to that unit
+     *
+     * @param unit unit to select
+     */
     public void setSelectedUnit(Unit unit) {
         this.selectedUnit = unit;
     }
-
+    /**unselect the selected unit (set selectedunit to null)*/
     public void unselectUnit() {
         this.selectedUnit = null;
     }

@@ -23,7 +23,7 @@ public class Wait extends ICwarsAction {
         this.wait(player);
     }
 
-    //ai
+    @Override
     public void doAutoAction(float dt, AIPlayer player) {
         //execute the action
         this.wait(player);

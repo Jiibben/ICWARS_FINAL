@@ -64,11 +64,13 @@ public class shopGui implements Graphics {
         beerText = new TextGraphics(bierePG.name + " | " + bierePG.price, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
-
+        beerText.setFontName("Kenney Pixel");
 
         moneyText = new TextGraphics("balance : " + playerMoneyAmount, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
+        moneyText.setFontName("Kenney Pixel");
+
     }
 
 

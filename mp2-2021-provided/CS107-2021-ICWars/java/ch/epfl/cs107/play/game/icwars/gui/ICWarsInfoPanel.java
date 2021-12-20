@@ -173,7 +173,7 @@ public class ICWarsInfoPanel implements Graphics {
         unitDamageText.setText("DMG: " + unit.getDamage());
         unitDamageText.draw(canvas);
 
-        //todo document this added rng info
+        //range info
         final Transform rangeTransform = Transform.I.translated(canvas.getPosition().add(width / 4 + .1f, -height / 6 + .2f));
 
         unitRangeText.setRelativeTransform(rangeTransform);

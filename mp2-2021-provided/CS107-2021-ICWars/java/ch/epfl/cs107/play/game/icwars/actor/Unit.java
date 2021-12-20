@@ -398,7 +398,12 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         ((ICWarsInteractorVisitor) v).interactWith(this);
     }
 
-
+    /**
+     * used to draw the range to the destination
+     *
+     * @param destination destination
+     * @param canvas
+     */
     public void drawRangeAndPathTo(DiscreteCoordinates destination,
                                    Canvas canvas) {
         range.draw(canvas);
@@ -434,7 +439,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         return null;
     }
 
-
+    //used for interaction with cells so
     private class unitInteractionHandler implements ICWarsInteractorVisitor {
 
         public void interactWith(ICwarsBehavior.ICwarsCell cell) {
