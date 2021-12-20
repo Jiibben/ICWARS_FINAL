@@ -42,7 +42,7 @@ public class RealPlayer extends ICwarsPlayer {
     }
 
 
-    //todo document this
+    //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
 
     /*--------------------------------------------------
@@ -64,6 +64,9 @@ public class RealPlayer extends ICwarsPlayer {
         playerGUI.setPlayerState(state);
     }
 
+    /**
+     * used to set the player back to normal and to use the item that the player bought in the shop
+     */
     public void playerBought(ShopItem item) {
         setState(NORMAL);
         item.effect(getSelectedUnit());
@@ -161,7 +164,7 @@ public class RealPlayer extends ICwarsPlayer {
     }
 
     /**
-     * handle action
+     * handle action state of the playe<r
      */
     private void handleAction(Keyboard keyboard) {
         try {
@@ -171,6 +174,9 @@ public class RealPlayer extends ICwarsPlayer {
         }
     }
 
+    /**
+     * handles the shopping_selection state of the player
+     */
     public void handleShoppingSelect(Keyboard keyboard) {
         moveHandling(keyboard);
     }
@@ -180,7 +186,9 @@ public class RealPlayer extends ICwarsPlayer {
         handleKeyState(NORMAL, keyboard.get(Keyboard.TAB));
     }
 
-    // AUTOMAte that is handling the different state of the player
+    /**
+     * handle player's different states
+     */
     private void automate(Keyboard keyboard) {
         switch (this.getState()) {
             case IDLE:
@@ -275,6 +283,11 @@ public class RealPlayer extends ICwarsPlayer {
         }
     }
 
+    /**
+     * use moveIfPressed so it can move in all directions
+     *
+     * @param keyboard keyboard to listen the key to
+     */
     private void moveHandling(Keyboard keyboard) {
         //allows movement up right left down associated to the arrow key
         moveIfPressed(Orientation.LEFT, keyboard.get(Keyboard.LEFT));
@@ -284,7 +297,12 @@ public class RealPlayer extends ICwarsPlayer {
 
     }
 
-
+    /**
+     * listen to key press and if it's pressed move the player in the given orientaiton
+     *
+     * @param orientation orientation to move
+     * @param b           button to listen to
+     */
     private void moveIfPressed(Orientation orientation, Button b) {
         if (b.isDown()) {
             // listen to the button and executes movement on button press used in movehandling
@@ -359,45 +377,50 @@ public class RealPlayer extends ICwarsPlayer {
         }
 
         public void interactWith(Unit unit) {
+            //can only do certains
             if (!unit.isDead()) {
                 switch (getState()) {
                     case NORMAL:
+                        //tell the gui that we're on an unit and that it needs to show the information of the unit
                         playerGUI.setCurrentUnit(unit);
                         break;
                     case SELECT_CELL:
+                        //tell the gui that we're on an unit and that it needs to show the information of the unit
                         playerGUI.setCurrentUnit(unit);
-                        /*allows to only select ally unit*/
-                        if (getFaction() == unit.getFaction()) {
-                            //allows to select only unit that can move (not disabled
-                            if (unit.canMove()) {
-                                //select unit we currently are on when selecting cell
-                                selectUnit(findUnitIndex(unit));
-                                setState(MOVE_UNIT);
-                            }
+                        //allows to select only unit that can move (not disabled) and that have the same faction as the player
+                        if (unit.canMove() && getFaction() == unit.getFaction()) {
+                            //select unit we currently are on when selecting cell
+                            selectUnit(findUnitIndex(unit));
+                            //if a unit is selected set the player state to move unit
+                            setState(MOVE_UNIT);
                         }
                         break;
                     case MOVE_UNIT:
                         if (getSelectedUnit() != unit) {
+                            //if he's on another unit while trying to move one it sets the player can
+                            // move unit to false (then in the check for movement it doesn't let the player move the unit)
                             player.canMoveUnit = false;
                         }
                         break;
                     case ACTION_SELECTION:
-                        //make sure that the unit can act
+                        //make sure that the unit can act before starting action selection
                         if (unit.canAct()) {
-                            //start listening for action
+                            //start listening for actions
                             unit.action(player);
                         }
                         break;
                     case SHOPPING_SELECT:
-                        selectUnit(findUnitIndex(unit));
-                        setState(SHOPPING);
-                        break;
-                    case SHOPPING:
-
+                        //if player is in shopping select and on an unit it selects this unit and set the state to shopping can only shop for ally units
+                        if (unit.getFaction() == getFaction()) {
+                            //select the unit
+                            selectUnit(findUnitIndex(unit));
+                            //set state to shopping which opens the shop
+                            setState(SHOPPING);
+                        }else{
+                            setState(NORMAL);
+                        }
                         break;
                 }
-
-
             } else {
                 player.canMoveUnit = false;
             }
@@ -408,7 +431,7 @@ public class RealPlayer extends ICwarsPlayer {
         public void interactWith(ICwarsBehavior.ICwarsCell cell) {
             //tell the gui that the player is not on any unit
             playerGUI.setCurrentUnit(null);
-            //player can move unit because is on a cell used to limitate displacement on other units
+            //player can move unit because is on a cell and not on another unit
             player.canMoveUnit = true;
             //tell the gui the type of the current cell the cursor is on
             playerGUI.setCurrentCell(cell.getType());

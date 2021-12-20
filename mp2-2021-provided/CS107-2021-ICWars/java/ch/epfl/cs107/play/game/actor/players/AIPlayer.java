@@ -55,6 +55,9 @@ public class AIPlayer extends ICwarsPlayer {
         super.update(deltaTime);
     }
 
+    /**
+     * gère les différents états du joueur
+     */
     private void automate() {
         switch (this.getState()) {
             case IDLE:
@@ -109,7 +112,6 @@ public class AIPlayer extends ICwarsPlayer {
     /**
      * handle move unit move the currently selected unit to a computed position
      */
-
     private void handleMoveUnit() {
         //current area that the player is in
         ICwarsArea area = (ICwarsArea) getOwnerArea();
@@ -194,7 +196,6 @@ public class AIPlayer extends ICwarsPlayer {
 
 
     @Override
-
     public List<DiscreteCoordinates> getFieldOfViewCells() {
         return null;
     }
@@ -209,6 +210,9 @@ public class AIPlayer extends ICwarsPlayer {
         return false;
     }
 
+    /**
+     * add waiting time between actions
+     */
     private boolean waitFor(float value, float dt) {
         if (counting) {
             counter += dt;
@@ -223,6 +227,7 @@ public class AIPlayer extends ICwarsPlayer {
         return false;
     }
 
+    @Override
     public void draw(Canvas canvas) {
         //if action happening draw it
         if (this.getAct() != null) {

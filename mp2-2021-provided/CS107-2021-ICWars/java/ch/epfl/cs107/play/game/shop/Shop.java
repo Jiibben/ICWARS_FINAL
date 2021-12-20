@@ -3,10 +3,8 @@ package ch.epfl.cs107.play.game.shop;
 
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
 import ch.epfl.cs107.play.game.shop.shopitems.ShopItem;
 import ch.epfl.cs107.play.game.shop.shopitems.bierePG;
-import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Keyboard;
 
 import java.util.ArrayList;

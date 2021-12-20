@@ -16,7 +16,7 @@ public class GameGui implements Graphics {
     private final int height = 4;
     private final int width = 4;
     private final Shape rect = new Polygon(0, 0, 0, height, width, height, width, 0);
-    private final ShapeGraphics bg = new ShapeGraphics(this.rect, Color.LIGHT_GRAY, Color.BLACK, 0f, 1f, 3000f);
+    private final ShapeGraphics bg = new ShapeGraphics(this.rect, Color.LIGHT_GRAY, Color.BLACK, 0f, 0.7f, 3000f);
     private TextGraphics display;
     private TextGraphics info1;
     private TextGraphics info2;
