@@ -1,8 +1,9 @@
 <h1>Liens importants</h1>
 <p>voilà quelques liens importants :
-démo vidéo (utile pour voir rapidement toutes les fonctionalités) :  https://www.youtube.com/watch?v=N2ph4_Epx0Q
+démo vidéo (utile pour voir rapidement toutes les fonctionalités) :  https://www.youtube.com/watch?v=N2ph4_Epx0Q </p>
+<p>
 site de présentation du jeu : https://compassionate-feynman-4aef09.netlify.app/
- </p>
+</p>
 
 
 <h1>Déroulements :</h1>
