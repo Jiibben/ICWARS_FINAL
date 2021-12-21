@@ -1,6 +1,9 @@
 
 <h1>déroulements :</h1>
 déroulement d'une partie typique voir bas du document pour caractèristiques des unités, des cartes, des cases et le mapping des touches.
+
+vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https://www.youtube.com/watch?v=N2ph4_Epx0Q
+
 <ol>
 	<li>Chaque unité peut être jouée 1 fois par tour comme ceci :
 	<ol> 

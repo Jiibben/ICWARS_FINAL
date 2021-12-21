@@ -1,6 +1,8 @@
 
 <h1>déroulements :</h1>
 déroulement d'une partie typique voir bas du document pour caractèristiques des unités, des cartes, des cases et le mapping des touches.
+
+vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https://www.youtube.com/watch?v=N2ph4_Epx0Q
 <ol>
 	<li>Chaque unité peut être jouée 1 fois par tour comme ceci :
 	<ol> 
@@ -18,7 +20,7 @@ déroulement d'une partie typique voir bas du document pour caractèristiques de
 	<br><br>
 	<li>à tout moment le joueur peut se tenter au niveau suivant en appuyant sur la touche <strong>N</strong> si il n'y a plus de niveau rien ne se passe de visible.
 	<br><br>
-	<li> les unités sont marquées mortes lorsque leur nombre de point de vie atteint 0, on peut les différencier des autres par leur allure détruites ou des tombes
+	<li> les unités sont marquées mortes lorsque leur nombre de point de vie atteint 0, on peut les différencier des autres par leur allure détruites ou des tombes. Si l'unité meurt sur une citée elle disparaîtra totalement.
 	<br><br>
 	<li> lors de son tour le joueur peut passer son tour en appuyant sur <strong>TAB</strong>
 	<br><br>
