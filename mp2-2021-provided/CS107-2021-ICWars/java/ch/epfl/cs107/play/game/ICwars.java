@@ -173,7 +173,11 @@ public class ICwars extends AreaGame {
      */
 
     private void handleStartPlayerTurn() {
+        //start player turn
         this.activePlayer.startTurn();
+        //pay the player for the cities he has
+        this.activePlayer.payForCities();
+        //set the game state to player turn
         this.currentGameState = (gameState.PLAYER_TURN);
     }
 
@@ -181,6 +185,7 @@ public class ICwars extends AreaGame {
      * handle player turn by checking if he is in IDLE mode if he is end player turn
      */
     private void handlePlayerTurn() {
+        //check if player goes back to idle(skip turn)
         if (this.activePlayer.getState() == ICwarsPlayer.PlayerState.IDLE) {
             this.currentGameState = gameState.END_PLAYER_TURN;
         }
@@ -275,6 +280,7 @@ public class ICwars extends AreaGame {
 
         setCurrentArea(areaKey, true);
         ICwarsArea area = (ICwarsArea) getCurrentArea();
+        area.createCities();
         initPlayers(area);
         this.currentGameState = gameState.INIT;
     }

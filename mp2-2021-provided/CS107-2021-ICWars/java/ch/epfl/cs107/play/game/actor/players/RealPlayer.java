@@ -3,7 +3,8 @@ package ch.epfl.cs107.play.game.actor.players;
 import ch.epfl.cs107.play.game.ICwars;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;
 import ch.epfl.cs107.play.game.icwars.gui.ICwarsPlayerGUI;
@@ -15,6 +16,7 @@ import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
@@ -35,10 +37,10 @@ public class RealPlayer extends ICwarsPlayer {
 
     public RealPlayer(Faction faction, ICwarsArea owner, DiscreteCoordinates coordinates, int numberOfTank, int numberOfSoldier, int numberOfGeek, int numberOfBoat, DiscreteCoordinates unitSpawn) {
         super(faction, owner, coordinates, numberOfTank, numberOfSoldier, numberOfGeek, numberOfBoat, unitSpawn);
-
         //create player at idle state
         this.setState(IDLE);
     }
+
 
 
     //determine if the player can move a unit on the cell he's  on
@@ -356,6 +358,8 @@ public class RealPlayer extends ICwarsPlayer {
     public boolean wantsViewInteraction() {
         return false;
     }
+
+
 
     @Override
     public void interactWith(Interactable other) {

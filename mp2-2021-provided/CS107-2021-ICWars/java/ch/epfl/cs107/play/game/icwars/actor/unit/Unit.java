@@ -1,4 +1,4 @@
-package ch.epfl.cs107.play.game.icwars.actor;
+package ch.epfl.cs107.play.game.icwars.actor.unit;
 
 //import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 
@@ -7,6 +7,8 @@ import ch.epfl.cs107.play.game.actor.players.RealPlayer;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.actor.*;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
+import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.ICwarsAction;
 import ch.epfl.cs107.play.game.icwars.area.ICWarsRange;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
@@ -45,17 +47,17 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     private ICWarsRange range;
     //determine if the player can move this unit
     private boolean canMove = true;
-
     //determine if the player can use an action of the unit
     private boolean canAct = true;
     // handler of the action for the given unit
     private final unitInteractionHandler handler = new unitInteractionHandler();
-
     // action hashmap Integer is a keyboard key see @Keyboard associated to an action
     protected final HashMap<Integer, ICwarsAction> actions = new HashMap<>();
-
     //defense_stars of the cell that the unit is sitting on
     private int defense_stars;
+    //check if unit is on city
+    private boolean isOnCity = false;
+    private City selectedCity = null;
 
 
     public Unit(Faction faction, Area area, DiscreteCoordinates position, String name, int movingRay, int maxHp, int damagePerAttack, String spriteName, int attackRay) {
@@ -95,6 +97,16 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         return finalName;
     }
 
+    /**
+     * getter for isoncity
+     */
+    public boolean isOnCity() {
+        return isOnCity;
+    }
+
+    public void setOnCity(boolean a) {
+        isOnCity = a;
+    }
 
     /**
      * transforme la hashmap en une liste des actions disponible dans cette hashmap
@@ -109,6 +121,13 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             }
         }
         return returnActions;
+    }
+
+    /**
+     * return the selected city
+     */
+    public City getSelectedCity() {
+        return selectedCity;
     }
 
     /**
@@ -450,8 +469,19 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             defense_stars = cell.getType().getDefenseStar();
             //reduce the attack ray depending on the cell the unit is sitting on
             attackRay = initialAttackRay - cell.getType().getObstaclesStar();
+            if (cell.getType() == ICwarsBehavior.ICwarsCellType.CITY) {
+                setOnCity(true);
+            } else {
+                setOnCity(false);
+            }
+
         }
 
+        @Override
+        public void interactWith(City city) {
+            selectedCity = city;
+
+        }
     }
 
 }

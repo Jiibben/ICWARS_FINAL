@@ -13,11 +13,12 @@ public abstract class ICwarsActor extends MovableAreaEntity {
     //enum used to define
     public enum Faction {
         ENEMY,
-        ALLY
+        ALLY,
+        NEUTRAL
     }
 
     //faction of the actor
-    private final Faction faction;
+    private  Faction faction;
 
     public ICwarsActor(Faction faction, Area area, DiscreteCoordinates position) {
         super(area, Orientation.UP, position);
@@ -29,6 +30,13 @@ public abstract class ICwarsActor extends MovableAreaEntity {
      */
     public Faction getFaction() {
         return this.faction;
+    }
+    /**
+     * set the player factio
+     * @param faction faction to set the palyer
+     * */
+    protected void setFaction(Faction faction) {
+        this.faction = faction;
     }
 
     @Override

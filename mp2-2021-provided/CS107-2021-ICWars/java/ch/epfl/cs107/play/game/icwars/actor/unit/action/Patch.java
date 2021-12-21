@@ -3,7 +3,7 @@ package ch.epfl.cs107.play.game.icwars.actor.unit.action;
 import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;

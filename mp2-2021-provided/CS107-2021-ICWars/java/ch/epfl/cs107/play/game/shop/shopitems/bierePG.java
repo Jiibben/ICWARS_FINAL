@@ -1,6 +1,6 @@
 package ch.epfl.cs107.play.game.shop.shopitems;
 
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.window.Keyboard;
 
 public class bierePG extends ShopItem {

@@ -1,45 +1,48 @@
 package ch.epfl.cs107.play.game.icwars.actor.unit.action;
 
+
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public class Wait extends ICwarsAction {
-    private static final String NAME = "(W)ait";
-    public static final int KEY = Keyboard.W;
+public class Capture extends ICwarsAction {
+    private static final String NAME = "(C)apture";
+    public static final int KEY = Keyboard.C;
 
-    public Wait(Unit unit, ICwarsArea area) {
 
-        super(unit, area, Wait.NAME);
-
+    public Capture(Unit unit, ICwarsArea area) {
+        super(unit, area, NAME);
     }
 
     @Override
     public void doAction(float dt, ICwarsPlayer player, Keyboard keyboard) {
         //execute the action
-        this.wait(player);
+        this.capture(player);
     }
 
     @Override
     public void doAutoAction(float dt, AIPlayer player) {
         //execute the action
-        this.wait(player);
+        this.capture(player);
     }
 
     @Override
     public boolean canBeUsed() {
-        return true;
+        return (getActionUnit().isOnCity() && (getActionUnit().getSelectedCity().getFaction() != getActionUnit().getFaction()));
     }
 
     /**
-     * wait just puts the unit like it has already acted but does nothing else
+     *
      */
-    private void wait(ICwarsPlayer player) {
+    private void capture(ICwarsPlayer player) {
         //disable action on unit(it acted)
         getActionUnit().disableAct();
+        City city = getActionUnit().getSelectedCity();
+        city.setPlayerOwner(player);
         //player has acted
         player.hasActed();
 

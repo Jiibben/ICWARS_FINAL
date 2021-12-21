@@ -1,6 +1,6 @@
 package ch.epfl.cs107.play.game.actor.players;
 
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Attack;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Patch;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Wait;

@@ -3,7 +3,8 @@ package ch.epfl.cs107.play.game.icwars.area;
 import ch.epfl.cs107.play.game.ICwars;
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
@@ -14,6 +15,7 @@ import static ch.epfl.cs107.play.math.DiscreteCoordinates.distanceBetween;
 
 public abstract class ICwarsArea extends Area {
     private final ArrayList<Unit> units = new ArrayList<Unit>();
+    private ArrayList<DiscreteCoordinates> cityCoordinates = new ArrayList<>();
 
     /**
      * Create the area by adding it all actors
@@ -22,7 +24,6 @@ public abstract class ICwarsArea extends Area {
      */
     protected abstract void createArea();
 
-    /// EnigmeArea extends Area
 
     @Override
     public final float getCameraScaleFactor() {
@@ -43,11 +44,24 @@ public abstract class ICwarsArea extends Area {
 
     }
 
+    protected void addNewCityCoordinates(DiscreteCoordinates coordinates) {
+        cityCoordinates.add(coordinates);
+
+    }
+
+    public void createCities() {
+        for (DiscreteCoordinates i : cityCoordinates) {
+            City a = new City(ICwarsActor.Faction.NEUTRAL, this, i);
+            a.enterArea(this, i);
+        }
+    }
+
     public abstract int getNumberOfTank();
 
     public abstract int getNumberOfGeek();
 
     public abstract int getNumberOfSoldier();
+
     public abstract int getNumberOfBoat();
 
 

@@ -51,6 +51,13 @@ public class Level1 extends ICwarsArea {
     }
 
     @Override
+    public void createCities() {
+        addNewCityCoordinates(new DiscreteCoordinates(5,2));
+        addNewCityCoordinates(new DiscreteCoordinates(15,6));
+
+        super.createCities();
+    }
+    @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
         return new DiscreteCoordinates(2, 5);
     }

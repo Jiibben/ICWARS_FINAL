@@ -2,17 +2,21 @@ package ch.epfl.cs107.play.game.icwars.area;
 
 
 import ch.epfl.cs107.play.game.areagame.actor.Background;
+import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+
+import java.util.ArrayList;
 
 /**
  * Specific area
  */
 public class Level0 extends ICwarsArea {
-
     @Override
     public String getTitle() {
         return "icwars/Level0";
     }
+
 
     @Override
     public DiscreteCoordinates getPlayerSpawnPosition() {
@@ -28,7 +32,7 @@ public class Level0 extends ICwarsArea {
     public int getNumberOfTank() {
         return 1;
     }
-    
+
     @Override
     public int getNumberOfGeek() {
         return 0;
@@ -43,6 +47,7 @@ public class Level0 extends ICwarsArea {
     public int getNumberOfBoat() {
         return 0;
     }
+
 
     protected void createArea() {
         registerActor(new Background(this));

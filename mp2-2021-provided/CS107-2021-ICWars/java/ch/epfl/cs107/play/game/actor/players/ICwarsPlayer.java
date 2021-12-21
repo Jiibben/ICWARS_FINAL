@@ -6,7 +6,8 @@ import ch.epfl.cs107.play.game.areagame.actor.Interactor;
 import ch.epfl.cs107.play.game.areagame.actor.Sprite;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.city.City;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Boat;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Geek;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Soldier;
@@ -39,9 +40,21 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     private final ArrayList<Unit> deadUnits = new ArrayList<Unit>();
     //constant of money that the player earns per kill
     private final int MONEYPERKILL = 5;
+    //money that a city gives each round
+    private final int MONEYPERCITY = 4;
     //money that the player has (porte monnaie)
     private int money = 0;
 
+    //city that the player captured
+    private final ArrayList<City> capturedCity = new ArrayList<>();
+
+    public void removeCity(City city) {
+        capturedCity.remove(city);
+    }
+
+    public void addCity(City city) {
+        capturedCity.add(city);
+    }
 
     /**
      * enum used to keep track of the state of the players
@@ -62,7 +75,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
      *
      * @param amount amount to add
      */
-    public void addMoney(int amount) {
+    protected void addMoney(int amount) {
         money += amount;
     }
 
@@ -345,6 +358,13 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     }
 
     /**
+     * used to pay the user for the number of cities he owns
+     */
+    public void payForCities() {
+        this.money += (this.MONEYPERCITY * capturedCity.size());
+    }
+
+    /**
      * remove dead units from the current list of unit
      */
     private void checkForDeadUnits() {
@@ -446,7 +466,6 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     public void update(float deltaTime) {
         //check for dead units a each update
         checkForDeadUnits();
-
         super.update(deltaTime);
     }
 

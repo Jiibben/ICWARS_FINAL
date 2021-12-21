@@ -4,7 +4,7 @@ import ch.epfl.cs107.play.game.actor.Graphics;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 
 
-import ch.epfl.cs107.play.game.icwars.actor.Unit;
+import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.ICwarsAction;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;
 import ch.epfl.cs107.play.window.Canvas;
