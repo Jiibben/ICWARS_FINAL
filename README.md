@@ -1,3 +1,6 @@
+<h1>INFO</h1>
+<p>ICWars est un jeu développé dans le cadre du cours d'introduction à la programmation orienté objet en java à l'epfl</p>
+<p>Le jeu tel quel peut encore grandement être amélioré et nous avons été limité par le temps à disposition</p>
 <h1>Liens importants</h1>
 <p>voilà quelques liens importants :
 démo vidéo (utile pour voir rapidement toutes les fonctionalités) :  https://www.youtube.com/watch?v=N2ph4_Epx0Q </p>
