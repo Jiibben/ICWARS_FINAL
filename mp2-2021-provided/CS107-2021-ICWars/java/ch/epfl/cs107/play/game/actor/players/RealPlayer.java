@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.actor.players;
 
+import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.ICwars;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
@@ -41,6 +42,9 @@ public class RealPlayer extends ICwarsPlayer {
         this.setState(IDLE);
     }
 
+    private final AudioPlayer buyingSound = new AudioPlayer("buy");
+
+
 
     //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
@@ -71,6 +75,7 @@ public class RealPlayer extends ICwarsPlayer {
         item.effect(getSelectedUnit());
         playerGUI.unselectUnit();
         setState(NORMAL);
+        buyingSound.playSound();
 
     }
 

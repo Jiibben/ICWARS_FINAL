@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.game.actor.TextGraphics;
 //import ch.epfl.cs107.play.game.icwars.area.ICWarsBehavior;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
+import ch.epfl.cs107.play.game.shop.shopitems.Potion;
 import ch.epfl.cs107.play.game.shop.shopitems.bierePG;
 import ch.epfl.cs107.play.math.*;
 import ch.epfl.cs107.play.math.Polygon;
@@ -27,8 +28,8 @@ public class shopGui implements Graphics {
     private final ShapeGraphics background;
     private TextGraphics[] items;
 
-    private final ImageGraphics beerImage;
-    private final TextGraphics beerText, shopText, moneyText;
+    private final ImageGraphics beerImage, potionImage;
+    private final TextGraphics beerText, shopText, moneyText, potionText;
     private int playerMoneyAmount;
 
 
@@ -44,8 +45,8 @@ public class shopGui implements Graphics {
 
     public shopGui(ICwarsPlayer player, float cameraScaleFactor) {
         playerMoneyAmount = player.getMoney();
-        final float height = cameraScaleFactor / 4;
-        final float width = cameraScaleFactor / 4;
+        final float height = (cameraScaleFactor / 4) + 1f;
+        final float width = (cameraScaleFactor / 4);
         Vector anchor = new Vector(.1f, -.2f);
 
         fontSize = cameraScaleFactor / ICwarsPlayerGUI.FONT_SIZE;
@@ -66,6 +67,11 @@ public class shopGui implements Graphics {
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         beerText.setFontName("Kenney Pixel");
 
+        potionImage = new ImageGraphics(ResourcePath.getSprite("icwars/potion"), 1f, 1f, null, anchor, 1f, 3001f);
+        potionText = new TextGraphics(Potion.name + "  |  " + Potion.price, fontSize, Color.WHITE, null, 0.0f,
+                false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
+                TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
+        potionText.setFontName("Kenney Pixel");
         moneyText = new TextGraphics("balance : " + playerMoneyAmount, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
@@ -81,7 +87,7 @@ public class shopGui implements Graphics {
         float width = canvas.getXScale();
         float height = canvas.getYScale();
 
-        final Transform transform = Transform.I.translated(canvas.getPosition().add(-width / 2f, height / 4));
+        final Transform transform = Transform.I.translated(canvas.getPosition().add(-width / 2f, (height / 4) - 1f));
         background.setRelativeTransform(transform);
         background.draw(canvas);
 
@@ -95,11 +101,19 @@ public class shopGui implements Graphics {
         beerImage.setRelativeTransform(beerTransform);
         beerImage.draw(canvas);
 
+        final Transform potionTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) - 0.6f));
+        potionImage.setRelativeTransform(potionTransform);
+        potionImage.draw(canvas);
+
         final Transform beerTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + 0.4f));
         beerText.setRelativeTransform(beerTextTransform);
         beerText.draw(canvas);
 
-        final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) - 1f));
+        final Transform potionTextTranform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + -0.6f));
+        potionText.setRelativeTransform(potionTextTranform);
+        potionText.draw(canvas);
+
+        final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) - 2f));
         moneyText.setRelativeTransform(moneyAmountTextTransform);
         moneyText.draw(canvas);
 

@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.shop;
 
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
+import ch.epfl.cs107.play.game.shop.shopitems.Potion;
 import ch.epfl.cs107.play.game.shop.shopitems.ShopItem;
 import ch.epfl.cs107.play.game.shop.shopitems.bierePG;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -10,14 +11,15 @@ import ch.epfl.cs107.play.window.Keyboard;
 import java.util.ArrayList;
 
 public class Shop {
-    private ArrayList<ShopItem> shopItems = new ArrayList<>();
-    private ICwarsPlayer player;
+    private final ArrayList<ShopItem> shopItems = new ArrayList<>();
+    private final ICwarsPlayer player;
 
     public Shop(ICwarsPlayer player) {
         //player that uses the shop
         this.player = player;
         //add items here :
         shopItems.add(new bierePG());
+        shopItems.add(new Potion());
     }
 
     /**

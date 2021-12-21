@@ -1,8 +1,8 @@
 
-<h1>déroulements :</h1>
-déroulement d'une partie typique voir bas du document pour caractèristiques des unités, des cartes, des cases et le mapping des touches.
+<h1>Déroulements :</h1>
+Déroulement d'une partie typique. Voir bas du document pour caractéristiques des unités, des cartes, des cases et le mapping des touches.
 
-vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https://www.youtube.com/watch?v=N2ph4_Epx0Q
+Vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https://www.youtube.com/watch?v=N2ph4_Epx0Q
 
 <ol>
 	<li>Chaque unité peut être jouée 1 fois par tour comme ceci :
@@ -13,27 +13,27 @@ vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https
 		<li>action de l'unité déplacée
 	</ol>
 	<p><p>
-	<li>une fois déplacée et ces étapes finies l'unité n'est plus déplacable et ne peut plus effectué d'action
+	<li>Une fois déplacée et ces étapes finies, l'unité n'est plus déplacable et ne peut plus effectuer d'action
 	<br><br>
-	<li>une fois le tour du joueur fini la main est passée au joueur suivant si il n'a plus d'unité le joueur restant est gagant
+	<li>Une fois le tour du joueur fini, la main est passée au joueur suivant. Si il n'a plus d'unité le joueur restant est gagant
 	<br><br>
-	<li>à tout moment le joueur peut recommencer la partie à 0 en appuyant sur la touche <strong>R</strong>
+	<li>A tout moment le joueur peut recommencer la partie à 0 en appuyant sur la touche <strong>R</strong>
 	<br><br>
-	<li>à tout moment le joueur peut se tenter au niveau suivant en appuyant sur la touche <strong>N</strong> si il n'y a plus de niveau rien ne se passe de visible.
+	<li>A tout moment le joueur peut se tenter au niveau suivant en appuyant sur la touche <strong>N</strong>. Si il n'y a plus de niveau, rien ne se passe de visible.
 	<br><br>
-	<li> les unités sont marquées mortes lorsque leur nombre de point de vie atteint 0, on peut les différencier des autres par leur allure détruites ou des tombes. Si l'unité meurt sur une citée elle disparaîtra totalement.
+	<li> Les unités sont marquées mortes lorsque leur nombre de point de vie atteint 0, on peut les différencier des autres par leur allure détruites ou des tombes. Si l'unité meurt sur une citée elle disparaîtra totalement.
 	<br><br>
-	<li> lors de son tour le joueur peut passer son tour en appuyant sur <strong>TAB</strong>
+	<li> Lors de son tour le joueur peut passer son tour en appuyant sur <strong>TAB</strong>.
 	<br><br>
-	<li>lors de la phase d'attaque seuls les attaques qui sont utilisables s'affichent (exemple : si les unités ennemies ne sont pas dans la range d'attaque de l'unité attaque ne sera pas affichée dans la liste d'attaque)
+	<li>Lors de la phase d'attaque, seules les attaques qui sont utilisables s'affichent (exemple : si les unités ennemies ne sont pas dans la range d'attaque de l'unité,l'option d' attaque ne sera pas affichée dans la liste d'attaque)
 	<br><br>
-	<li>le sol à un impacte sur la défense(réduit les dégats pris) et sur la portée de tir de l'unité
+	<li>Chaque case a un impact sur la défense (réduit les dégats pris) et sur la portée de tir de l'unité.
 	<br><br>
-	<li>en état normal le joueur peut appuyer sur la touche <strong>S</strong> si il est sur une unité le shop s'ouvrira et permettera d'acheter un objet pour cette unité si le player a assez d'argent.
+	<li>En état normal le joueur peut appuyer sur la touche <strong>S</strong> si il est sur une unité et le shop s'ouvrira,  permettant d'acheter un objet pour cette unité si le joueur a assez d'argent.
 	<br></br>
-	<li>chaque unité tuée ramène 5 d'argent au joueur (l'argent est perdue quand on change de map)
+	<li>Chaque unité tuée rapporte 5 d'argent au joueur (l'argent est remis à zéro lors du changement de carte).
 	<br></br>
-	<li>il est possible de capturer les cités (disponible sur certaines cartes uniquement) en placant une unité dessu et utilisant l'action "catpurer" (touche C). Les cités capturées ramène un nombre fixe de monnaie 4pièces par tour(début du tour). 
+	<li>Il est possible de capturer les cités (disponibles sur certaines cartes uniquement) en placant une unité dessus et utilisant l'action "catpurer" (touche <strong>C</strong>). Les cités capturées ramènent un nombre fixe de 4 pièces par tour(au début du tour). 
 	
 </ol>
 
@@ -65,6 +65,11 @@ key : touche de clavier associée à l'attaque
   <td>hack 
   <td><strong>H</strong>
   <td>augmente les points d'attaque de l'unité exécutant l'action et de l'unité  alliée ciblée
+  <tr>
+  <tr>
+  <td>capture
+  <td><strong>C</strong>
+  <td>capture sur laquelle est l'unité
   <tr>
 </table>
 
@@ -133,6 +138,15 @@ key : touche de clavier associée à l'attaque
   <td>open shop 
   <td>S
   </tr>
+  <tr>
+  <td>move to next level 
+  <td>N
+  </tr>
+  <tr>
+  <td>restart game at first level 
+  <td>R
+  </tr>
+  
 </table>
 
 <h1>TILES</h1>

@@ -469,16 +469,15 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             defense_stars = cell.getType().getDefenseStar();
             //reduce the attack ray depending on the cell the unit is sitting on
             attackRay = initialAttackRay - cell.getType().getObstaclesStar();
-            if (cell.getType() == ICwarsBehavior.ICwarsCellType.CITY) {
-                setOnCity(true);
-            } else {
-                setOnCity(false);
-            }
+
+            //check if player is on a city or not
+            setOnCity(cell.getType() == ICwarsBehavior.ICwarsCellType.CITY);
 
         }
 
         @Override
         public void interactWith(City city) {
+            //select the city that the unit is on
             selectedCity = city;
 
         }

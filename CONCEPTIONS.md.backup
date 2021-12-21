@@ -82,6 +82,6 @@ l'attaque de l'unité ou Patch si les points de vies ne sont pas maximum).Pour c
 <li>nouvelle action capture avec un canBeUsed adapté (seulement si l'unité est placé sur une cellule de type cité)
 <li>nouvelle méthode dans ICWarsPlayer qui permet de payer le joueur selon le nombre de cité qu'il a capturé.
 <li>méthode qui permet de changer le joueur qui possède la cité dans la classe City.
-<l
+<li>
 </ul>
 </ol>
