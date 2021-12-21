@@ -19,7 +19,7 @@ public class Level5 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getPlayerSpawnPosition() {
-        return new DiscreteCoordinates(0, 4);
+        return new DiscreteCoordinates(11, 4);
     }
 
     @Override
