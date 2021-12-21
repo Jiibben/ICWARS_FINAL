@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.icwars.actor.unit;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Attack;
+import ch.epfl.cs107.play.game.icwars.actor.unit.action.Capture;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Hack;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Wait;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
@@ -29,6 +30,7 @@ public class Geek extends Unit {
         actions.put(Wait.KEY, new Wait(this, (ICwarsArea) (getOwnerArea())));
         actions.put(Attack.KEY, new Attack(this, (ICwarsArea) getOwnerArea()));
         actions.put(Hack.KEY, new Hack(this, (ICwarsArea) getOwnerArea()));
+        actions.put(Capture.KEY, new Capture(this, (ICwarsArea) getOwnerArea()));
 
     }
 

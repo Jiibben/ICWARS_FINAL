@@ -10,7 +10,10 @@ def createImageLayoutFromTxt(path):
     "p":"plain.png",
      "w":"wood.png",
       "ru":"road_up.png", 
-      "s":"sand.png"}
+      "s":"sand.png",
+      "c":"city.png",
+      "t":"pipe.png",
+      "d":"pipeup.png"}
     lines = open(path, "r").read().splitlines()
     imageLayout = []
     for i in lines:
@@ -22,7 +25,7 @@ def createImageLayoutFromTxt(path):
 
 
 def createRgbMap(imageLayout):
-    colors = {"road.png": (0, 0, 0), "plain.png": (40, 167, 69), "wood.png": (255, 0, 0), "river.png": (0, 0, 255), "road_up.png":(0, 0, 0), "sand.png":(254, 25, 138)}
+    colors = {"road.png": (0, 0, 0), "plain.png": (40, 167, 69), "wood.png": (255, 0, 0), "river.png": (0, 0, 255), "road_up.png":(0, 0, 0), "sand.png":(254, 25, 138), "city.png":(255, 255, 255), "pipe.png":(255, 255, 22), "pipeup.png":(255, 255, 22)}
     image = []
     for y in imageLayout:
         row = []

@@ -1,4 +1,4 @@
-color = -124534;
+color = -234;
 
 # Components will be in the range of 0..255:
 blue = color & 0xff;

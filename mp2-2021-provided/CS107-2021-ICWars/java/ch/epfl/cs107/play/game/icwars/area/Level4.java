@@ -41,6 +41,7 @@ public class Level4 extends ICwarsArea {
     public int getNumberOfSoldier() {
         return 0;
     }
+
     @Override
     public int getNumberOfBoat() {
         return 0;
@@ -52,13 +53,26 @@ public class Level4 extends ICwarsArea {
     }
 
     @Override
+    public void createCities() {
+        addNewCityCoordinates(new DiscreteCoordinates(1, 3));
+        addNewCityCoordinates(new DiscreteCoordinates(1, 9));
+        addNewCityCoordinates(new DiscreteCoordinates(2, 14));
+        addNewCityCoordinates(new DiscreteCoordinates(12, 15));
+        addNewCityCoordinates(new DiscreteCoordinates(12, 12));
+        addNewCityCoordinates(new DiscreteCoordinates(12, 6));
+
+
+        super.createCities();
+    }
+
+    @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
-        return new DiscreteCoordinates(1, 2);
+        return new DiscreteCoordinates(6, 2);
     }
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(7, 3);
+        return new DiscreteCoordinates(7, 15);
     }
 
 }

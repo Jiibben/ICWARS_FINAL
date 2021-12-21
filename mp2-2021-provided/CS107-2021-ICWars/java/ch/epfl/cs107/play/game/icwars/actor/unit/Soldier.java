@@ -2,6 +2,7 @@ package ch.epfl.cs107.play.game.icwars.actor.unit;
 
 import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Attack;
+import ch.epfl.cs107.play.game.icwars.actor.unit.action.Capture;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Wait;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
@@ -23,6 +24,8 @@ public class Soldier extends Unit {
         //actions that the soldier have
         actions.put(Wait.KEY, new Wait(this, (ICwarsArea) (getOwnerArea())));
         actions.put(Attack.KEY, new Attack(this, (ICwarsArea) getOwnerArea()));
+        actions.put(Capture.KEY, new Capture(this, (ICwarsArea) getOwnerArea()));
+
 
     }
 

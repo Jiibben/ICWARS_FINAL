@@ -41,11 +41,17 @@ public class Level3 extends ICwarsArea {
     public int getNumberOfSoldier() {
         return 0;
     }
+
     @Override
     public int getNumberOfBoat() {
         return 0;
     }
 
+    @Override
+    public void createCities() {
+        addNewCityCoordinates(new DiscreteCoordinates(9, 1));
+        super.createCities();
+    }
 
     protected void createArea() {
         registerActor(new Background(this));
@@ -53,12 +59,12 @@ public class Level3 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
-        return new DiscreteCoordinates(2, 1);
+        return new DiscreteCoordinates(1, 3);
     }
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(8, 3);
+        return new DiscreteCoordinates(17, 5);
     }
 
 }
