@@ -93,7 +93,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         }
         else{
             // exception security -> default sprite
-            finalName = "icwars/soldierGrave3";
+            finalName = "icwars/soldierGrave";
         }
         return finalName;
     }
