@@ -346,6 +346,10 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         ((ICwarsArea) getOwnerArea()).removeUnit(unit);
         //enleve l'unité de la liste d'unité de l'air d'apartenance du joueur
         //enleve l'unité de la liste d'unité de l'air d'apartenance du joueur
+        if (unit.isOnCity()){
+            //unregister the unit if on city so it doesn't take the place to recapture
+            unit.leaveArea();
+        }
         this.units.remove(unit);
     }
 

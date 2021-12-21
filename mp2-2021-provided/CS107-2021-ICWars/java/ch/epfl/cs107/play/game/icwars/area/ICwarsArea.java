@@ -82,12 +82,15 @@ public abstract class ICwarsArea extends Area {
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
         if (super.begin(window, fileSystem)) {
-            // Set the behavior map
+            // Set the behavior map associated to this background
             ICwarsBehavior behavior = new ICwarsBehavior(window, getTitle());
             setBehavior(behavior);
+            //create this area
             createArea();
+            //if creation went well return true
             return true;
         }
+        //return false if window didn't begin
         return false;
     }
 
