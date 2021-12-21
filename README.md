@@ -117,7 +117,7 @@ key : touche de clavier associée à l'attaque
     <td>ENTER</td>
   </tr>
   <tr>
-    <td>cancel moving / cancel select unit / end turn
+    <td>cancel moving / cancel select unit / end turn / exit shop
     <td>TAB
   </tr>
   <tr>
