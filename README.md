@@ -5,7 +5,7 @@
 <p>Le jeu tel quel peut encore grandement être amélioré et nous avons été limité par le temps à disposition</p>
 <h1>Liens importants</h1>
 <p>voilà quelques liens importants :
-démo vidéo (utile pour voir rapidement toutes les fonctionalités) :  https://www.youtube.com/watch?v=N2ph4_Epx0Q </p>
+démo vidéo  :  https://www.youtube.com/watch?v=N2ph4_Epx0Q </p>
 <p>
 site de présentation du jeu : https://compassionate-feynman-4aef09.netlify.app/
 </p>
