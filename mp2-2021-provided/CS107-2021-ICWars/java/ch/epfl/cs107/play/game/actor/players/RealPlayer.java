@@ -42,7 +42,6 @@ public class RealPlayer extends ICwarsPlayer {
     }
 
 
-
     //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
 
@@ -69,9 +68,10 @@ public class RealPlayer extends ICwarsPlayer {
      * used to set the player back to normal and to use the item that the player bought in the shop
      */
     public void playerBought(ShopItem item) {
-        setState(NORMAL);
         item.effect(getSelectedUnit());
         playerGUI.unselectUnit();
+        setState(NORMAL);
+
     }
 
     /**
@@ -358,7 +358,6 @@ public class RealPlayer extends ICwarsPlayer {
     public boolean wantsViewInteraction() {
         return false;
     }
-
 
 
     @Override
