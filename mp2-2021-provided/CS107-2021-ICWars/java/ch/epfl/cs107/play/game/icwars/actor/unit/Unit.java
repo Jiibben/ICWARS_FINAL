@@ -70,7 +70,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         this.hp = maxHp;
         this.damagePerAttack = damagePerAttack;
         //sprite initialisation
-        this.deadSprite = new Sprite(deadComputeSprite(name, faction), 1.0f, 1.0f, this, null);
+        this.deadSprite = new Sprite(deadComputeSprite(name, faction), 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
 
         this.sprite = new Sprite(spriteName, 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
     }
@@ -84,13 +84,14 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     public String deadComputeSprite(String name, ICwarsActor.Faction faction) {
         String finalName = "icwars/broken";
 
-        if (name.equals("Tank")) {
+        if (name.equals("Tank") || name.equals("Boat")) {
             if (faction == ICwarsActor.Faction.ALLY) {
                 finalName = finalName + "Friendly" + name;
             } else if (faction == ICwarsActor.Faction.ENEMY) {
                 finalName = finalName + "Enemy" + name;
             }
-        } else {
+        }
+        else{
             // exception security -> default sprite
             finalName = "icwars/soldierGrave3";
         }

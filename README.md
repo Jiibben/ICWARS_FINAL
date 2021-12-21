@@ -4,6 +4,8 @@ Déroulement d'une partie typique. Voir bas du document pour caractéristiques d
 
 Vidéo de démo du projet présentant rapidement le fonctionnement du jeu: https://www.youtube.com/watch?v=N2ph4_Epx0Q
 
+Site internet présentant du jeu : https://compassionate-feynman-4aef09.netlify.app/ 
+
 <ol>
 	<li>Chaque unité peut être jouée 1 fois par tour comme ceci :
 	<ol> 
@@ -285,6 +287,11 @@ key : touche de clavier associée à l'attaque
 <td>Bière PG
 <td>5
 <td>rajoute 1 de dégat à l'unité sur laquelle l'objet est utilisé
+</tr>
+<tr>
+<td>Potion
+<td>4
+<td>soigne de 3 hp l'unité sur laquelle l'objet est utilisé
 </tr>
 </table>
 <h1>Map creation</h1>
