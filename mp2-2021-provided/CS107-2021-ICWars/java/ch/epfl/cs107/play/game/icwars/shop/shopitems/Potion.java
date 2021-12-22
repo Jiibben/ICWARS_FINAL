@@ -21,4 +21,11 @@ public final class Potion extends ShopItem {
         unit.repair(HEALINGAMOUNT);
     }
 
+    @Override
+    public boolean canBeUsed(Unit unit) {
+        return (unit.getHp() < unit.getMaxHp() && !unit.isDead());
+
+    }
+
+
 }

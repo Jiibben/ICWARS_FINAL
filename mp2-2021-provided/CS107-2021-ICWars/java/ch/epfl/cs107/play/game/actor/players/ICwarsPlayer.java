@@ -474,15 +474,29 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     public boolean takeCellSpace() {
         return false;
     }
+
     @Override
     public void update(float deltaTime) {
         //check for dead units a each update
         checkForDeadUnits();
+        checkForRevivedUnits();
         super.update(deltaTime);
+    }
+
+    /**
+     * check if a unit was revived
+     */
+    public void checkForRevivedUnits() {
+        for (Unit unit : deadUnits) {
+            if (!unit.isDead()) {
+                registerUnit(unit, (ICwarsArea) this.getOwnerArea(), unit.getCurrentMainCellCoordinates());
+            }
+        }
     }
 
 
     @Override
+
     public void draw(Canvas canvas) {
         sprite.draw(canvas);
     }

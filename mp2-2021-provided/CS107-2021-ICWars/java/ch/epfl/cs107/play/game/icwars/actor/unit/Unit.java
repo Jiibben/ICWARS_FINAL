@@ -432,6 +432,10 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         super.update(deltaTime);
     }
 
+    public void revive(){
+        this.hp = this.maxHp;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         if (isDead()) {

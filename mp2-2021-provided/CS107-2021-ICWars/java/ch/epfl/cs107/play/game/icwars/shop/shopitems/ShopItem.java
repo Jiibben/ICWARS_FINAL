@@ -38,4 +38,6 @@ public abstract class ShopItem {
     public int getKey() {
         return key;
     }
+
+    abstract public boolean canBeUsed(Unit unit);
 }

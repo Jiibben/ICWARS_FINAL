@@ -1,27 +1,29 @@
 package ch.epfl.cs107.play.game.icwars.shop.shopitems;
 
+
 import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public final class bierePG extends ShopItem {
+public final class ReviveCharm extends ShopItem {
 
-    public final static String NAME = "(B)IERE PG";
-    public final static int PRICE = 5;
-    public static final int KEY = Keyboard.B;
+    public final static String NAME = "(F)Revive";
+    public final static int PRICE = 20;
+    public static final int KEY = Keyboard.F;
 
 
-    public bierePG() {
+    public ReviveCharm() {
         super(NAME, PRICE, KEY);
     }
 
     @Override
     public void effect(Unit unit) {
-        unit.increaseAttack(1);
+        unit.revive();
     }
 
     @Override
     public boolean canBeUsed(Unit unit) {
-        return (!unit.isDead());
+        return (unit.isDead());
     }
+
 
 }

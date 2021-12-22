@@ -10,6 +10,7 @@ import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
 import ch.epfl.cs107.play.game.icwars.shop.shopitems.Potion;
+import ch.epfl.cs107.play.game.icwars.shop.shopitems.ReviveCharm;
 import ch.epfl.cs107.play.game.icwars.shop.shopitems.bierePG;
 import ch.epfl.cs107.play.math.*;
 import ch.epfl.cs107.play.math.Polygon;
@@ -28,8 +29,8 @@ public final class shopGui implements Graphics {
     private final ShapeGraphics background;
     private TextGraphics[] items;
 
-    private final ImageGraphics beerImage, potionImage;
-    private final TextGraphics beerText, shopText, moneyText, potionText;
+    private final ImageGraphics beerImage, potionImage, reviveImage;
+    private final TextGraphics beerText, shopText, moneyText, potionText, reviveText;
     private int playerMoneyAmount;
 
     /**
@@ -77,10 +78,18 @@ public final class shopGui implements Graphics {
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         potionText.setFontName("Kenney Pixel");
+
         moneyText = new TextGraphics("balance : " + playerMoneyAmount, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         moneyText.setFontName("Kenney Pixel");
+
+        reviveText = new TextGraphics(ReviveCharm.NAME + "  |  " + ReviveCharm.PRICE, fontSize, Color.WHITE, null, 0.0f,
+                false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
+                TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
+        reviveText.setFontName("Kenney Pixel");
+        reviveImage = new ImageGraphics(ResourcePath.getSprite("icwars/coffee"), 1f, 1f, null, anchor, 1f, 3001f);
+
 
     }
 
@@ -108,7 +117,7 @@ public final class shopGui implements Graphics {
         beerImage.draw(canvas);
 
         //draw the potion image
-        final Transform potionTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) - 0.6f));
+        final Transform potionTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) - 0.5f));
         potionImage.setRelativeTransform(potionTransform);
         potionImage.draw(canvas);
         //draw the text next to the beer
@@ -116,9 +125,17 @@ public final class shopGui implements Graphics {
         beerText.setRelativeTransform(beerTextTransform);
         beerText.draw(canvas);
         //draw the text next to the potion
-        final Transform potionTextTranform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + -0.6f));
+        final Transform potionTextTranform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + -0.5f));
         potionText.setRelativeTransform(potionTextTranform);
         potionText.draw(canvas);
+
+        final Transform reviveTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + -1.25f));
+        reviveText.setRelativeTransform(reviveTextTransform);
+        reviveText.draw(canvas);
+
+        final Transform reviveTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) - 1.25f));
+        reviveImage.setRelativeTransform(reviveTransform);
+        reviveImage.draw(canvas);
         //draw player balance at the bottom
         final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) - 2f));
         moneyText.setRelativeTransform(moneyAmountTextTransform);

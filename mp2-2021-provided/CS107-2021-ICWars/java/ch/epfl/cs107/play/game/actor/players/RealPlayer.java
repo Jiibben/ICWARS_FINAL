@@ -26,7 +26,7 @@ public class RealPlayer extends ICwarsPlayer {
     private final Shop playerSHOP = new Shop(this);
 
     // move duration
-    private final static int MOVE_DURATION = 8;
+    private final static int MOVE_DURATION = 5;
 
     //gui handler
     private final ICwarsPlayerGUI playerGUI = new ICwarsPlayerGUI(ICwars.CAMERA_SCALE_FACTOR, this);
@@ -46,12 +46,16 @@ public class RealPlayer extends ICwarsPlayer {
     //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
 
+    //todo test
+    private Unit unitToShop;
+
     /*--------------------------------------------------
      *
      *           STATE HANDLING
      *
      * ---------------------------------------------------
      *  */
+
 
     /**
      * set the player state
@@ -69,10 +73,13 @@ public class RealPlayer extends ICwarsPlayer {
      * used to set the player back to normal and to use the item that the player bought in the shop
      */
     public void playerBought(ShopItem item) {
-        item.effect(getSelectedUnit());
-        playerGUI.unselectUnit();
-        setState(NORMAL);
-        buyingSound.playSound();
+        if (item.canBeUsed(this.unitToShop)) {
+            item.effect(this.unitToShop);
+            playerGUI.unselectUnit();
+            this.removeMoney(item.getPrice());
+            setState(NORMAL);
+            buyingSound.playSound();
+        }
 
     }
 
@@ -414,24 +421,26 @@ public class RealPlayer extends ICwarsPlayer {
                             unit.action(player);
                         }
                         break;
-                    case SHOPPING_SELECT:
-                        //if player is in shopping select and on an unit it selects this unit and set the state to shopping can only shop for ally units
-                        if (unit.getFaction() == getFaction()) {
-                            //select the unit
-                            selectUnit(findUnitIndex(unit));
-                            //set state to shopping which opens the shop
-                            setState(SHOPPING);
-                        } else {
-                            setState(NORMAL);
-                        }
-                        break;
                 }
             } else {
                 player.canMoveUnit = false;
+
+            }
+            if (getState() == SHOPPING_SELECT) {
+                //if player is in shopping select and on an unit it selects this unit and set the state to shopping can only shop for ally units
+                if (unit.getFaction() == getFaction()) {
+                    //select the unit
+                    unitToShop = unit;
+                    playerGUI.setSelectedUnit(unit);
+                    //set state to shopping which opens the shop
+                    setState(SHOPPING);
+                } else {
+                    setState(NORMAL);
+                }
             }
 
-
         }
+
 
         public void interactWith(ICwarsBehavior.ICwarsCell cell) {
             //tell the gui that the player is not on any unit
