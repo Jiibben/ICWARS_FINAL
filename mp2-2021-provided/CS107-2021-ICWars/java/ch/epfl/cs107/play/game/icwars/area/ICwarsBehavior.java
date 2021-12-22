@@ -1,10 +1,14 @@
 package ch.epfl.cs107.play.game.icwars.area;
 
+import ch.epfl.cs107.play.game.actor.Entity;
 import ch.epfl.cs107.play.game.areagame.AreaBehavior;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.handler.AreaInteractionVisitor;
 import ch.epfl.cs107.play.game.icwars.handler.ICWarsInteractorVisitor;
+import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Window;
+
+import java.util.List;
 
 public class ICwarsBehavior extends AreaBehavior {
     public enum ICwarsCellType {
@@ -31,6 +35,7 @@ public class ICwarsBehavior extends AreaBehavior {
 
             return defense;
         }
+
 
         public int getObstaclesStar() {
             return obstacles;
@@ -74,6 +79,7 @@ public class ICwarsBehavior extends AreaBehavior {
             }
         }
     }
+    
 
     /**
      * Cell adapted to the  game

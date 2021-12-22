@@ -7,6 +7,7 @@ import ch.epfl.cs107.play.game.icwars.actor.city.City;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
+import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.window.Window;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import static ch.epfl.cs107.play.math.DiscreteCoordinates.distanceBetween;
 public abstract class ICwarsArea extends Area {
     private final ArrayList<Unit> units = new ArrayList<Unit>();
     private ArrayList<DiscreteCoordinates> cityCoordinates = new ArrayList<>();
+    ICwarsBehavior behavior;
 
     /**
      * Create the area by adding it all actors
@@ -24,6 +26,15 @@ public abstract class ICwarsArea extends Area {
      */
     protected abstract void createArea();
 
+    /**
+     * used to check if a unit can move on the position
+     */
+    public boolean canMoveUnitOnPosition(Unit unit, DiscreteCoordinates position) {
+        ArrayList<DiscreteCoordinates> positions = new ArrayList<>();
+        positions.add(position);
+        return behavior.canEnter(unit, positions);
+
+    }
 
     @Override
     public final float getCameraScaleFactor() {
@@ -100,7 +111,7 @@ public abstract class ICwarsArea extends Area {
     public boolean begin(Window window, FileSystem fileSystem) {
         if (super.begin(window, fileSystem)) {
             // Set the behavior map associated to this background
-            ICwarsBehavior behavior = new ICwarsBehavior(window, getTitle());
+            behavior = new ICwarsBehavior(window, getTitle());
             setBehavior(behavior);
             //create this area
             createArea();
@@ -111,13 +122,13 @@ public abstract class ICwarsArea extends Area {
         return false;
     }
 
+
     /**
      * @return unit by given index
      */
     public Unit getSelectedUnit(int index) {
         return this.units.get(index);
     }
-
 
     /**
      * return a list of all the units that are not in the same faction of the given faction

@@ -358,7 +358,6 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     /**
      * adding to the range the valid cell in the given range
      */
-
     private void addEdges() {
         range = new ICWarsRange();
         int maxHeight = this.getOwnerArea().getHeight() - 1;
@@ -381,8 +380,10 @@ public abstract class Unit extends ICwarsActor implements Interactor {
                 hasDownEdge = y != minY;
                 range.addNode(new DiscreteCoordinates(x, y), hasLeftEdge, hasUpEdge, hasRightEdge, hasDownEdge);
             }
+
         }
     }
+
 
     /**
      * used to draw the range to the destination
@@ -400,6 +401,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         if (path != null) {
             new Path(getCurrentMainCellCoordinates().toVector(),
                     path).draw(canvas);
+
         }
     }
 

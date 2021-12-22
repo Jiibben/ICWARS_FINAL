@@ -85,6 +85,7 @@ public class ICwars extends AreaGame {
 
     /**
      * create all players
+     *
      * @param area area to enter
      */
 
@@ -197,7 +198,6 @@ public class ICwars extends AreaGame {
         } else {
             for (ICwarsPlayer player : players) {
                 if (player.isDefeated()) {
-                    player.leaveArea();
                     playersQueue.remove(player);
                     waitingPlayersQueue.remove(player);
                 }

@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.game.icwars.actor.unit.action.Attack;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Patch;
 import ch.epfl.cs107.play.game.icwars.actor.unit.action.Wait;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
+import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -124,7 +125,7 @@ public class AIPlayer extends ICwarsPlayer {
         //check if the closestEnnemyPosition is not null (if there are no ennemy  by exemple should not happen but just in case)
         if (closestEnnemyPosition != null) {
             //move selected unit to the nearest position computed earlier
-            DiscreteCoordinates positiontoMove = computeValidCell(closestEnnemyPosition, unitToMove);
+            DiscreteCoordinates positiontoMove = computeValidCell(closestEnnemyPosition, unitToMove, unitToMove.getMovingRange());
             unitToMove.changePosition(positiontoMove);
             this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
 
@@ -142,9 +143,7 @@ public class AIPlayer extends ICwarsPlayer {
      * @param enemyPos position of the enemy unit
      * @return closest position to the enemy in the range of the unit
      */
-    private DiscreteCoordinates computeValidCell(DiscreteCoordinates enemyPos, Unit unit) {
-        //set initial variable needed
-        int range = unit.getMovingRange();
+    private DiscreteCoordinates computeValidCell(DiscreteCoordinates enemyPos, Unit unit, int range) {
         //x and y of the enemy
         int enemyX = enemyPos.x;
         int enemyY = enemyPos.y;
@@ -173,7 +172,13 @@ public class AIPlayer extends ICwarsPlayer {
                 finalY--;
             }
         }
-        return new DiscreteCoordinates(finalX, finalY);
+        DiscreteCoordinates finalCoordinates = new DiscreteCoordinates(finalX, finalY);
+        //decreese range if it's not a valid position and try
+        if (((ICwarsArea) getOwnerArea()).canMoveUnitOnPosition(unit, finalCoordinates)) {
+            return finalCoordinates;
+        } else {
+            return computeValidCell(enemyPos, unit, range - 1);
+        }
 
     }
 
