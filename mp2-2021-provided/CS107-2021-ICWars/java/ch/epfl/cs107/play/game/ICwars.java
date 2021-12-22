@@ -27,7 +27,6 @@ public class ICwars extends AreaGame {
 
     private final AudioPlayer gameSound = new AudioPlayer("gameSound3", true);
 
-
     //queue
 
     private final ArrayDeque<ICwarsPlayer> playersQueue = new ArrayDeque<>();
@@ -56,7 +55,6 @@ public class ICwars extends AreaGame {
         addArea(new Level3());
         addArea(new Level4());
         addArea(new Level5());
-
         addArea(new EpflMap());
     }
 
@@ -87,7 +85,6 @@ public class ICwars extends AreaGame {
 
     /**
      * create all players
-     *
      * @param area area to enter
      */
 
@@ -106,7 +103,6 @@ public class ICwars extends AreaGame {
         players.add(new RealPlayer(ICwarsActor.Faction.ALLY, area, area.getPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getAllyUnitSpawn()));
         //ennemy player
 //        players.add(new RealPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
-
 
         //AI PLAYER comment if you want to disable the ai player and uncomment the other realplayer
         players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));

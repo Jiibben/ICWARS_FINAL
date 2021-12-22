@@ -261,7 +261,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      * @return a list of integer representing indexes of the attackable unit in the area
      */
     public ArrayList<Integer> getAttackableUnits() {
-        return ((ICwarsArea) getOwnerArea()).getEnemyUnitsInAttackRange(this);
+        return ((ICwarsArea) getOwnerArea()).getUnitsInRangeFromPosition(this.getCurrentMainCellCoordinates(), this.attackRay, this.getFaction(), false);
     }
 
     /**
@@ -270,7 +270,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      * @return a list of integer representing indexes of the interactable ally unit in the area
      */
     public ArrayList<Integer> getInteractableAllyUnits() {
-        return ((ICwarsArea) getOwnerArea()).getAllyUnitsInAttackRange(this);
+        return ((ICwarsArea) getOwnerArea()).getUnitsInRangeFromPosition(this.getCurrentMainCellCoordinates(), this.attackRay, this.getFaction(), true);
     }
 
     /**

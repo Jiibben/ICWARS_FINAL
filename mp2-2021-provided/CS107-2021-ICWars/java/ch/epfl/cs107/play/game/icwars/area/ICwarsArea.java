@@ -136,21 +136,23 @@ public abstract class ICwarsArea extends Area {
     }
 
 
-
     /**
      * compute the closest ennemy position from a given position and faction
      *
      * @param position position you wan't to compute from where you wan't to compute the nearest ennemy(origin)
      * @param faction  faction to get the enemy of this faction
      */
-    public DiscreteCoordinates computePosition(DiscreteCoordinates position, ICwarsActor.Faction faction) {
+    public DiscreteCoordinates closestEnnemyUnitFromPosition(DiscreteCoordinates position, ICwarsActor.Faction faction) {
         ArrayList<Unit> differentFactionUnit = getDifferentFactionUnit(faction);
+        //return null if no units where found
         if (differentFactionUnit.size() <= 0) {
             return null;
         }
+        //set the closest to the first in olist
         DiscreteCoordinates closestPosition = differentFactionUnit.get(0).getCurrentMainCellCoordinates();
+        //compute distance
         float closest = distanceBetween(closestPosition, position);
-
+        //iterate through all the ennemy units to see if there is a unit closer that the one set above
         for (Unit unit : differentFactionUnit) {
             DiscreteCoordinates testPosition = unit.getCurrentMainCellCoordinates();
             float distance = distanceBetween(testPosition, position);
@@ -166,59 +168,38 @@ public abstract class ICwarsArea extends Area {
     /**
      * used to compute what is the closest enemy in order to attack in a given range
      *
+     * @param range       range in which to check for the units
+     * @param faction     faction used in order to determine if unit is the same faction or other faction
+     * @param sameFaction true if you wan't ally units index false otherwise
      * @return an arrayList of indexes of the closest ennemy units from a given units return an empty list if none found
-     * @unit ally unit that you want to find ennemy units around
-     * @range range to check for ennemies
      */
-    public ArrayList<Integer> getEnemyUnitsInAttackRange(Unit unit) {
-        int range = unit.getAttackRange();
-        DiscreteCoordinates coordinates = unit.getCurrentMainCellCoordinates();
-        int maxX = coordinates.x + range + 1;
-        int maxY = coordinates.y + range + 1;
-        int minX = coordinates.x - range - 1;
-        int minY = coordinates.y - range - 1;
+    public ArrayList<Integer> getUnitsInRangeFromPosition(DiscreteCoordinates coordinates, int range, ICwarsActor.Faction faction, boolean sameFaction) {
+        //determine the maximums and minimum of the range
+        int maxX = coordinates.x + range + 1, maxY = coordinates.y + range + 1, minX = coordinates.x - range - 1, minY = coordinates.y - range - 1;
 
-        ArrayList<Integer> indexes = new ArrayList<>();
+        ArrayList<Integer> sameFactionUnit = new ArrayList<>();
+        ArrayList<Integer> otherFactionUnit = new ArrayList<>();
+
         for (int i = 0; i < this.units.size(); i++) {
-            Unit unity = this.units.get(i);
-            if (unity.getFaction() != unit.getFaction()) {
-                int x = unity.getCurrentMainCellCoordinates().x;
-                int y = unity.getCurrentMainCellCoordinates().y;
-                if ((x < maxX && x > minX) && ((y < maxY) && (y > minY))) {
-                    indexes.add(i);
+            Unit unit = this.units.get(i);
+            //x,y position of the unit
+            int x = unit.getCurrentMainCellCoordinates().x;
+            int y = unit.getCurrentMainCellCoordinates().y;
+            //check if it's in the range
+            if ((x < maxX && x > minX) && ((y < maxY) && (y > minY))) {
+                if (faction == unit.getFaction()) {
+                    sameFactionUnit.add(i);
+                } else {
+                    otherFactionUnit.add(i);
+
                 }
             }
         }
-        return indexes;
-
-    }
-
-    /**
-     * get all the ally units that are in range of the given unit
-     */
-
-    public ArrayList<Integer> getAllyUnitsInAttackRange(Unit unit) {
-        int range = unit.getAttackRange();
-
-        DiscreteCoordinates coordinates = unit.getCurrentMainCellCoordinates();
-        int maxX = coordinates.x + range + 1;
-        int maxY = coordinates.y + range + 1;
-        int minX = coordinates.x - range - 1;
-        int minY = coordinates.y - range - 1;
-
-        ArrayList<Integer> indexes = new ArrayList<>();
-        for (int i = 0; i < this.units.size(); i++) {
-            Unit unity = this.units.get(i);
-            if (unity.getFaction() == unit.getFaction() && unity != unit) {
-                int x = unity.getCurrentMainCellCoordinates().x;
-                int y = unity.getCurrentMainCellCoordinates().y;
-                if ((x < maxX && x > minX) && ((y < maxY) && (y > minY))) {
-                    indexes.add(i);
-                }
-            }
+        if (sameFaction) {
+            return sameFactionUnit;
+        } else {
+            return otherFactionUnit;
         }
-        return indexes;
-
     }
 
 

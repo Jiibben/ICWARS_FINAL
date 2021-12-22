@@ -34,11 +34,11 @@ public final class GameGui implements Graphics {
         this.display = new TextGraphics("YOU WON !", 1.2f, Color.red, Color.black, 0.02f,
                 false, false, new Vector(0.3f, height - 0.4f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
-        this.info1 = new TextGraphics("PRESS N FOR NEXT LEVEL", 0.5f, Color.red, Color.black, 0.02f,
+        this.info1 = new TextGraphics("PRESS N FOR NEXT LEVEL", 0.5f, Color.red, Color.black, 0.001f,
                 false, false, new Vector(0.45f, height - 1.8f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
-        this.info2 = new TextGraphics("PRESS R FOR RELOAD", 0.4f, Color.red, Color.black, 0.02f,
-                false, false, new Vector(0.6f, height - 2.5f),
+        this.info2 = new TextGraphics("PRESS R FOR RELOAD", 0.4f, Color.red, Color.black, 0.001f,
+                false, false, new Vector(0.62f, height - 2.5f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
     }
 
@@ -46,9 +46,11 @@ public final class GameGui implements Graphics {
     @Override
     public void draw(Canvas canvas) {
         if (display != null) {
+            //position and draw background
             final Transform transform = Transform.I.translated(player.getPosition().sub(2f, 2f));
             bg.setRelativeTransform(transform);
             display.setRelativeTransform(transform);
+            //position the info text
             info1.setRelativeTransform(transform);
             info2.setRelativeTransform(transform);
             bg.draw(canvas);

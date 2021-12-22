@@ -120,8 +120,8 @@ public class AIPlayer extends ICwarsPlayer {
         //current position of the selected unit
         DiscreteCoordinates unitToMovePosition = unitToMove.getCurrentMainCellCoordinates();
         //closest position from the nearest ennemy unit (position in movingrange of the unit)
-        DiscreteCoordinates closestEnnemyPosition = area.computePosition(unitToMovePosition, getFaction());
-        //check if the closestEnnemyPosition is not null (if there are no ennemy  by exemple)
+        DiscreteCoordinates closestEnnemyPosition = area.closestEnnemyUnitFromPosition(unitToMovePosition, getFaction());
+        //check if the closestEnnemyPosition is not null (if there are no ennemy  by exemple should not happen but just in case)
         if (closestEnnemyPosition != null) {
             //move selected unit to the nearest position computed earlier
             DiscreteCoordinates positiontoMove = computeValidCell(closestEnnemyPosition, unitToMove);
@@ -133,28 +133,6 @@ public class AIPlayer extends ICwarsPlayer {
         unitToMove.disableMove();
         //change to actionselection state
         setState(ACTION_SELECTION);
-    }
-
-    /**
-     * handle action selection select the suited attack for the selected unit and executes it
-     */
-    private void handleActionSelection() {
-        //unit that attacks
-        Unit unitThatAttack = getSelectedUnit();
-        //list of all the
-        ArrayList<Integer> potentialTarget = unitThatAttack.getAttackableUnits();
-
-        //change the aiplayer cursor to the selected unit
-        this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
-
-        //check which attack the ai player should execute
-        if (unitThatAttack.getHp() <= PATCH_THRESHOLD && unitThatAttack.hasAction(Patch.class)) {
-            unitThatAttack.autoAction(this, Patch.KEY);
-        } else if (potentialTarget.size() != 0 && unitThatAttack.hasAction(Attack.class)) {
-            unitThatAttack.autoAction(this, Attack.KEY);
-        } else {
-            unitThatAttack.autoAction(this, Wait.KEY);
-        }
     }
 
     /**
@@ -197,6 +175,29 @@ public class AIPlayer extends ICwarsPlayer {
         }
         return new DiscreteCoordinates(finalX, finalY);
 
+    }
+
+
+    /**
+     * handle action selection select the suited attack for the selected unit and executes it
+     */
+    private void handleActionSelection() {
+        //unit that attacks
+        Unit unitThatAttack = getSelectedUnit();
+        //list of all the
+        ArrayList<Integer> potentialTarget = unitThatAttack.getAttackableUnits();
+
+        //change the aiplayer cursor to the selected unit
+        this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
+
+        //check which attack the ai player should execute
+        if (unitThatAttack.getHp() <= PATCH_THRESHOLD && unitThatAttack.hasAction(Patch.class)) {
+            unitThatAttack.autoAction(this, Patch.KEY);
+        } else if (potentialTarget.size() != 0 && unitThatAttack.hasAction(Attack.class)) {
+            unitThatAttack.autoAction(this, Attack.KEY);
+        } else {
+            unitThatAttack.autoAction(this, Wait.KEY);
+        }
     }
 
 

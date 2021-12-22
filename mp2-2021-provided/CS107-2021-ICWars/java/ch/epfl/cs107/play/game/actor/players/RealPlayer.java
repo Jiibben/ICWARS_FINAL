@@ -43,7 +43,6 @@ public class RealPlayer extends ICwarsPlayer {
     private final AudioPlayer buyingSound = new AudioPlayer("buy");
 
 
-
     //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
 
