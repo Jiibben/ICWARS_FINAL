@@ -84,7 +84,7 @@ public final class shopGui implements Graphics {
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         moneyText.setFontName("Kenney Pixel");
 
-        reviveText = new TextGraphics(ReviveCharm.NAME + "  |  " + ReviveCharm.PRICE, fontSize, Color.WHITE, null, 0.0f,
+        reviveText = new TextGraphics(ReviveCharm.NAME + "|" + ReviveCharm.PRICE, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         reviveText.setFontName("Kenney Pixel");

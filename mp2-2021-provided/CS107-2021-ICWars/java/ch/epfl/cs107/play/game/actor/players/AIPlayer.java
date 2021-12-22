@@ -177,7 +177,7 @@ public class AIPlayer extends ICwarsPlayer {
         if (((ICwarsArea) getOwnerArea()).canMoveUnitOnPosition(unit, finalCoordinates)||range==0) {
             return finalCoordinates;
         } else {
-            
+
             return computeValidCell(enemyPos, unit, range - 1);
         }
 
