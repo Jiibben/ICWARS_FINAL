@@ -1,0 +1,11 @@
+{
+    "o":"river.png",
+    "r":"road.png", 
+    "p":"plain.png",
+    "w":"wood.png",
+    "ru":"road_up.png", 
+    "s":"sand.png",
+    "c":"city.png",
+    "t":"pipe.png",
+    "d":"pipeup.png"
+}
