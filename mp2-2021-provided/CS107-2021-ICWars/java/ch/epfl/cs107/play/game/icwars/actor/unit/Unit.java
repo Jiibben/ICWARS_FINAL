@@ -97,6 +97,8 @@ public abstract class Unit extends ICwarsActor implements Interactor {
                 finalName = finalName + "Friendly" + name;
             } else if (faction == ICwarsActor.Faction.ENEMY) {
                 finalName = finalName + "Enemy" + name;
+            } else if (faction == Faction.OUTLAW) {
+                finalName = finalName + "Outlaw" + name;
             }
         } else {
             // exception security -> default sprite
@@ -158,8 +160,10 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         String path = "icwars/";
         if (faction == Faction.ENEMY) {
             path += "enemy";
-        } else {
+        } else if (faction==Faction.ALLY) {
             path += "friendly";
+        }else if (faction==Faction.OUTLAW) {
+            path += "outlaw";
         }
         path += spriteName;
         return path;

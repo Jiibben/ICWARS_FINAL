@@ -48,6 +48,18 @@ public final class Level0 extends ICwarsArea {
         return 0;
     }
 
+    @Override
+    public boolean hasThreePlayer() {
+        return false;
+    }
+    public DiscreteCoordinates getThirdPlayerSpawnPosition(){
+        return null;
+    }
+    public DiscreteCoordinates getThirdPlayerUnitSpawn(){
+        return null;
+    }
+
+
 
     protected void createArea() {
         registerActor(new Background(this));

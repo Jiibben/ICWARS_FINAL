@@ -48,6 +48,19 @@ public final class Level3 extends ICwarsArea {
     }
 
     @Override
+    public boolean hasThreePlayer() {
+        return false;
+    }
+    public DiscreteCoordinates getThirdPlayerSpawnPosition(){
+        return null;
+    }
+    public DiscreteCoordinates getThirdPlayerUnitSpawn(){
+        return null;
+    }
+
+
+
+    @Override
     public void createCities() {
         addNewCityCoordinates(new DiscreteCoordinates(9, 1));
         super.createCities();

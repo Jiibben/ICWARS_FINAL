@@ -18,12 +18,12 @@ public final class Level2 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getPlayerSpawnPosition() {
-        return new DiscreteCoordinates(2, 5);
+        return new DiscreteCoordinates(11, 5);
     }
 
     @Override
     public DiscreteCoordinates getEnnemySpawnPosition() {
-        return new DiscreteCoordinates(7, 1);
+        return new DiscreteCoordinates(1, 1);
     }
 
     @Override
@@ -33,18 +33,27 @@ public final class Level2 extends ICwarsArea {
 
     @Override
     public int getNumberOfGeek() {
-        return 2;
+        return 1;
     }
 
     @Override
     public int getNumberOfSoldier() {
-        return 1;
+        return 2;
     }
 
     @Override
     public int getNumberOfBoat() {
         return 0;
     }
+
+    @Override
+    public boolean hasThreePlayer() {
+        return true;
+    }
+    public DiscreteCoordinates getThirdPlayerSpawnPosition(){
+        return new DiscreteCoordinates(15,9);
+    }
+
 
     @Override
     public void createCities() {
@@ -62,12 +71,15 @@ public final class Level2 extends ICwarsArea {
 
     @Override
     public DiscreteCoordinates getAllyUnitSpawn() {
-        return new DiscreteCoordinates(1, 5);
+        return new DiscreteCoordinates(10, 5);
     }
 
     @Override
     public DiscreteCoordinates getEnnemyUnitSpawn() {
-        return new DiscreteCoordinates(17, 5);
+        return new DiscreteCoordinates(2, 2);
     }
 
+    public DiscreteCoordinates getThirdPlayerUnitSpawn(){
+        return new DiscreteCoordinates(15,9);
+    }
 }

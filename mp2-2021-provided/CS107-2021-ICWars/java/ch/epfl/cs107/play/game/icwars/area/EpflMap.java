@@ -44,6 +44,17 @@ public class EpflMap extends ICwarsArea {
         return 0;
     }
 
+    @Override
+    public boolean hasThreePlayer() {
+        return false;
+    }
+    public DiscreteCoordinates getThirdPlayerSpawnPosition(){
+        return null;
+    }
+    public DiscreteCoordinates getThirdPlayerUnitSpawn(){
+        return null;
+    }
+
     protected void createArea() {
         registerActor(new Background(this));
     }
@@ -56,7 +67,7 @@ public class EpflMap extends ICwarsArea {
     }
 
     @Override
-        public DiscreteCoordinates getEnnemyUnitSpawn() {
+    public DiscreteCoordinates getEnnemyUnitSpawn() {
         return new DiscreteCoordinates(0, 0);
     }
 

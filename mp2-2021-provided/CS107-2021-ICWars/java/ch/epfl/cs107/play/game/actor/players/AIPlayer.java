@@ -174,9 +174,10 @@ public class AIPlayer extends ICwarsPlayer {
         }
         DiscreteCoordinates finalCoordinates = new DiscreteCoordinates(finalX, finalY);
         //decreese range if it's not a valid position and try
-        if (((ICwarsArea) getOwnerArea()).canMoveUnitOnPosition(unit, finalCoordinates)) {
+        if (((ICwarsArea) getOwnerArea()).canMoveUnitOnPosition(unit, finalCoordinates)||range==0) {
             return finalCoordinates;
         } else {
+            
             return computeValidCell(enemyPos, unit, range - 1);
         }
 

@@ -107,7 +107,9 @@ public class ICwars extends AreaGame {
 
         //AI PLAYER comment if you want to disable the ai player and uncomment the other realplayer
         players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
-
+        if (area.hasThreePlayer()){
+            players.add(new AIPlayer(ICwarsActor.Faction.OUTLAW, area, area.getThirdPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getThirdPlayerUnitSpawn()));
+        }
     }
 
 
@@ -120,11 +122,17 @@ public class ICwars extends AreaGame {
         for (ICwarsPlayer player : this.players) {
             if (player.getFaction() == ICwarsActor.Faction.ENEMY) {
                 player.enterArea(area, area.getEnnemySpawnPosition());
-            } else {
+            } else if (player.getFaction() == ICwarsActor.Faction.ALLY) {
                 player.enterArea(area, area.getPlayerSpawnPosition());
+            } else if (player.getFaction() == ICwarsActor.Faction.OUTLAW) {
+                if(area.getThirdPlayerSpawnPosition()!=null) {
+                    player.enterArea(area, area.getThirdPlayerSpawnPosition());
+                }
             }
+
         }
     }
+
 
     /**
      * Make all the players leave their area

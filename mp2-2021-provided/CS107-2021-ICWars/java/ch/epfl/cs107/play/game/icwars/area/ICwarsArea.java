@@ -52,6 +52,8 @@ public abstract class ICwarsArea extends Area {
 
     public abstract DiscreteCoordinates getEnnemyUnitSpawn();
 
+    public abstract DiscreteCoordinates getThirdPlayerUnitSpawn();
+
     /**
      * return the  spawn point of the player of the ally faction
      */
@@ -63,6 +65,8 @@ public abstract class ICwarsArea extends Area {
      */
 
     public abstract DiscreteCoordinates getEnnemySpawnPosition();
+
+    public abstract DiscreteCoordinates getThirdPlayerSpawnPosition();
 
     public void addUnit(Unit unit) {
         units.add(unit);
@@ -92,7 +96,7 @@ public abstract class ICwarsArea extends Area {
 
     public abstract int getNumberOfBoat();
 
-
+    public abstract boolean hasThreePlayer();
     /**
      * remove the whole list of units in area
      */
