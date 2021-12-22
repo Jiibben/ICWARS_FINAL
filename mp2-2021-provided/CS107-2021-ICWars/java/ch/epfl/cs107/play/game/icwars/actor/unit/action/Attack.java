@@ -15,7 +15,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 import java.util.ArrayList;
 
 
-public class Attack extends ICwarsAction {
+public final class Attack extends ICwarsAction {
     //name of the action
     public static final String NAME = "(A)attack";
     //selected unit index
@@ -25,10 +25,9 @@ public class Attack extends ICwarsAction {
     //sprite associated to the action
     private final ImageGraphics cursor = new ImageGraphics(ResourcePath.getSprite("icwars/UIpackSheet"), 1f, 1f, new RegionOfInterest(4 * 18, 26 * 18, 16, 16));
 
-    //audio handler for the attacks
+    //audio handler for the different unit attacks
     private final AudioPlayer tankAttack = new AudioPlayer("tankAttack");
     private final AudioPlayer soldierAttack = new AudioPlayer("soldierAttack");
-
     //indexes of the unit (in the area units list)
     ArrayList<Integer> indexes = new ArrayList<>();
 
@@ -41,11 +40,15 @@ public class Attack extends ICwarsAction {
 
     /**
      * handle action for the unit
+     *
+     * @param player   player that started the action
+     * @param keyboard used to switch between units
      */
     @Override
     public void doAction(float dt, ICwarsPlayer player, Keyboard keyboard) {
         //key mapping for the action
         Button next = keyboard.get(Keyboard.RIGHT), back = keyboard.get(Keyboard.LEFT), attack = keyboard.get(Keyboard.ENTER), tab = keyboard.get(Keyboard.TAB);
+        //units that are in the range of the unit that is doing the action
         this.indexes = getActionUnit().getAttackableUnits();
         //used to cycle through the ennemy units
         try {
@@ -64,8 +67,8 @@ public class Attack extends ICwarsAction {
                 player.hasNotActed();
                 player.centerCamera();
             }
-        } catch (Error ignored) {
-            //error maybe in case if there is no player
+        } catch (Exception ignored) {
+            //error just in case if there is no player
             player.hasNotActed();
             player.centerCamera();
         }
@@ -77,10 +80,11 @@ public class Attack extends ICwarsAction {
      */
     @Override
     public void doAutoAction(float dt, AIPlayer player) {
-        //
+        //get units that are attackable in the range of the unit
         this.indexes = getActionUnit().getAttackableUnits();
         //search for unit that has the lowest life
         Unit currentTarget = lowestLife(indexes, this.getActionArea());
+        //change the view to the target
         getActionArea().setViewCandidate(currentTarget);
         if (waitFor(3, 1)) {
             attack(currentTarget, player);
@@ -113,14 +117,17 @@ public class Attack extends ICwarsAction {
     private void attack(Unit target, ICwarsPlayer player) {
         //take the damage
         target.takeDamage(getActionUnit().getDamage());
+        //player made an action and unit too so disable act
+        player.hasActed();
         getActionUnit().disableAct();
-        //player made an action
+        //center back the camera on the player
+        player.centerCamera();
+
+        //check if the player killed the target in case he did the player earns money.
         if (target.isDead()) {
             player.killEarnsMoney();
         }
-        player.hasActed();
-        //center back camera on the player
-        player.centerCamera();
+        //check for the unit name to play the sound
         if (getActionUnit().getName() == "Tank") {
             tankAttack.playSound();
         } else {
@@ -130,6 +137,7 @@ public class Attack extends ICwarsAction {
 
     @Override
     public boolean canBeUsed() {
+        //can be used if there is at least one attackable units
         return getActionUnit().getAttackableUnits().size() > 0;
     }
 

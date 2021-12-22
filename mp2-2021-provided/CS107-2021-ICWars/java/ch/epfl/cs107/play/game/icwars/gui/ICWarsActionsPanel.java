@@ -16,7 +16,7 @@ import java.awt.*;
 import java.util.List;
 
 
-public class ICWarsActionsPanel implements Graphics {
+public final class ICWarsActionsPanel implements Graphics {
 
     private final float fontSize;
 

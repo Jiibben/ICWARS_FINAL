@@ -8,10 +8,13 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public class Patch extends ICwarsAction {
+public final class Patch extends ICwarsAction {
+    //all the caracteristic of the attakc
     private static final String NAME = "(P)patch";
     public static final int KEY = Keyboard.P;
-    private static final int patchAmount = 3;
+    //number of hp that patch restores
+    private static final int PATCH_AMOUNT = 3;
+    //HEAL SOUND
     private final AudioPlayer healSound = new AudioPlayer("healSound");
 
     public Patch(Unit unit, ICwarsArea area) {
@@ -26,7 +29,7 @@ public class Patch extends ICwarsAction {
 
     @Override
     public boolean canBeUsed() {
-        //can be used only if the
+        //can be used only if the player is not full life
         return getActionUnit().getMaxHp() > getActionUnit().getHp();
     }
 
@@ -46,7 +49,7 @@ public class Patch extends ICwarsAction {
             player.hasNotActed();
         } else {
             healSound.playSound();
-            getActionUnit().repair(Patch.patchAmount);
+            getActionUnit().repair(Patch.PATCH_AMOUNT);
             //player did the action
             player.hasActed();
         }

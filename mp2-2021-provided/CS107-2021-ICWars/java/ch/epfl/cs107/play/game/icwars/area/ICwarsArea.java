@@ -30,12 +30,26 @@ public abstract class ICwarsArea extends Area {
         return ICwars.CAMERA_SCALE_FACTOR;
     }
 
-    //todo document this :
+    /**
+     * return the fisrt spawn point of the unit of the ally faction
+     */
     public abstract DiscreteCoordinates getAllyUnitSpawn();
+
+    /**
+     * return the fisrt spawn point of the unit of the enemy faction
+     */
 
     public abstract DiscreteCoordinates getEnnemyUnitSpawn();
 
+    /**
+     * return the  spawn point of the player of the ally faction
+     */
+
     public abstract DiscreteCoordinates getPlayerSpawnPosition();
+
+    /**
+     * return the  spawn point of the player of the enem  faction
+     */
 
     public abstract DiscreteCoordinates getEnnemySpawnPosition();
 
@@ -44,6 +58,9 @@ public abstract class ICwarsArea extends Area {
 
     }
 
+    /**
+     * used to add cities to create
+     */
     protected void addNewCityCoordinates(DiscreteCoordinates coordinates) {
         cityCoordinates.add(coordinates);
 

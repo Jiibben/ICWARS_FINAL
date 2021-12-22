@@ -9,7 +9,7 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
  */
 
 
-public class Level1 extends ICwarsArea {
+public final class Level1 extends ICwarsArea {
 
     @Override
     public String getTitle() {

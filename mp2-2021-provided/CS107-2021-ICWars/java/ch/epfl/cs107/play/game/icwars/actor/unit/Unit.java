@@ -57,11 +57,13 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     private int defense_stars;
     //check if unit is on city
     private boolean isOnCity = false;
+    //city that the uni is on
     private City selectedCity = null;
 
 
     public Unit(Faction faction, Area area, DiscreteCoordinates position, String name, int movingRay, int maxHp, int damagePerAttack, String spriteName, int attackRay) {
         super(faction, area, position);
+        //set all the value
         this.name = name;
         this.movingRay = movingRay;
         this.attackRay = attackRay;
@@ -69,9 +71,9 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         this.maxHp = maxHp;
         this.hp = maxHp;
         this.damagePerAttack = damagePerAttack;
+
         //sprite initialisation
         this.deadSprite = new Sprite(deadComputeSprite(name, faction), 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
-
         this.sprite = new Sprite(spriteName, 1.5f, 1.5f, this, null, new Vector(-0.25f, -0.25f));
     }
 
@@ -81,6 +83,12 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      * --------------------------------------------
      * */
 
+    /**
+     * used to compute the correct spritename
+     *
+     * @param faction faction of the unit
+     * @param name    name of the unit
+     */
     public String deadComputeSprite(String name, ICwarsActor.Faction faction) {
         String finalName = "icwars/broken";
 
@@ -90,8 +98,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             } else if (faction == ICwarsActor.Faction.ENEMY) {
                 finalName = finalName + "Enemy" + name;
             }
-        }
-        else{
+        } else {
             // exception security -> default sprite
             finalName = "icwars/soldierGrave";
         }
@@ -99,13 +106,16 @@ public abstract class Unit extends ICwarsActor implements Interactor {
     }
 
     /**
-     * getter for isoncity
+     * getter for isoncity return true if the player is on a city
      */
     public boolean isOnCity() {
         return isOnCity;
     }
 
-    public void setOnCity(boolean a) {
+    /**
+     * set the city that the unit is on
+     */
+    private void setOnCity(boolean a) {
         isOnCity = a;
     }
 
@@ -156,7 +166,11 @@ public abstract class Unit extends ICwarsActor implements Interactor {
 
     }
 
-    //todo document this
+    /**
+     * return true if the unit has this action
+     *
+     * @param checkAction action to check for
+     */
     public boolean hasAction(Class checkAction) {
         for (ICwarsAction action : getActions()) {
             if (checkAction.isInstance(action)) {
@@ -306,6 +320,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
      * @param player player associated to that unit
      */
     public void action(RealPlayer player) {
+        //unit start action mode and listen for the keyboard on her given actions
         //keyboard
         Keyboard keyboard = getOwnerArea().getKeyboard();
         for (int keyCode : actions.keySet()) {
@@ -314,7 +329,9 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             if (keyboard.get(keyCode).isPressed()) {
                 ICwarsAction act = actions.get(keyCode);
                 if (act.canBeUsed()) {
+                    //if the action can be used set the player action to the given action
                     player.setAct(act);
+                    //player can now start acting on this action
                     player.startAction();
                 }
 
@@ -322,7 +339,9 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         }
     }
 
-    //for ai player
+    /**
+     * used in ai player so the unit can do actions
+     */
     public void autoAction(AIPlayer player, int key) {
         player.setAct(actions.get(key));
         actions.get(key).doAutoAction(20f, player);
@@ -364,6 +383,26 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             }
         }
     }
+
+    /**
+     * used to draw the range to the destination
+     *
+     * @param destination destination
+     * @param canvas
+     */
+    public void drawRangeAndPathTo(DiscreteCoordinates destination,
+                                   Canvas canvas) {
+        range.draw(canvas);
+        Queue<Orientation> path =
+                range.shortestPath(getCurrentMainCellCoordinates(),
+                        destination);
+        // Draw path only if it exists ( destination inside the range )
+        if (path != null) {
+            new Path(getCurrentMainCellCoordinates().toVector(),
+                    path).draw(canvas);
+        }
+    }
+
 
     /**
      * returns true if a coordinates is in the valid range of diplacement of the unit
@@ -421,25 +460,6 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         ((ICWarsInteractorVisitor) v).interactWith(this);
     }
 
-    /**
-     * used to draw the range to the destination
-     *
-     * @param destination destination
-     * @param canvas
-     */
-    public void drawRangeAndPathTo(DiscreteCoordinates destination,
-                                   Canvas canvas) {
-        range.draw(canvas);
-        Queue<Orientation> path =
-                range.shortestPath(getCurrentMainCellCoordinates(),
-                        destination);
-        // Draw path only if it exists ( destination inside the range )
-        if (path != null) {
-            new Path(getCurrentMainCellCoordinates().toVector(),
-                    path).draw(canvas);
-        }
-    }
-
 
     @Override
     public boolean wantsCellInteraction() {
@@ -470,15 +490,14 @@ public abstract class Unit extends ICwarsActor implements Interactor {
             defense_stars = cell.getType().getDefenseStar();
             //reduce the attack ray depending on the cell the unit is sitting on
             attackRay = initialAttackRay - cell.getType().getObstaclesStar();
-
-            //check if player is on a city or not
+            //check if player is on a city or not and change the attribute that determines it
             setOnCity(cell.getType() == ICwarsBehavior.ICwarsCellType.CITY);
 
         }
 
         @Override
         public void interactWith(City city) {
-            //select the city that the unit is on
+            //select the city that the unit is on used for interaction
             selectedCity = city;
 
         }

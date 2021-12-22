@@ -9,7 +9,7 @@ import ch.epfl.cs107.play.math.DiscreteCoordinates;
  */
 
 
-public class Level2 extends ICwarsArea {
+public final class Level2 extends ICwarsArea {
 
     @Override
     public String getTitle() {
@@ -48,10 +48,11 @@ public class Level2 extends ICwarsArea {
 
     @Override
     public void createCities() {
+        //cities position
         addNewCityCoordinates(new DiscreteCoordinates(5, 8));
         addNewCityCoordinates(new DiscreteCoordinates(5, 2));
         addNewCityCoordinates(new DiscreteCoordinates(16, 8));
-        addNewCityCoordinates(new DiscreteCoordinates(16    , 2));
+        addNewCityCoordinates(new DiscreteCoordinates(16, 2));
         super.createCities();
     }
 

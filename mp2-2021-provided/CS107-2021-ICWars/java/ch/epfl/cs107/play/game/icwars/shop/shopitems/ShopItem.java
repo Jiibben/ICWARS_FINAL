@@ -1,4 +1,4 @@
-package ch.epfl.cs107.play.game.shop.shopitems;
+package ch.epfl.cs107.play.game.icwars.shop.shopitems;
 
 import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 

@@ -10,19 +10,19 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 
 
-public class Geek extends Unit {
+public final class Geek extends Unit {
 
     //life
-    private final static int MAXHP = 7;
+    public final static int MAXHP = 7;
     //damage of the unit
-    private final static int DAMAGEPERATTACK = 1;
+    public final static int DAMAGEPERATTACK = 1;
 
     //rayon de deplacement
-    private final static int MOVINGRAY = 6;
+    public final static int MOVINGRAY = 6;
     //sprite of the unit
-    private final static String spriteName = "Rocket";
+    public final static String spriteName = "Rocket";
     //rayon d'attack
-    private final static int ATTACKRANGE = 8;
+    public final static int ATTACKRANGE = 8;
 
 
     public Geek(Faction faction, Area area, DiscreteCoordinates position, String name) {

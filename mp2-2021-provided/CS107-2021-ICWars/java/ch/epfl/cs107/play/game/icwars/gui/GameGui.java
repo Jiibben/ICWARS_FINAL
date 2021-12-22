@@ -11,7 +11,7 @@ import ch.epfl.cs107.play.window.Canvas;
 
 import java.awt.*;
 
-public class GameGui implements Graphics {
+public final class GameGui implements Graphics {
     private final ICwarsPlayer player;
     private final int height = 4;
     private final int width = 4;

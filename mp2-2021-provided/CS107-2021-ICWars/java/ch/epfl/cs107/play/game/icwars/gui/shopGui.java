@@ -9,8 +9,8 @@ import ch.epfl.cs107.play.game.actor.TextGraphics;
 //import ch.epfl.cs107.play.game.icwars.area.ICWarsBehavior;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.areagame.io.ResourcePath;
-import ch.epfl.cs107.play.game.shop.shopitems.Potion;
-import ch.epfl.cs107.play.game.shop.shopitems.bierePG;
+import ch.epfl.cs107.play.game.icwars.shop.shopitems.Potion;
+import ch.epfl.cs107.play.game.icwars.shop.shopitems.bierePG;
 import ch.epfl.cs107.play.math.*;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Shape;
@@ -19,7 +19,7 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.awt.*;
 
 
-public class shopGui implements Graphics {
+public final class shopGui implements Graphics {
 
     private final float fontSize;
 
@@ -32,8 +32,13 @@ public class shopGui implements Graphics {
     private final TextGraphics beerText, shopText, moneyText, potionText;
     private int playerMoneyAmount;
 
-
+    /**
+     * used to set the balance of the player in the gui to display it
+     *
+     * @param playerMoneyAmount
+     */
     public void setPlayerMoneyAmount(int playerMoneyAmount) {
+
         this.playerMoneyAmount = playerMoneyAmount;
         this.moneyText.setText("balance : " + this.playerMoneyAmount);
     }
@@ -62,13 +67,13 @@ public class shopGui implements Graphics {
         shopText.setFontName("Kenney Pixel");
 
         beerImage = new ImageGraphics(ResourcePath.getSprite("icwars/bierePG"), 1f, 1f, null, anchor, 1f, 3001f);
-        beerText = new TextGraphics(bierePG.name + " | " + bierePG.price, fontSize, Color.WHITE, null, 0.0f,
+        beerText = new TextGraphics(bierePG.NAME + " | " + bierePG.PRICE, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         beerText.setFontName("Kenney Pixel");
 
         potionImage = new ImageGraphics(ResourcePath.getSprite("icwars/potion"), 1f, 1f, null, anchor, 1f, 3001f);
-        potionText = new TextGraphics(Potion.name + "  |  " + Potion.price, fontSize, Color.WHITE, null, 0.0f,
+        potionText = new TextGraphics(Potion.NAME + "  |  " + Potion.PRICE, fontSize, Color.WHITE, null, 0.0f,
                 false, false, new Vector(0, 1 * 1.25f * fontSize - 0.35f),
                 TextAlign.Horizontal.LEFT, TextAlign.Vertical.MIDDLE, 1.0f, 3001f);
         potionText.setFontName("Kenney Pixel");
@@ -86,33 +91,35 @@ public class shopGui implements Graphics {
 
         float width = canvas.getXScale();
         float height = canvas.getYScale();
-
+        //draw the background
         final Transform transform = Transform.I.translated(canvas.getPosition().add(-width / 2f, (height / 4) - 1f));
         background.setRelativeTransform(transform);
         background.draw(canvas);
 
+        //draw the shop text
         final Transform textTransform = Transform.I.translated(canvas.getPosition().add(-width / 2f, (height / 3f) + 1.2f));
 
         shopText.setRelativeTransform(textTransform);
         shopText.draw(canvas);
 
-
+        //draw the image of the beer
         final Transform beerTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) + 0.4f));
         beerImage.setRelativeTransform(beerTransform);
         beerImage.draw(canvas);
 
+        //draw the potion image
         final Transform potionTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) - 0.3f, (height / 3f) - 0.6f));
         potionImage.setRelativeTransform(potionTransform);
         potionImage.draw(canvas);
-
+        //draw the text next to the beer
         final Transform beerTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + 0.4f));
         beerText.setRelativeTransform(beerTextTransform);
         beerText.draw(canvas);
-
+        //draw the text next to the potion
         final Transform potionTextTranform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) + -0.6f));
         potionText.setRelativeTransform(potionTextTranform);
         potionText.draw(canvas);
-
+        //draw player balance at the bottom
         final Transform moneyAmountTextTransform = Transform.I.translated(canvas.getPosition().add((-width / 2f) + 0.6f, (height / 3f) - 2f));
         moneyText.setRelativeTransform(moneyAmountTextTransform);
         moneyText.draw(canvas);

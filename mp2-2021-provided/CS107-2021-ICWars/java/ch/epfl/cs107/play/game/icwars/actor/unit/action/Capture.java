@@ -9,7 +9,7 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public class Capture extends ICwarsAction {
+public final class Capture extends ICwarsAction {
     private static final String NAME = "(C)apture";
     public static final int KEY = Keyboard.C;
 
@@ -41,6 +41,7 @@ public class Capture extends ICwarsAction {
     private void capture(ICwarsPlayer player) {
         //disable action on unit(it acted)
         getActionUnit().disableAct();
+        //check the city that the unit is on and set the player that acted as the new owner of the city
         City city = getActionUnit().getSelectedCity();
         city.setPlayerOwner(player);
         //player has acted

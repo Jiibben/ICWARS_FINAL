@@ -16,7 +16,7 @@ import ch.epfl.cs107.play.window.Canvas;
 import java.awt.*;
 
 
-public class ICWarsInfoPanel implements Graphics {
+public final class ICWarsInfoPanel implements Graphics {
 
     private final float fontSize;
 

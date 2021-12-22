@@ -7,7 +7,7 @@ import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public class Wait extends ICwarsAction {
+public final class Wait extends ICwarsAction {
     private static final String NAME = "(W)ait";
     public static final int KEY = Keyboard.W;
 
@@ -31,6 +31,7 @@ public class Wait extends ICwarsAction {
 
     @Override
     public boolean canBeUsed() {
+        //can always be used
         return true;
     }
 

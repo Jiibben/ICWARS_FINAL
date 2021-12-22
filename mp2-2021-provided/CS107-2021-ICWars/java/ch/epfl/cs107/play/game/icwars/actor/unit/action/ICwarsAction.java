@@ -40,6 +40,9 @@ public abstract class ICwarsAction implements Graphics {
 
     }
 
+    /**
+     * method that determines wether the action is usable may return always true
+     */
     public abstract boolean canBeUsed();
 
     /**
@@ -66,6 +69,9 @@ public abstract class ICwarsAction implements Graphics {
      */
     abstract public void doAutoAction(float dt, AIPlayer player);
 
+    /**
+     * used to add waiting time for the ai
+     */
     protected boolean waitFor(float value, float dt) {
 
         if (counting) {

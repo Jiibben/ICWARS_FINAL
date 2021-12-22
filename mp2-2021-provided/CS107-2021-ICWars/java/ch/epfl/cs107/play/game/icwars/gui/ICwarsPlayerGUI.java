@@ -11,7 +11,7 @@ import ch.epfl.cs107.play.window.Canvas;
 
 import java.util.ArrayList;
 
-public class ICwarsPlayerGUI implements Graphics {
+public final class ICwarsPlayerGUI implements Graphics {
     //associated player
     private final ICwarsPlayer player;
     //player state of the associated player

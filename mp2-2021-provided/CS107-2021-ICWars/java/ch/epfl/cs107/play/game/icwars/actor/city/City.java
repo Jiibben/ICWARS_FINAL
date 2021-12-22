@@ -45,10 +45,6 @@ public class City extends ICwarsActor implements Interactable {
     }
 
 
-    public ICwarsPlayer getPlayerOwner() {
-        return owner;
-    }
-
     @Override
     public void draw(Canvas canvas) {
         //Check faction and draw the correct sprite depending on the faction

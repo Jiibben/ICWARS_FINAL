@@ -15,7 +15,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 import java.util.ArrayList;
 
 
-public class Hack extends ICwarsAction {
+public final class Hack extends ICwarsAction {
     public static final String NAME = "(H)hack";
     public static final int KEY = Keyboard.H;
     //amout of attack increase the Hack provides
@@ -24,8 +24,9 @@ public class Hack extends ICwarsAction {
     private final ImageGraphics cursor = new ImageGraphics(ResourcePath.getSprite("icwars/UIpackSheet"), 1f, 1f, new RegionOfInterest(4 * 18, 26 * 18, 16, 16));
     //list of indexes of the concerned units (in the area)
     ArrayList<Integer> indexes = new ArrayList<>();
+    //sound for the hack
     private final AudioPlayer hackSound = new AudioPlayer("hackSound");
-
+    //index of the currently selected unit
     private int unitSelectedIndex = 0;
 
     public Hack(Unit unit, ICwarsArea area) {
@@ -59,7 +60,7 @@ public class Hack extends ICwarsAction {
                 player.hasNotActed();
                 player.centerCamera();
             }
-        } catch (ArithmeticException e) {
+        } catch (Exception e) {
             //exception player couldn't hack
             player.hasNotActed();
             player.centerCamera();
@@ -69,14 +70,19 @@ public class Hack extends ICwarsAction {
 
     @Override
     public void doAutoAction(float dt, AIPlayer player) {
+        //fonction is defined but not used in the ai maybe for a future update
+        //get potentital targets
         ArrayList<Integer> indexesOfpotentialTarget = getActionUnit().getInteractableAllyUnits();
+        //find a random index
         int randomIndex = (int) Math.round(Math.random() * indexesOfpotentialTarget.size());
+        //get the random target and hack it
         Unit randomTarget = getActionArea().getSelectedUnit(indexesOfpotentialTarget.get(randomIndex));
         hack(randomTarget, player);
     }
 
     @Override
     public boolean canBeUsed() {
+        //can be used if there is at least one ally unit in rnge of the unit
         if (getActionUnit().getInteractableAllyUnits().size() > 0) {
             return true;
         } else {
@@ -94,10 +100,13 @@ public class Hack extends ICwarsAction {
     private void hack(Unit target, ICwarsPlayer player) {
         //increase the attack of the unit that performed the action
         target.increaseAttack(INCREASE_AMOUNT);
-        //increase
+        //increase attack of the unit that acted
         getActionUnit().increaseAttack(INCREASE_AMOUNT);
+        //player has acted
         player.hasActed();
+        //play the sound of the action
         hackSound.playSound();
+        //center back camera on player
         player.centerCamera();
     }
 

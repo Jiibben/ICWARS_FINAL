@@ -48,10 +48,20 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     //city that the player captured
     private final ArrayList<City> capturedCity = new ArrayList<>();
 
+    /**
+     * used to remove a city from the list of city
+     *
+     * @param city city to remove from capturedCity list
+     */
     public void removeCity(City city) {
         capturedCity.remove(city);
     }
 
+    /**
+     * add a city in the list of city that the player captured
+     *
+     * @param city city to add
+     */
     public void addCity(City city) {
         capturedCity.add(city);
     }
@@ -70,17 +80,15 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
         SHOPPING;
     }
 
-    /**
-     * add money
-     *
-     * @param amount amount to add
-     */
-    protected void addMoney(int amount) {
-        money += amount;
-    }
 
+    /**
+     * remove money from player account
+     */
     public void removeMoney(int amount) {
-        money -= amount;
+        if (!(amount > this.money)) {
+            money -= amount;
+        }
+
     }
 
     /**
@@ -92,7 +100,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
 
 
     /**
-     * redefine to know if it's a real player or not
+     * know if the player is a real player or not must be redefined
      */
     public abstract boolean isRealPlayer();
 
@@ -258,7 +266,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
      * @return return an index if found otherwise -1
      * @unit unit to return the index
      */
-    public int findUnitIndex(Unit unit) {
+    protected int findUnitIndex(Unit unit) {
         for (int i = 0; i < units.size(); i++) {
             if (units.get(i) == unit) {
                 return i;
@@ -466,7 +474,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
     public boolean takeCellSpace() {
         return false;
     }
-
+    @Override
     public void update(float deltaTime) {
         //check for dead units a each update
         checkForDeadUnits();

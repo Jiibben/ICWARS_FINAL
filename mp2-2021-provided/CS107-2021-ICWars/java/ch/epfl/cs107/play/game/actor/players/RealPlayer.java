@@ -4,20 +4,18 @@ import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.ICwars;
 import ch.epfl.cs107.play.game.areagame.actor.Interactable;
 import ch.epfl.cs107.play.game.areagame.actor.Orientation;
-import ch.epfl.cs107.play.game.icwars.actor.city.City;
 import ch.epfl.cs107.play.game.icwars.actor.unit.Unit;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsArea;
 import ch.epfl.cs107.play.game.icwars.area.ICwarsBehavior;
 import ch.epfl.cs107.play.game.icwars.gui.ICwarsPlayerGUI;
 import ch.epfl.cs107.play.game.icwars.handler.ICWarsInteractorVisitor;
-import ch.epfl.cs107.play.game.shop.Shop;
-import ch.epfl.cs107.play.game.shop.shopitems.ShopItem;
+import ch.epfl.cs107.play.game.icwars.shop.Shop;
+import ch.epfl.cs107.play.game.icwars.shop.shopitems.ShopItem;
 import ch.epfl.cs107.play.math.DiscreteCoordinates;
 import ch.epfl.cs107.play.window.Button;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
@@ -279,6 +277,7 @@ public class RealPlayer extends ICwarsPlayer {
                     playerGUI.unselectUnit();
                     //tell the gui what actions are avaible on the selected unit
                     Unit unit = getSelectedUnit();
+                    //set the actions to display to the player
                     playerGUI.setActions(unit.getActions());
                     //change state to action selection
                     this.setState(ACTION_SELECTION);

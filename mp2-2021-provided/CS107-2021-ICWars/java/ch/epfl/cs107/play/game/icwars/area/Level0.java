@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Specific area
  */
-public class Level0 extends ICwarsArea {
+public final class Level0 extends ICwarsArea {
     @Override
     public String getTitle() {
         return "icwars/Level0";

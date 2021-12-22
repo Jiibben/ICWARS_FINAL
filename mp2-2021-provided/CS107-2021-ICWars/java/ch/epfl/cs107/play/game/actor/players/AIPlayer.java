@@ -14,8 +14,9 @@ import java.util.List;
 import static ch.epfl.cs107.play.game.actor.players.ICwarsPlayer.PlayerState.*;
 
 public class AIPlayer extends ICwarsPlayer {
-    private final float dt = 0.1f;
+    //hp threshold to know when the player should heal it's unit
     private final int PATCH_THRESHOLD = 2;
+    //used in wait for
     private static boolean counting = true;
     private static float counter = 0.f;
 
@@ -82,7 +83,6 @@ public class AIPlayer extends ICwarsPlayer {
             case ACTION_SELECTION:
                 //handling action selection state
                 if (waitFor(10f, 1f)) {
-
                     handleActionSelection();
                 }
                 break;
@@ -139,10 +139,15 @@ public class AIPlayer extends ICwarsPlayer {
      * handle action selection select the suited attack for the selected unit and executes it
      */
     private void handleActionSelection() {
-        ICwarsArea area = (ICwarsArea) getOwnerArea();
+        //unit that attacks
         Unit unitThatAttack = getSelectedUnit();
-        ArrayList<Integer> potentialTarget = area.getEnemyUnitsInAttackRange(unitThatAttack);
+        //list of all the
+        ArrayList<Integer> potentialTarget = unitThatAttack.getAttackableUnits();
+
+        //change the aiplayer cursor to the selected unit
         this.changePosition(getSelectedUnit().getCurrentMainCellCoordinates());
+
+        //check which attack the ai player should execute
         if (unitThatAttack.getHp() <= PATCH_THRESHOLD && unitThatAttack.hasAction(Patch.class)) {
             unitThatAttack.autoAction(this, Patch.KEY);
         } else if (potentialTarget.size() != 0 && unitThatAttack.hasAction(Attack.class)) {
