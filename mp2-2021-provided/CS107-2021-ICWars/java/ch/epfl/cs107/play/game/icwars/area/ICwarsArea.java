@@ -135,6 +135,8 @@ public abstract class ICwarsArea extends Area {
         return returnList;
     }
 
+
+
     /**
      * compute the closest ennemy position from a given position and faction
      *
