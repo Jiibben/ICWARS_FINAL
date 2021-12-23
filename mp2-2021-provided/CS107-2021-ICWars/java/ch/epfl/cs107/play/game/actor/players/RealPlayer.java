@@ -45,8 +45,7 @@ public class RealPlayer extends ICwarsPlayer {
 
     //determine if the player can move a unit on the cell he's  on
     private boolean canMoveUnit;
-
-    //todo test
+    //unit selected for shopping
     private Unit unitToShop;
 
     /*--------------------------------------------------
