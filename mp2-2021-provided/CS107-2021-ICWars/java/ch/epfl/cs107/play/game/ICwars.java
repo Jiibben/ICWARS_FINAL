@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.*;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.window.Button;
+import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 
@@ -36,6 +37,7 @@ public class ICwars extends AreaGame {
      * enum used to keep track of the game state
      */
     public enum gameState {
+        TITLE,
         INIT,
         CHOOSE_PLAYER,
         START_PLAYER_TURN,
@@ -238,6 +240,8 @@ public class ICwars extends AreaGame {
      */
     private void automate() {
         switch (this.currentGameState) {
+            case TITLE:
+                break;
             case INIT:
                 handleInit();
             case CHOOSE_PLAYER:
