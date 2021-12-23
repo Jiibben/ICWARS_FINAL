@@ -9,6 +9,9 @@ import ch.epfl.cs107.play.io.ResourceFileSystem;
 import ch.epfl.cs107.play.window.Window;
 import ch.epfl.cs107.play.window.swing.SwingWindow;
 
+import javax.tools.Tool;
+import java.awt.*;
+
 /**
  * Main entry point.
  */
@@ -18,8 +21,8 @@ public class Play {
      * One second in nano second
      */
     private static final float ONE_SEC = 1E9f;
-    public static final int WINDOW_HEIGHT = 1000;
-    public static final int WINDOW_WIDTH = 1000;
+    public static final int WINDOW_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height-50;
+    public static final int WINDOW_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().height-50;
 
     /**
      * Main entry point.
