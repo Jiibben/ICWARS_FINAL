@@ -75,6 +75,7 @@ public class RealPlayer extends ICwarsPlayer {
     public void playerBought(ShopItem item) {
         if (item.canBeUsed(this.unitToShop)) {
             item.effect(this.unitToShop);
+
             playerGUI.unselectUnit();
             this.removeMoney(item.getPrice());
             setState(NORMAL);

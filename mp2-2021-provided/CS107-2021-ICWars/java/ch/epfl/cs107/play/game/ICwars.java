@@ -308,6 +308,7 @@ public class ICwars extends AreaGame {
         this.playersQueue.clear();
         this.waitingPlayersQueue.clear();
         playersLeaveArea();
+        ((ICwarsArea) getCurrentArea()).destroyCities();
 
         initArea(areas[areaIndex]);
 
@@ -323,6 +324,7 @@ public class ICwars extends AreaGame {
     private void nextLevel() {
         if (this.areaIndex + 1 < this.areas.length) {
             playersLeaveArea();
+            ((ICwarsArea) getCurrentArea()).destroyCities();
             this.playersQueue.clear();
             this.waitingPlayersQueue.clear();
             this.areaIndex += 1;

@@ -440,6 +440,7 @@ public abstract class Unit extends ICwarsActor implements Interactor {
         this.hp = this.maxHp;
     }
 
+
     @Override
     public void draw(Canvas canvas) {
         if (isDead()) {

@@ -196,6 +196,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
 
     }
 
+
     /**
      * if player made an action with one of his unit it sets back the player back to the normal state
      * used in {@link ch.epfl.cs107.play.game.icwars.actor.unit.action.ICwarsAction}
@@ -358,6 +359,7 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
             //unregister the unit if on city so it doesn't take the place to recapture
             unit.leaveArea();
         }
+        this.deadUnits.add(unit);
         this.units.remove(unit);
     }
 
@@ -487,10 +489,16 @@ public abstract class ICwarsPlayer extends ICwarsActor implements Interactor {
      * check if a unit was revived
      */
     public void checkForRevivedUnits() {
+        ArrayList<Unit> unitToRemove = new ArrayList<>();
         for (Unit unit : deadUnits) {
             if (!unit.isDead()) {
-                registerUnit(unit, (ICwarsArea) this.getOwnerArea(), unit.getCurrentMainCellCoordinates());
+                units.add(unit);
+                ((ICwarsArea) getOwnerArea()).addUnit(unit);
+                unitToRemove.add(unit);
             }
+        }
+        for (Unit i : unitToRemove) {
+            deadUnits.remove(i);
         }
     }
 

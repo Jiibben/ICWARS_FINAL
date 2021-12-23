@@ -19,6 +19,9 @@ public abstract class ICwarsArea extends Area {
     private ArrayList<DiscreteCoordinates> cityCoordinates = new ArrayList<>();
     ICwarsBehavior behavior;
 
+    //list of city
+    private final ArrayList<City> cities = new ArrayList<>();
+
     /**
      * Create the area by adding it all actors
      * called by begin method
@@ -81,11 +84,25 @@ public abstract class ICwarsArea extends Area {
 
     }
 
+    /**
+     * create all the cities that are required
+     */
     public void createCities() {
         for (DiscreteCoordinates i : cityCoordinates) {
             City a = new City(ICwarsActor.Faction.NEUTRAL, this, i);
             a.enterArea(this, i);
+            cities.add(a);
         }
+    }
+
+    /**
+     * delete all the cities and unregister them
+     */
+    public void destroyCities() {
+        for (City i : cities) {
+            i.leaveArea();
+        }
+        cities.clear();
     }
 
     public abstract int getNumberOfTank();
@@ -97,6 +114,7 @@ public abstract class ICwarsArea extends Area {
     public abstract int getNumberOfBoat();
 
     public abstract boolean hasThreePlayer();
+
     /**
      * remove the whole list of units in area
      */

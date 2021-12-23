@@ -24,6 +24,7 @@ public class City extends ICwarsActor implements Interactable {
     private final Sprite neutralSprite = new Sprite("icwars/neutralBuilding", 1.0f, 1.0f, this, null);
     private final Sprite enemySprite = new Sprite("icwars/enemyBuilding", 1.0f, 1.0f, this, null);
     private final Sprite allySprite = new Sprite("icwars/friendlyBuilding", 1.0f, 1.0f, this, null);
+    private final Sprite outlawSprite = new Sprite("icwars/outlawBuilding", 1.0f, 1.0f, this, null);
 
     public City(Faction faction, Area area, DiscreteCoordinates position) {
         super(faction, area, position);
@@ -48,10 +49,13 @@ public class City extends ICwarsActor implements Interactable {
     @Override
     public void draw(Canvas canvas) {
         //Check faction and draw the correct sprite depending on the faction
+        System.out.println(getFaction());
         if (getFaction() == Faction.ALLY) {
             allySprite.draw(canvas);
         } else if (getFaction() == Faction.ENEMY) {
             enemySprite.draw(canvas);
+        } else if (getFaction() == Faction.OUTLAW) {
+            outlawSprite.draw(canvas);
         } else {
             neutralSprite.draw(canvas);
         }

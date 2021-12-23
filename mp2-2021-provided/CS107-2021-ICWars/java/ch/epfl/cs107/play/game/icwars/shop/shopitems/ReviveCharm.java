@@ -7,7 +7,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 public final class ReviveCharm extends ShopItem {
 
     public final static String NAME = "(F)Revive";
-    public final static int PRICE = 20;
+    public final static int PRICE = 0;
     public static final int KEY = Keyboard.F;
 
 
@@ -18,6 +18,7 @@ public final class ReviveCharm extends ShopItem {
     @Override
     public void effect(Unit unit) {
         unit.revive();
+
     }
 
     @Override

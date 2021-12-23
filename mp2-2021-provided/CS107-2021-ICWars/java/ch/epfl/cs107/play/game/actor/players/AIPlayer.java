@@ -168,7 +168,7 @@ public class AIPlayer extends ICwarsPlayer {
                 finalY++;
             }
         } else if (unitY > enemyY) {
-            while (enemyY + 1 != finalY && finalX > (unitY - range)) {
+            while (enemyY + 1 != finalY && finalY > (unitY - range)) {
                 finalY--;
             }
         }
