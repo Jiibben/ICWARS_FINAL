@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.audio.AudioPlayer;
 import ch.epfl.cs107.play.game.actor.players.AIPlayer;
 import ch.epfl.cs107.play.game.actor.players.ICwarsPlayer;
 import ch.epfl.cs107.play.game.actor.players.RealPlayer;
+import ch.epfl.cs107.play.game.areagame.Area;
 import ch.epfl.cs107.play.game.areagame.AreaGame;
 import ch.epfl.cs107.play.game.icwars.actor.ICwarsActor;
 import ch.epfl.cs107.play.game.icwars.area.*;
@@ -13,6 +14,7 @@ import ch.epfl.cs107.play.window.Image;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 
+import java.security.Key;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -51,6 +53,7 @@ public class ICwars extends AreaGame {
      * create the area add one if you wan't to add a level and add his key to the areas key
      */
     private void createAreas() {
+        addArea(new Menu());
         addArea(new Level1());
         addArea(new Level0());
         addArea(new Level2());
@@ -109,7 +112,7 @@ public class ICwars extends AreaGame {
 
         //AI PLAYER comment if you want to disable the ai player and uncomment the other realplayer
         players.add(new AIPlayer(ICwarsActor.Faction.ENEMY, area, area.getEnnemySpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getEnnemyUnitSpawn()));
-        if (area.hasThreePlayer()){
+        if (area.hasThreePlayer()) {
             players.add(new AIPlayer(ICwarsActor.Faction.OUTLAW, area, area.getThirdPlayerSpawnPosition(), area.getNumberOfTank(), area.getNumberOfSoldier(), area.getNumberOfGeek(), area.getNumberOfBoat(), area.getThirdPlayerUnitSpawn()));
         }
     }
@@ -127,7 +130,7 @@ public class ICwars extends AreaGame {
             } else if (player.getFaction() == ICwarsActor.Faction.ALLY) {
                 player.enterArea(area, area.getPlayerSpawnPosition());
             } else if (player.getFaction() == ICwarsActor.Faction.OUTLAW) {
-                if(area.getThirdPlayerSpawnPosition()!=null) {
+                if (area.getThirdPlayerSpawnPosition() != null) {
                     player.enterArea(area, area.getThirdPlayerSpawnPosition());
                 }
             }
@@ -150,6 +153,17 @@ public class ICwars extends AreaGame {
     Automate handling
 
     <---------------------*/
+
+    /**
+     * handle title
+     */
+    private void handleTitle() {
+        Keyboard keyboard = getWindow().getKeyboard();
+        if (keyboard.get(Keyboard.ENTER).isPressed()) {
+            areaIndex = 0;
+            initArea(areas[areaIndex]);
+        }
+    }
 
     /**
      * init part fill the queue and change state to choose player
@@ -241,6 +255,7 @@ public class ICwars extends AreaGame {
     private void automate() {
         switch (this.currentGameState) {
             case TITLE:
+                handleTitle();
                 break;
             case INIT:
                 handleInit();
@@ -272,12 +287,13 @@ public class ICwars extends AreaGame {
         if (super.begin(window, fileSystem)) {
             gameSound.playSound();
             createAreas();
-            areaIndex = 0;
-            initArea(areas[areaIndex]);
+            setCurrentArea("icwars/Menu", true);
+            currentGameState = gameState.TITLE;
             return true;
         }
         return false;
     }
+
 
     /**
      * init area by given index
