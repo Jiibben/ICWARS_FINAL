@@ -1,13 +1,14 @@
 <h1>ICWARS2021</h1>
 
 <h1>INFO</h1>
+
 <p>ICWars est un jeu développé dans le cadre du cours d'introduction à la programmation orienté objet en java à l'epfl</p>
 <p>Le jeu tel quel peut encore grandement être amélioré et nous avons été limité par le temps à disposition</p>
 <h1>Liens importants</h1>
-<p>voilà quelques liens importants :
-démo vidéo  :  https://www.youtube.com/watch?v=N2ph4_Epx0Q </p>
+<p>voilà quelques liens importants :</p>
+<p>démo vidéo (outadted manque certains éléments):  <a href="https://www.youtube.com/watch?v=N2ph4_Epx0Q">VIDEO YOUUTBE</a> </p>
 <p>
-site de présentation du jeu : https://compassionate-feynman-4aef09.netlify.app/
+site créer par nos soins de présentation du jeu : <a href="https://compassionate-feynman-4aef09.netlify.app">SITE DU JEU</a>
 </p>
 
 
@@ -44,13 +45,16 @@ Déroulement d'une partie typique. Voir bas du document pour caractéristiques d
 	<li>Chaque unité tuée rapporte 5 d'argent au joueur (l'argent est remis à zéro lors du changement de carte).
 	<br></br>
 	<li>Il est possible de capturer les cités (disponibles sur certaines cartes uniquement) en placant une unité dessus et utilisant l'action "catpurer" (touche <strong>C</strong>). Les cités capturées ramènent un nombre fixe de 4 pièces par tour(au début du tour). 
+	<br></br>
 	<li> Certaines map on plusieurs ennemis 
+	<br></br>
 	<li> Les unités mortes peuvent être résucitée en achetant l'objet revive sur elle. Attention à ne pas les faire mourrir sur les cités car
+	<br></br>
 </ol>
 
 </table>
-<h1>ACtions</h1>
-key : touche de clavier associée à l'attaque
+<h1>Actions</h1>
+key : touche de clavier associée à l'action
 <table>
   <tr>
   <th>ACTIONS (not all units have access to the same actions)
@@ -82,6 +86,7 @@ key : touche de clavier associée à l'attaque
   <td><strong>C</strong>
   <td>capture sur laquelle est l'unité
   <tr>
+
 </table>
 
 <h1>unités</h1>
@@ -128,6 +133,7 @@ key : touche de clavier associée à l'attaque
 </tr>
 </table>
 <h1>Controles :</h1>
+<p>voir les sections dédiées pour le shop et les actions</p>
 <table>
   <tr>
     <th>CONTROLES
@@ -291,27 +297,36 @@ key : touche de clavier associée à l'attaque
 <th>OBJET
 <th>PRIX
 <th>EFFET
+<th>TOUCHE
 </tr>
 <tr>
 <td>Bière PG
 <td>5
 <td>rajoute 1 de dégat à l'unité sur laquelle l'objet est utilisé
+<td>B
 </tr>
 <tr>
 <td>Potion
 <td>4
 <td>soigne de 3 hp l'unité sur laquelle l'objet est utilisé
+<td>P
+</tr>
+<tr>
+<td>Revive
+<td>25
+<td>resucite l'unité morte sur laquelle elle est utilisée(tombe ou sprite cassé)
+<td>F
 </tr>
 </table>
 <h1>Map creation</h1>
-<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL MAIS SUPPLEMENTAIRE)</p>
+<p>(INCLUS CAR A ETE UTILISE DANS LA CREATION DU JEU ACTUEL (nous n'avons pris connaissance du créateur de map uniquement à la fin du projet)</p>
 <p>script python permettant de créer semi-automatiquement les behaviors map et les background des cartes pour ICWars présent (dossier présent dans le fichier racine du projet)</p>
 <h2>utilisation:</h2>
 <ul>
 <li>create_map.py
 <ul>
 <li>installer les dépendances requirements.txt disponible
-<li>modifier le fichier map.txt avec les abréviations de chaque tile (voir exemple de map.txt)
+<li>modifier le fichier map.txt avec les abréviations de chaque tile disponible dans le meaning.json (voir exemple de map.txt)
 <li>lancer le script et cela va créer deux images une map.png et une rgbMap.png qui sont respectivement la carte et la behavior associée a placé dans les ressources.
 </ul>
 <li>getcolor.py
