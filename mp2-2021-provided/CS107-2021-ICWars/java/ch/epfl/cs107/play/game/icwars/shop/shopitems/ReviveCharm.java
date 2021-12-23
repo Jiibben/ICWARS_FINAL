@@ -7,7 +7,7 @@ import ch.epfl.cs107.play.window.Keyboard;
 public final class ReviveCharm extends ShopItem {
 
     public final static String NAME = "(F)Revive";
-    public final static int PRICE = 0;
+    public final static int PRICE = 15;
     public static final int KEY = Keyboard.F;
 
 
