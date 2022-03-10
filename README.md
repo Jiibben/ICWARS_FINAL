@@ -1,7 +1,6 @@
 <h1>ICWARS2021</h1>
-
+<h2>Project won the award of the best game made in that class<h2>
 <h1>INFO</h1>
-
 <p>ICWars est un jeu développé dans le cadre du cours d'introduction à la programmation orienté objet en java à l'epfl</p>
 <p>Le jeu tel quel peut encore grandement être amélioré et nous avons été limité par le temps à disposition</p>
 <h1>Liens importants</h1>
